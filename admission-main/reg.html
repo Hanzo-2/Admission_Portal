@@ -1,0 +1,144 @@
+<html lang="en" class="scroll-smooth">
+  <link rel="stylesheet" href="register.css">
+  <link rel="stylesheet" href="form.css">
+  <title>Admission Portal </title>
+  <body></body>
+<header>
+  <img src="logo.png" alt="" srcset="">Southern Philippines Institute Of Science And Technology
+
+  </header>
+  <h2 id="af"></h2>
+    <section>
+
+
+      
+    <div class="form-container">
+      <h2>Personal Information Form</h2>
+      <form action="#" method="post">
+          
+          <div class="form-grid">
+              <div class="form-group">
+                  <label for="firstname">First Name:</label>
+                  <input type="text" id="firstname" name="firstname" 
+                  required placeholder="First Name"
+                  required 
+                      pattern="[A-Za-z\s]+" title="Only letters allowed"
+                      oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
+              </div>
+
+              <div class="form-group">
+                  <label for="middlename">Middle Name:</label>
+                  <input type="text" id="middlename" name="middlename"
+                  required placeholder="Middle Name"
+                      pattern="[A-Za-z\s]+" title="Only letters allowed"
+                      oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
+              </div>
+
+              <div class="form-group">
+                  <label for="suffix">Suffix (Optional):</label>
+                  <input type="text" id="suffix" name="suffix" placeholder="e.g., Jr., Sr., III"
+                      pattern="[A-Za-z\s]+" title="Only letters allowed"
+                      oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
+              </div>
+
+              <div class="form-group">
+                  <label for="surname">Surname:</label>
+                  <input type="text" id="surname" name="surname" 
+                  required placeholder="Surname"
+                  required 
+                      pattern="[A-Za-z\s]+" title="Only letters allowed"
+                      oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
+              </div>
+
+              <div class="form-group">
+                  <label for="age">Age:</label>
+                  <input type="number" id="age" name="age" min="1" required
+                  required placeholder="Age">
+              </div>
+
+              <div class="form-group">
+                  <label for="birthdate">Birthdate:</label>
+                  <input type="date" id="birthdate" name="birthdate" required>
+              </div>
+
+              <div class="form-group">
+                  <label for="sex">Sex:</label>
+                  <select id="sex" name="sex" required>
+                      <option value="">Choose your sex at birth</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                  </select>
+              </div>
+
+              <div class="form-group">
+                  <label for="civilstatus">Civil Status:</label>
+                  <select id="civilstatus" name="civilstatus" required>
+                      <option value="">Choose your civil status</option>
+                      <option value="Single">Single</option>
+                      <option value="Married">Married</option>
+                      <option value="Divorced">Divorced</option>
+                      <option value="Widowed">Widowed</option>
+                  </select>
+              </div>
+
+              <div class="form-group">
+                  <label for="religion">Religion:</label>
+                  <input type="text" id="religion" name="religion"
+                  required placeholder="Religion">
+              </div>
+
+              <div class="form-group">
+                  <label for="contact">Contact Number:</label>
+                  <input type="tel" id="contact" name="contact" pattern="[0-9]{11}" 
+                      title="Enter exactly 11 digits" maxlength="11"
+                      oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                      required placeholder="Enter 11-digit phone number">
+              </div>
+
+              <div class="form-group full-width">
+                  <label for="nationality">Nationality:</label>
+                  <select id="nationality" name="nationality" required>
+                      <option value="">Choose your nationality</option>
+                      <option value="Filipino">Filipino</option>
+                      <option value="American">American</option>
+                      <option value="British">British</option>
+                      <option value="Canadian">Canadian</option>
+                      <option value="Chinese">Chinese</option>
+                      <option value="French">French</option>
+                      <option value="German">German</option>
+                      <option value="Indian">Indian</option>
+                      <option value="Japanese">Japanese</option>
+                      <option value="Mexican">Mexican</option>
+                      <option value="Other">Other</option>
+                  </select>
+              </div>
+
+          </div>
+
+          <div class="button-container">
+              <button type="submit">Submit</button>
+          </div>
+
+      </form>
+  </div>  
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+
+
+</footer>
