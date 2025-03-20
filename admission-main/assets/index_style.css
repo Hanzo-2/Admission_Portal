@@ -59,7 +59,6 @@ body::before {
   justify-content: center;
   align-items: center;
   gap: 6px;
-  
   padding: 20px 20px ;
   width: 250px;
   height: 40px;
@@ -69,7 +68,7 @@ body::before {
   box-shadow: 2px 2px #FFD700;
   font-size: 16px;
   font-weight: 600;
-  color: var(--font-color);
+  color: #f5f5dc;
   cursor: pointer;
   transition: all 250ms;
   position: relative;
