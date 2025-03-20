@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+ 
+  <link rel="stylesheet" href="../assets/form.css">
+  <title>Admission Portal</title>
+</head>
+<body>
+  <header>
+    <div class="header-content">    
+      <img src="../assets/spistlogo.png" alt="Logo">
+      <p>SPIST Admission Portal</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="form-container">
+      <h2>Personal Information</h2>
+      <p>First Semester, 2025 - 2026</p>
+      <form action="#" method="post">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required placeholder="First Name">
+          </div>
+
+          <div class="form-group">
+            <label for="middlename">Middle Name:</label>
+            <input type="text" id="middlename" name="middlename" placeholder="Middle Name (Optional)">
+          </div>
+
+          <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" name="surname" required placeholder="Surname">
+          </div>
+
+          <div class="form-group">
+            <label for="birthdate">Date of Birth:</label>
+            <input type="date" id="birthdate" name="birthdate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="birthplace">Place of Birth:</label>
+            <select id="birthplace" name="birthplace" required>
+              <option value="">Choose your Place of Birth</option>
+              <!-- Add options here -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex" required>
+              <option value="">Choose your sex at birth</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="civilstatus">Civil Status:</label>
+            <select id="civilstatus" name="civilstatus" required>
+              <option value="">Choose your civil status</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Divorced">Divorced</option>
+              <option value="Widowed">Widowed</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="nationality">Nationality:</label>
+            <select id="nationality" name="nationality" required>
+              <option value="">Choose your Nationality</option>
+              <!-- Add options here -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="religion">Religion:</label>
+            <select id="religion" name="religion" required>
+              <option value="">Choose your Religion (Optional)</option>
+              <!-- Add options here -->
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="address">House No., Street Name:</label>
+            <input type="text" id="address" name="address" required placeholder="House No., Street Name">
+          </div>
+
+          <div class="form-group">
+            <label for="country">Country:</label>
+            <select id="country" name="country" required>
+              <option value="">Select Country</option>
+              <!-- Add options here -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="province">Province/Region:</label>
+            <select id="province" name="province" required>
+              <option value="">Select Province/Region</option>
+              <!-- Add options here -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="city">City:</label>
+            <select id="city" name="city" required>
+              <option value="">Select City</option>
+              <!-- Add options here -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="barangay">Barangay:</label>
+            <select id="barangay" name="barangay" required>
+              <option value="">Select Barangay</option>
+              <!-- Add options here -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" pattern="[0-9]{11}"
+                   title="Enter exactly 11 digits" maxlength="11"
+                   oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                   placeholder="Enter 11-digit phone number">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter Email Address">
+          </div>
+
+          <div class="form-group">
+            <label for="telephone">Telephone Number:</label>
+            <input type="tel" id="telephone" name="telephone" placeholder="Enter Tel# (Optional)">
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button type="Next">Next</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+
+    <p>&copy; 2025 SPIST. All rights reserved.</p>
+  </footer>
+</body>
+</html>
