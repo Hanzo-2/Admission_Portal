@@ -44,11 +44,11 @@ header p {
 .form-container {
     font-family: Georgia, serif;
     flex: 1;
-    max-width: 1000px; 
+    max-width: 1070px; 
     width: 100%;
-    margin: 50px auto;
+    margin: 55px auto;
     background: rgba(245, 245, 220, 0.92); 
-    padding: 35px; 
+    padding: 45px; 
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
@@ -58,19 +58,20 @@ header p {
     text-align: center;
     color: #333;
     margin-bottom: 10px;
-    font-size: 40px;
+    font-size: 55px;
 }
 
 .form-container p {
     text-align: center;
     color: #666;
+    font-size: 20px;
     margin-bottom: 40px;
 }
 
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 17px;
+    gap: 20px;
 }
 
 .form-group {
@@ -83,8 +84,8 @@ header p {
 }
 
 .form-group label {
-    margin-bottom: 5px;
-    font-size: 19px;
+    margin-bottom: 6px;
+    font-size: 21px;
     padding-left: 5px;
     color: black;
 }
@@ -94,8 +95,23 @@ header p {
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 18px;
     width: 100%;
+}
+
+.form-group select{
+    padding-right: 40px;
+    background: white url(select\ arrow.png) no-repeat right 10px center;
+    background-size: 20px;
+    appearance: none;
+}
+
+select option{
+    color:black;
+}
+
+select:invalid{
+    color:grey;
 }
 
 .button-container {
