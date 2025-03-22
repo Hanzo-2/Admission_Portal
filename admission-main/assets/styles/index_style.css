@@ -1,6 +1,6 @@
 body {
   box-sizing: border-box;
-  background-image: url('spistbg.jpg');
+  background-image: url('../images/spistbg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -26,7 +26,7 @@ body::before {
 /* Style for the login box */
 .form {
   background: rgba(0, 0, 0, 0.6);
-  padding: 25px;
+  padding: 50px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
@@ -34,7 +34,7 @@ body::before {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 300px;
+  width: 310px;
   backdrop-filter: blur(10px);
   border: 3px solid rgba(71, 150, 84, 0.8); 
 }
@@ -52,7 +52,7 @@ body::before {
 }
 .spist {
   font-size: 65px;
-  font-weight: bold;
+  font-weight: bolder;
 }
 .oauthButton {
   display: flex;
