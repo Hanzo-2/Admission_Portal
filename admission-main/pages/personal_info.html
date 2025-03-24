@@ -1,24 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
-<header>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="../assets/images/spistlogo_icon.ico">
-  <div class="header-content">    
-    <img src="../assets/images/spistlogo.png" alt="SPIST Logo">
-    <p>SPIST Admission Portal</p>
-  </div>
-  <div class="profile-container">
-    <img src="../assets/images/Profile-icon-placeholder.png" alt="Profile Icon" class="profile-icon" onclick="toggleProfileDropdown()">
-    <div class="profile-dropdown" id="profile-dropdown">
-      <p id="username">Yen-san</p>
-      <p>yensirdalmadrid@example.com</p>
-      <button id="logout-button" onclick="logout()">Log out</button>
-    </div>
-  </div>
-</header>
-
 <head>
   <link rel="stylesheet" href="../assets/styles/personal_info.css">
   <title>SPIST Admission - Personal</title>
@@ -26,6 +8,7 @@
 </head>
 
 <body>
+<div id="header"></div>  <!-- Header -->
   <section>
     <div class="form-container">
       <div class="form-header">
@@ -172,10 +155,7 @@
       </form>
     </div>
   </section>
-
-<footer>
-  <p>&copy; 2025 SPIST. All rights reserved.</p>
-</footer>
-  
+  <div id="footer"></div>  <!-- Footer -->
+  <script src="../components/script-head-foot.js"></script> <!-- Shows Header & Footer -->
 </body>
 </html>
