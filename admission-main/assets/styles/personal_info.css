@@ -4,52 +4,78 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
-    background-image: url('../images/formbg.png'); /* Add the background image here */
+    background: url('../images/oldspistbg.png') no-repeat center center fixed; /* Background Image */
     background-size: cover;
-    background-position: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
+.main-content {
+    flex: 1;
+}
+
 .form-container {
     font-family: Georgia, serif;
-    flex: 1;
     max-width: 1070px; 
     width: 100%;
-    margin: 55px auto;
-    background: rgba(255, 255, 225, 0.93); 
-    padding-top: 40px;
-    padding-left: 55px;
-    padding-right: 55px;
-    padding-bottom: 50px; 
+    margin: 75px auto;
+    background: rgba(255, 255, 225, 0.91); /* Semi-transparent for readability */
+    padding: 40px 55px 50px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+    position: relative; /* Ensures child elements like ::before are positioned correctly */
+}
+
+/* Background Logo Effect - Behind Form */
+.form-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: url('../images/spistlogo.png') no-repeat center center;
+    background-size: contain;
+    z-index: -1; /* Push behind the form */
+    pointer-events: none; /* Allows interaction with form */
+}
+
+/* Ensuring Form Content Appears on Top */
+.form-content {
+    position: relative;
+    z-index: 1;
 }
 
 .form-header {
     display: flex;
-    align-items: center; /* Aligns image and text in the same row */
-    gap: 15px; /* Adds space between image and text */
-    padding-bottom: 48px;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 35px;
 }
 
 .form-header-text {
     text-align: left;
-    max-width: 500px; /* Optional: Adjusts text width */
+    max-width: 550px;
 }
 
 .form-header-text h2 {
     color: #333;
-    font-size: 40px;
+    font-size: 45px;
 }
 
 .form-header-text p {
     color: #666;
-    font-size: 18px;
+    font-size: 21px;
 } 
 
 .form-grid {
@@ -68,6 +94,7 @@ body {
 }
 
 .form-group label {
+    margin-top: 15px;
     margin-bottom: 6px;
     font-size: 21px;
     padding-left: 5px;
@@ -77,29 +104,29 @@ body {
 .form-group input,
 .form-group select {
     padding: 10px;
-    border: 2px solid darkgrey ;
+    border: 2px solid darkgrey;
     border-radius: 4px;
     font-size: 18px;
     width: 100%;
 }
 
-.form-group select{
+.form-group select {
     padding-right: 40px;
     background: white url(../images/select\ arrow.png) no-repeat right 10px center;
     background-size: 20px;
     appearance: none;
 }
 
-select option{
-    color:black;
+select option {
+    color: black;
 }
 
 select:invalid, 
 select option[value=""] {
-    color:grey;
+    color: grey;
 }
 
-#birthdate{
+#birthdate {
     color: grey;
 }
 

@@ -47,16 +47,20 @@
 }
 
 .profile-dropdown {
+    color: #ffffff; /* Ensures it's readable */
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9); /* Adds subtle contrast */
     display: none;
     position: absolute;
     right: 0;
-    background-color: #43b14b;
+    background-color: rgba(67, 177, 75, 0.98); /* Slight transparency */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 5px;
+    padding: 10px; /* More spacing */
     border: 3px solid black;
     border-radius: 5px;
-    min-width: 100px;
+    min-width: 180px; /* Increased width for better spacing */
     text-align: center;
+    z-index: 1000; /* Ensures it stays on top */
 }
 
 #username{
