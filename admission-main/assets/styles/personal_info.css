@@ -103,8 +103,6 @@ body {
     color: black;
 }
 
-
-
 .form-group input,
 .form-group select {
     padding: 10px;
@@ -140,12 +138,17 @@ input[type="date"]:valid {
 }
 
 #religion {
+    margin-right: 260px;
     color: grey;
 }
 
 /* When a valid option is selected, change the text color */
 #religion:has(option:not(:first-child):checked) {
     color: black;
+}
+
+#province {
+    margin-right: 200px;
 }
 
 .button-container {
