@@ -24,24 +24,27 @@
       </div>
       <form action="#" method="post">
         <div class="form-grid">
+        <div class="row">
           <div class="form-group">
-            <label for="firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstname" required placeholder="First Name">
+            <label for="personal-firstname">First Name:</label>
+            <input type="text" id="personal-firstname" name="personal_firstname" required placeholder="First Name">
           </div>
 
           <div class="form-group">
-            <label for="middlename">Middle Name:</label>
-            <input type="text" id="middlename" name="middlename" placeholder="Middle Name (Optional)">
+            <label for="personal-middlename">Middle Name:</label>
+            <input type="text" id="personal-middlename" name="personal_middlename" placeholder="Middle Name (Optional)">
           </div>
 
           <div class="form-group">
-            <label for="surname">Surname:</label>
-            <input type="text" id="surname" name="surname" required placeholder="Surname">
+            <label for="personal-surname">Surname:</label>
+            <input type="text" id="personal-surname" name="personal_surname" required placeholder="Surname">
           </div>
+        </div>
 
+        <div class="row">
           <div class="form-group">
-            <label for="birthdate">Date of Birth:</label>
-            <input type="date" id="birthdate" name="birthdate" required>
+            <label for="personal-birthdate">Date of Birth:</label>
+            <input type="date" id="personal-birthdate" name="personal_birthdate" min="1900-01-01" max="2099-12-31" required>
           </div>
 
           <div class="form-group">
@@ -62,7 +65,9 @@
               <option value="Other">Other</option>
             </select>
           </div>
+        </div>
 
+        <div class="row">
           <div class="form-group">
             <label for="civilstatus">Civil Status:</label>
             <select id="civilstatus" name="civilstatus" required>
@@ -91,12 +96,16 @@
               <!-- Add options here -->
             </select>
           </div>
+        </div>
 
-          <div class="form-group full-width">
+        <div class="row">
+          <div class="form-group">
             <label for="address">House No., Street Name:</label>
             <input type="text" id="address" name="address" required placeholder="House No., Street Name">
           </div>
-        
+        </div>
+
+        <div class="row">
           <div class="form-group">
             <label for="country">Country:</label>
             <select id="country" name="country" required>
@@ -132,13 +141,14 @@
               <!-- Add options here -->
             </select>
           </div>
+        </div>
 
+        <div class="row">
           <div class="form-group">
-            <label for="contact">Contact Number:</label>
-            <input type="tel" id="contact" name="contact" pattern="[0-9]{11}"
-                   title="Enter exactly 11 digits" maxlength="11"
-                   oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                  required placeholder="Enter 11-digit phone number">
+            <label for="personal_contact">Contact Number:</label>
+            <input type="tel" id="personal-contact" name="personal_contact" maxlength="14" 
+                           placeholder="Enter 11-digit phone number" required
+                           oninput="formatPhoneNumber(this)">
           </div>
 
           <div class="form-group">
@@ -148,13 +158,14 @@
 
           <div class="form-group">
             <label for="telephone">Telephone Number:</label>
-            <input type="tel" id="telephone" name="telephone" placeholder="Enter Telephone Number (Optional)">
+            <input type="tel" id="telephone" name="telephone" placeholder="Enter Tel. No. (Optional)">
           </div>
         </div>
+      </div>
 
         <div class="button-container">
-          <button type="back">Back</button>
-          <button type="ext">Next</button>
+          <button id="back-btn" type="back">Back</button>
+          <button type="next">Next</button>
         </div>
       </form>
     </div>
@@ -163,5 +174,6 @@
 
   <div id="footer"></div>  <!-- Footer -->
   <script src="../components/script-head-foot.js"></script> <!-- Shows Header & Footer -->
+  <script src="../components/family_info.js"></script>
 </body>
 </html>
