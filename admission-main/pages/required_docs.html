@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/images/spistlogo_icon.ico">
+  <link rel="stylesheet" href="../assets/styles/required_docs.css">
+  <title>SPIST Admission - Documents</title>
+  <script src="../components/modal/profile_dropdown.js"></script>
+</head>
+
+<body>
+<div id="header"></div>  <!-- Header -->
+<div class="main-content">
+  <section>
+    <div class="form-container">
+
+      <div class="form-header">
+        <img src="../assets/images/document_logo.png" alt="Document Logo" width="90px" height="120px">
+         <div class="form-header-text">
+          <h2>Required Documents</h2>
+           <p>Please upload the required documents.</p>
+           <p>Only JPEG (.jpg), PNG (.png), and PDF (.pdf) formats are accepted, with a maximum file size of 1 mb per upload.</p>
+         </div>
+      </div>
+
+      <form id="uploadForm" action="#" method="post">
+        <div class="container">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th class="th-hash">#</th>
+                        <th class="th-document">Document Name</th>
+                        <th class="th-attachment">Attachment</th>
+                        <th class="th-upload">Upload</th>
+                        <th class="th-remarks">Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="row-1">
+                        <td>1.</td>
+                        <td class="td-document-name"><strong class="text-danger">FORM 138*</strong></td>
+                        <td class="attachment attachment-1">No file</td>
+                        <td>
+                            <div class="upload-wrapper">
+                                <input type="file" id="file-1" accept=".png, .jpg, .jpeg, .pdf" onchange="uploadFile(this, 1)">
+                                <label for="file-1" class="upload-btn">📁 Choose File</label>
+                                <span class="remove-btn" onclick="removeFile(1)">Remove</span>
+                            </div>
+                        </td>
+                        <td class="remark-1 text-danger"><strong>This document is absolutely necessary</strong></td>
+                    </tr>
+                    <tr id="row-2">
+                        <td>2.</td>
+                        <td class="td-document-name">PSA Birth Certificate (PhotoCopy)</td>
+                        <td class="attachment attachment-2">No file</td>
+                        <td>
+                            <div class="upload-wrapper">
+                                <input type="file" id="file-2" accept=".png, .jpg, .jpeg, .pdf" onchange="uploadFile(this, 2)">
+                                <label for="file-2" class="upload-btn">📁 Choose File</label>
+                                <span class="remove-btn" onclick="removeFile(2)">Remove</span>
+                            </div>
+                        </td>
+                        <td class="remark-2 text-secondary">Waiting for upload</td>
+                    </tr>
+                    <tr id="row-3">
+                        <td>3.</td>
+                        <td class="td-document-name">2pcs. 2x2 recent colored photo, white background with nameplate</td>
+                        <td class="attachment attachment-3">No file</td>
+                        <td>
+                            <div class="upload-wrapper">
+                                <input type="file" id="file-3" accept=".png, .jpg, .jpeg, .pdf" onchange="uploadFile(this, 3)">
+                                <label for="file-3" class="upload-btn">📁 Choose File</label>
+                                <span class="remove-btn" onclick="removeFile(3)">Remove</span>
+                            </div>
+                        </td>
+                        <td class="remark-3 text-secondary">Waiting for upload</td>
+                    </tr>
+                    <tr id="row-4">
+                        <td>4.</td>
+                        <td class="td-document-name">Certificate of Good Moral</td>
+                        <td class="attachment attachment-4">No file</td>
+                        <td>
+                            <div class="upload-wrapper">
+                                <input type="file" id="file-4" accept=".png, .jpg, .jpeg, .pdf" onchange="uploadFile(this, 4)">
+                                <label for="file-4" class="upload-btn">📁 Choose File</label>
+                                <span class="remove-btn" onclick="removeFile(4)">Remove</span>
+                            </div>
+                        </td>
+                        <td class="remark-4 text-secondary">Waiting for upload</td>
+                    </tr>
+                    <tr id="row-5">
+                        <td>5.</td>
+                        <td class="td-document-name">2 PCS. DOCUMENTARY STAMPS</td>
+                        <td class="attachment attachment-5">No file</td>
+                        <td>
+                            <div class="upload-wrapper">
+                                <input type="file" id="file-5" accept=".png, .jpg, .jpeg, .pdf" onchange="uploadFile(this, 5)">
+                                <label for="file-5" class="upload-btn">📁 Choose File</label>
+                                <span class="remove-btn" onclick="removeFile(5)">Remove</span>
+                            </div>
+                        </td>
+                        <td class="remark-5 text-secondary">Waiting for upload</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+      <div class="button-container">
+        <button id="back-btn" type="button">Back</button>
+        <button type="submit">Next</button>
+      </div>
+
+     </form>
+    </div>
+  </section>
+</div>
+
+  <div id="footer"></div>  <!-- Footer -->
+  <script src="../components/script-head-foot.js"></script> <!-- Shows Header & Footer -->
+  <script src="../components/modal/required_docs.js"></script>
+
+  <div id="toast-container"></div> <!--another notification for invalid file type-->
+</body>
+</html>
