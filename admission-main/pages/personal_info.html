@@ -158,7 +158,8 @@
 
           <div class="form-group">
             <label for="telephone">Telephone Number:</label>
-            <input type="tel" id="telephone" name="telephone" placeholder="Enter Tel. No. (Optional)">
+            <input type="tel" id="telephone" name="telephone" placeholder="Enter Tel. No. (Optional)" maxlength="12"
+                   oninput="formatTelephone(this)">
           </div>
         </div>
       </div>
@@ -174,6 +175,6 @@
 
   <div id="footer"></div>  <!-- Footer -->
   <script src="../components/script-head-foot.js"></script> <!-- Shows Header & Footer -->
-  <script src="../components/family_info.js"></script>
+  <script src="../components/personal_info.js"></script>
 </body>
 </html>
