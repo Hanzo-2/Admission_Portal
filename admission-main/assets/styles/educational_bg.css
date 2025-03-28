@@ -60,7 +60,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding-bottom: 35px;
+    padding-bottom: 45px;
 }
 
 .form-header-text {
@@ -70,12 +70,12 @@ body {
 
 .form-header-text h2 {
     color: #333;
-    font-size: 45px;
+    font-size: 40px;
 }
 
 .form-header-text p {
     color: #666;
-    font-size: 21px;
+    font-size: 20px;
 } 
 
 .form-grid {
@@ -90,27 +90,58 @@ body {
     gap: 15px;
 }
 
-h1, h3 {
-    margin-top: 60px;
-}
-
-h1, h2 {
+h2 {
     font-size: 35px;
     font-weight: bolder;
     margin-bottom: 5px;
 }
 
-h3 {
-    font-size: 27px;
-}
-
-.row, .row2 {
+.row {
     display: flex;
     gap: 25px;
 }
 
 .row2 {
-    margin-top: 15px;
+    display: flex;
+    gap: 25px;
+}
+
+.checkbox-container {
+    display: flex;
+    width: 350px;
+    gap: 8px;
+}
+
+.checkbox-container label {
+    display: flex;
+    align-items: baseline; /* Aligns checkbox and text properly */
+    gap: 20px; /* Adjust spacing between checkbox and text */
+    font-size: 17px !important;
+    margin-top: 10px; /* Remove extra top margin */
+}
+
+label[for="school-type"] {
+    padding-left: 0px !important;
+}
+
+label[for="school-name"] {
+    margin-top: -20px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 20px; /* Adjust checkbox size */
+    height: 10px;
+    margin: 0;
+    cursor: pointer;
+    transform: scale(2.5); /* Remove scale transformation */
+    vertical-align: middle; /* Ensure vertical alignment */
+}
+
+
+/* Remove the thick outline when tabbing */
+input[type="checkbox"]:focus {
+    outline: 2px solid black; /* Optional: Adjust focus indicator */
+    outline-offset: 1px; /* Keeps it close to the checkbox */
 }
 
 .form-group {
@@ -121,61 +152,37 @@ h3 {
 
 .form-group label {
     margin-bottom: 6px;
-    font-size: 20px;
+    font-size: 25px;
     padding-left: 3px;
     color: black;
 }
 
-.form-group input,
-.form-group select {
-    padding: 10px;
+#lrn {
+    margin-right: 140px;
+}
+
+#track-strand {
+    margin-right: 600px;
+}
+
+#shs-average {
+    margin-right: 125px;
+}
+
+.form-group input {
+    padding: 12px;
     border: 2px solid darkgrey;
     border-radius: 4px;
-    font-size: 18px;
+    font-size: 21px;
     width: 100%;
-}
-
-.form-group select {
-    padding-right: 40px;
-    background: white url(../images/select\ arrow.png) no-repeat right 10px center;
-    background-size: 20px;
-    appearance: none;
-}
-
-select option {
-    color: black;
-}
-
-select:invalid, 
-select option[value=""] {
-    color: grey;
-}
-
-input[type="date"] {
-    margin-right: 40px;
-}
-
-input[type="tel"] {
-    margin-right: 100px;
-}
-
-#guardian-address {
-    margin-right: 480px;
-}
-
-#guardian-province {
-    margin-right: 190px;
-}
-
-#emergency-contact {
-    margin-top: 65px;
-    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 .button-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 120px;
+    margin-top: 70px;
     width: 100%;
 }
 
