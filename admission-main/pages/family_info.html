@@ -18,10 +18,10 @@
 
       <div class="form-header">
         <img src="../assets/images/document_logo.png" alt="Document Logo" width="65px" height="75px">
-         <div class="form-header-text">
+        <div class="form-header-text">
           <h2>Family Information</h2>
-           <p>First Semester, 2025 - 2026</p>
-         </div>
+          <p>First Semester, 2025 - 2026</p>
+        </div>
       </div>
 
       <form action="#" method="post">
@@ -54,8 +54,8 @@
                 <div class="form-group">
                     <label for="father-contact">Contact Number:</label>
                     <input type="tel" id="father-contact" name="father_contact" maxlength="14" 
-                           placeholder="Enter 11-digit phone number"
-                           oninput="formatPhoneNumber(this)">
+                          placeholder="Enter 11-digit phone number"
+                          oninput="formatPhoneNumber(this)">
                 </div>
               </div>
             </div>
@@ -90,8 +90,8 @@
                 <div class="form-group">
                     <label for="mother-contact">Contact Number:</label>
                     <input type="tel" id="mother-contact" name="mother_contact" maxlength="14" 
-                           placeholder="Enter 11-digit phone number" 
-                           oninput="formatPhoneNumber(this)">
+                          placeholder="Enter 11-digit phone number" 
+                          oninput="formatPhoneNumber(this)">
                 </div>
               </div>
             </div>
@@ -147,8 +147,8 @@
                 <div class="form-group">
                     <label for="guardian-contact">Contact Number:</label>
                     <input type="tel" id="guardian-contact" name="guardian_contact" maxlength="14" 
-                           placeholder="Enter 11-digit phone number" required 
-                           oninput="formatPhoneNumber(this)">
+                          placeholder="Enter 11-digit phone number" required 
+                          oninput="formatPhoneNumber(this)">
                   </div>
         
                   <div class="form-group">
@@ -159,7 +159,7 @@
                   <div class="form-group">
                     <label for="guardian-telephone">Telephone Number:</label>
                     <input type="tel" id="guardian-telephone" name="guardian_telephone" placeholder="Enter Tel. No. (Optional)" maxlength="12"
-                           oninput="formatTelephone(this)">
+                          oninput="formatTelephone(this)">
                   </div>
             </div>
         </div>
@@ -194,8 +194,8 @@
                 <div class="form-group">
                     <label for="emergency-contact">Contact Number:</label>
                     <input type="tel" id="emergency-contact" name="emergency_contact" maxlength="14" 
-                           placeholder="Enter 11-digit phone number" required 
-                           oninput="formatPhoneNumber(this)">
+                          placeholder="Enter 11-digit phone number" required 
+                          oninput="formatPhoneNumber(this)">
                   </div>
         
                   <div class="form-group">
@@ -206,13 +206,13 @@
                   <div class="form-group">
                     <label for="emergency-telephone">Telephone Number:</label>
                     <input type="tel" id="emergency-telephone" name="emergency_telephone" placeholder="Enter Tel. No. (Optional)" maxlength="12"
-                           oninput="formatTelephone(this)">
+                          oninput="formatTelephone(this)">
                   </div>
             </div>
         </div>
     
         <div class="button-container">
-            <button id="back-btn" type="button">Back</button>
+          <button id="back-btn" type="button" onclick="redirectToPersonalInfo()">Back</button>
             <button type="submit">Next</button>
         </div>
     </form>

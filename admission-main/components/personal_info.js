@@ -49,13 +49,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-//For Date of Birth end
 
-//For Contact Number start
+// For Contact Number start
 function formatPhoneNumber(input) {
     // Remove all non-numeric characters
-    let value = input.value.replace(/\D/g, ""); 
-    
+    let value = input.value.replace(/\D/g, "");
+
     // Limit to 11 digits
     if (value.length > 11) {
         value = value.substring(0, 11);
@@ -78,7 +77,7 @@ function formatPhoneNumber(input) {
     // Update input value
     input.value = formattedValue;
 }
-//For Contact Number end
+// For Contact Number end
 
 // Function to format telephone number as XX-XXXX-XXXX - start
 function formatTelephone(input) {
@@ -108,3 +107,28 @@ function formatTelephone(input) {
     input.value = formattedValue;
 }
 // Function to format telephone number as XX-XXXX-XXXX - end
+
+function goBack() {
+    window.location.href = 'admission_application.html';
+}
+
+function validateForm() {
+    let form = document.querySelector("form");
+    let requiredFields = form.querySelectorAll("[required]");
+    let isValid = true;
+
+    requiredFields.forEach(function (field) {
+        if (!field.value) {
+            isValid = false;
+            field.reportValidity(); // Show alert like "required" fields
+        }
+    });
+
+    if (isValid) {
+        window.location.href = 'family_info.html'; // Redirect to the next page
+    }
+}
+
+function goBack() {
+    window.location.href = 'admission_application.html';
+}
