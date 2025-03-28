@@ -107,20 +107,22 @@ h2 {
 }
 
 .checkbox-container {
+    border: 2px solid grey;
+    background: white;
+    padding: 10px;
     display: flex;
-    width: 350px;
-    gap: 8px;
+    gap: 15px;
 }
 
 .checkbox-container label {
     display: flex;
     align-items: baseline; /* Aligns checkbox and text properly */
-    gap: 20px; /* Adjust spacing between checkbox and text */
-    font-size: 17px !important;
+    gap: 5px; /* Adjust spacing between checkbox and text */
+    font-size: 16px !important;
     margin-top: 10px; /* Remove extra top margin */
 }
 
-label[for="school-type"] {
+label[for="school-type"], label[for="student-type"]  {
     padding-left: 0px !important;
 }
 
@@ -128,12 +130,12 @@ label[for="school-name"] {
     margin-top: -20px;
 }
 
-.checkbox-container input[type="checkbox"] {
+.checkbox-container input[type="radio"] {
     width: 20px; /* Adjust checkbox size */
     height: 10px;
     margin: 0;
     cursor: pointer;
-    transform: scale(2.5); /* Remove scale transformation */
+    transform: scale(2); /* Remove scale transformation */
     vertical-align: middle; /* Ensure vertical alignment */
 }
 
