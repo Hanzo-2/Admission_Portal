@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+}
+
+body {
+    background: url('../images/oldspistbg.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-box {
+    border: 2px solid #4CAF50;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: #e8f5e9;
+    font-size: 1.5em; /* Font size adjusted to match example */
+    font-weight: bold; /* Bold text for emphasis */
+    font-family: 'Arial Black', Gadget, sans-serif; /* Updated font family */
+    margin-right: 20px; /* Space between message box and admission number box */
+}
+
+.admission-number-box {
+    background-color: #ffffff;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.admission-number-box header {
+    background-color: #4CAF50;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+}
+
+.admission-number-box p {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+    font-size: 1.2em;
+}
+
+.copy-text {
+    cursor: pointer;
+    background-color: #e0f7fa;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
