@@ -8,6 +8,9 @@ function loadHTML(id, file) {
         .catch(error => console.error(`Error loading ${file}:`, error));
 }
 
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
     loadHTML("header", "../components/header.html");            
     loadHTML("footer", "../components/footer.html"); 

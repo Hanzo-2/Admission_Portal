@@ -24,7 +24,7 @@ body {
 
 .form-container {
     font-family: Georgia, serif;
-    max-width: 1070px; 
+    max-width: 1200px; 
     width: 100%;
     margin: 75px auto;
     background: rgba(255, 255, 225, 0.91); /* Semi-transparent for readability */
@@ -60,152 +60,115 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding-bottom: 45px;
+    padding-bottom: 35px;
 }
 
 .form-header-text {
     text-align: left;
-    max-width: 575px;
+    max-width: 550px;
 }
 
 .form-header-text h2 {
     color: #333;
-    font-size: 40px;
+    font-size: 50px;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .form-header-text p {
     color: #666;
     font-size: 20px;
+    margin-bottom: 5px;
 } 
 
-.form-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.form-grid-end {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-h2 {
-    font-size: 35px;
+.th-header {
+    font-size: 30px;
     font-weight: bolder;
-    margin-bottom: 5px;
 }
 
-.row {
-    display: flex;
-    gap: 25px;
+.p-reminder {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    color: grey;
 }
 
-.row2 {
-    display: flex;
-    gap: 25px;
+table {
+    border-collapse: collapse; /* Ensures seamless borders */
+    margin-bottom: 0; /* Removes bottom margin */
 }
 
-.checkbox-container1 {
-    border: 2px solid grey;
-    background: white;
-    display: flex;
-    gap: 15px;
+#review-table2 {
+    margin-top: -1px; /* Moves second table upwards */
+}
+
+tr {
+    width: 100%;
+}
+
+.td-1, .td-2 {
+    width: 16.67%;
+}
+
+.td-2 {
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+
+/* General Table Styling */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Table Header */
+.custom-table thead tr {
+    background-color: #43b14b;
+    color: white;
+}
+
+.custom-table th, .custom-table td {
     padding: 15px;
-    width: 355px;
-    margin-bottom: 15px;
+    border: 2px solid lightgrey;
+    text-align: left;
 }
 
-.checkbox-container2 {
-    border: 2px solid grey;
-    background: white;
-    padding: 12px;
-    display: flex;
-    width: 580px;
+.custom-table tbody {
+    background-color: white;
 }
 
-.checkbox-container1 label {
-    display: flex;
-    align-items: baseline; 
-    margin: 5px;
-    gap: 7px; 
-    font-size: 18px !important;
+.remove-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    font-weight: bold;
+    width: 40%;
 }
 
-.checkbox-container2 label {
-    display: flex;
-    align-items: baseline; 
-    gap: 7px; 
-    font-size: 18px !important;
-    margin: 5px;
-    padding-top: 4px;
-    padding-bottom: 2px;
+.remove-btn:hover {
+    background-color: darkred;
 }
 
-label[for="school-type"], label[for="student-type"]  {
-    padding-left: 0px !important;
-}
-
-label[for="school-name"] {
-    margin-top: -20px;
-}
-
-.checkbox-container1 input[type="radio"],
-.checkbox-container2 input[type="radio"] {
-    width: 20px; /* Adjust checkbox size */
-    height: 10px;
-    margin: 0;
-    cursor: pointer;
-    transform: scale(2); /* Remove scale transformation */
-    vertical-align: middle; /* Ensure vertical alignment */
-}
-
-
-/* Remove the thick outline when tabbing */
-input[type="checkbox"]:focus {
-    outline: 2px solid black; /* Optional: Adjust focus indicator */
-    outline-offset: 1px; /* Keeps it close to the checkbox */
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
+/* Centering the Table */
+.container {
     width: 100%;
-}
-
-.form-group label {
-    margin-bottom: 6px;
-    font-size: 25px;
-    padding-left: 3px;
-    color: black;
-}
-
-#lrn {
-    margin-right: 140px;
-}
-
-#track-strand {
-    margin-right: 600px;
-}
-
-#shs-average {
-    margin-right: 125px;
-}
-
-.form-group input {
-    padding: 12px;
-    border: 2px solid darkgrey;
-    border-radius: 4px;
-    font-size: 21px;
-    width: 100%;
-    margin-top: 5px;
+    margin: auto;
+    text-align: center;
 }
 
 .button-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 70px;
+    margin-top: 80px;
     width: 100%;
+    
 }
 
 button {
@@ -252,3 +215,4 @@ button:hover {
 button:hover::before {
     width: 100%;
 }
+
