@@ -100,7 +100,7 @@
                         
                     <tr>
                         <td>Email:</td>
-                        <td style="font-weight: bolder; font-size: 20px;" colspan="5">c22-4546-01@spist.edu.ph</td> 
+                        <td class="td-4" colspan="5">c22-4546-01@spist.edu.ph</td> 
                     </tr>
                 </tbody> <!--Personal Information - End -->
 
@@ -191,13 +191,12 @@
                         
                     <tr>
                         <td>Email:</td>
-                        <td style="font-weight: bolder; font-size: 20px;" colspan="5">c22-4546-01@spist.edu.ph</td> 
+                        <td class="td-4" colspan="5">c22-4546-01@spist.edu.ph</td> 
                     </tr>
                 </tbody> <!--Family Information - End -->
-                </table>
+            </table>
 
-                <table class="custom-table" id="review-table2">
-                
+            <table class="custom-table" id="review-table2"> <!--Separated to another table for pdf-->
                 <thead>
                     <tr>
                         <td class="th-header" style="background-color: lightgrey; color: grey" colspan="6">
@@ -207,9 +206,14 @@
                 </thead>
 
                 <tbody>
-
+                    <tr class="tr-aligner"> <!--Only used to align columns similar to the first table-->
+                        <td class="td-3"></td><td class="td-3"></td>
+                        <td class="td-3"></td><td class="td-3"></td>
+                        <td class="td-3"></td><td class="td-3"></td>
+                    </tr> 
+                    
                     <tr>
-                        <td>Complete Name:</td>
+                        <td class="td-1" colspan="1">Complete Name:</td>
                         <td class="td-2" colspan="5">Madrid, Yensirdal Garcia</td>
                     </tr>
 
@@ -227,7 +231,7 @@
                         
                     <tr>
                         <td>Email:</td>
-                        <td style="font-weight: bolder; font-size: 16px;" colspan="5">c22-4546-01@spist.edu.ph</td> 
+                        <td class="td-4" colspan="5">c22-4546-01@spist.edu.ph</td> 
                     </tr>
                 </tbody>
 
@@ -238,9 +242,9 @@
                 </thead>
                 <tbody>
                     <tr> 
-                        <td class="td-2" colspan="1">#</td>
-                        <td class="td-2" colspan="4">Requirements</td>
-                        <td class="td-2" colspan="1">Remarks</td>
+                        <td style="font-weight: bolder; font-size: 20px;" colspan="1">#</td>
+                        <td style="font-weight: bolder; font-size: 20px;" colspan="4">Requirements</td>
+                        <td style="font-weight: bolder; font-size: 20px;" colspan="1">Remarks</td>
                     </tr>
 
                     <tr>
@@ -280,9 +284,11 @@
 
         <div class="button-container">
             <button id="back-btn" type="button">Back</button>
-            <button type="submit">Next</button>
             <!-- Add a button to download the PDF -->
             <button id="download-pdf" type="button">Download PDF</button>
+            <button id="edit-btn" type="button">Edit</button>
+            <button id="save-btn" type="button" style="display: none;">Save Changes</button>
+            <button type="submit">Next</button>
         </div>
 
      </form>
@@ -290,63 +296,9 @@
   </section>
 </div>
 
-<script>
-    (function() {
-        let script = document.createElement('script');
-        script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js";
-        script.onload = function() {
-            let html2canvasScript = document.createElement('script');
-            html2canvasScript.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
-            html2canvasScript.onload = function() {
-                console.log("jsPDF and html2canvas loaded successfully!");
-                enablePDFDownload();
-            };
-            document.body.appendChild(html2canvasScript);
-        };
-        document.body.appendChild(script);
-    })();
-
-    function enablePDFDownload() {
-        document.getElementById('download-pdf').addEventListener('click', function () {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size in portrait mode
-            const tables = [document.getElementById('review-table'), document.getElementById('review-table2')]; // Select both tables
-            let yOffset = 1; // Initial Y position for the first table
-
-            function addTableToPDF(table, callback) {
-                html2canvas(table, { scale: 2 }).then(canvas => {
-                    const imgData = canvas.toDataURL('image/jpeg', 0.8);
-                    const imgWidth = 210;
-                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-                    if (yOffset + imgHeight > 297) {
-                        pdf.addPage();
-                        yOffset = 1; // Reset yOffset on new page
-                    }
-
-                    pdf.addImage(imgData, 'JPEG', 0, yOffset, imgWidth, imgHeight);
-                    yOffset += imgHeight + 1; // Move down for the next table
-
-                    callback(); // Proceed to next table
-                });
-            }
-
-            function processTables(index) {
-                if (index < tables.length) {
-                    addTableToPDF(tables[index], () => processTables(index + 1));
-                } else {
-                    pdf.save('Admission_Review.pdf');
-                }
-            }
-
-            processTables(0);
-        });
-    }
-</script>
-
-  <div id="footer"></div>  <!-- Footer -->
-  <script src="../components/script-head-foot.js"></script> <!-- Shows Header & Footer -->
-  <!-- <script src="../components/modal/required_docs.js"></script> -->
+<div id="footer"></div>  <!-- Footer -->
+<script src="../components/script-head-foot.js"></script> <!-- Shows Header & Footer -->
+<script src="../components/review_info.js"></script>
 
 </body>
 </html>

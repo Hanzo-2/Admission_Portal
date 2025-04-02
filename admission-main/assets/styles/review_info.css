@@ -96,20 +96,31 @@ body {
     color: grey;
 }
 
-table {
-    border-collapse: collapse; /* Ensures seamless borders */
-    margin-bottom: 0; /* Removes bottom margin */
-}
-
 #review-table2 {
     margin-top: -1px; /* Moves second table upwards */
+}
+
+.tr-aligner { 
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    border: none;
+    padding: 0;
+    overflow: hidden;
+   
+}
+
+.tr-aligner td { 
+    border: none !important;
+    padding: 0 !important;
+    
 }
 
 tr {
     width: 100%;
 }
 
-.td-1, .td-2 {
+.td-1, .td-2, .td-3 {
     width: 16.67%;
 }
 
@@ -119,6 +130,10 @@ tr {
     font-size: 16px;
 }
 
+.td-4{
+    font-weight: bolder;
+    font-size: 18px;
+}
 
 /* General Table Styling */
 .custom-table {
@@ -168,7 +183,6 @@ tr {
     justify-content: space-between;
     margin-top: 80px;
     width: 100%;
-    
 }
 
 button {
@@ -215,4 +229,3 @@ button:hover {
 button:hover::before {
     width: 100%;
 }
-
