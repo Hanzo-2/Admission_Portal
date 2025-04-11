@@ -1,23 +1,20 @@
 <?php
     require __DIR__ ."/vendor/autoload.php";
     $client = new Google\Client;
-    $client->setClientId("put id here");
-    $client->setClientSecret("put secret here");
+    $client->setClientId('google id here');
+    $client->setClientSecret('google secret here');
     $client->setRedirectUri("http://localhost/admission_portal/admission-main/pages/admission_application.php");
     $client->addScope("email");
     $client->addScope("profile");
     $url = $client->createAuthUrl() . '&hl=en';
+
 ?> 
-
-
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <title>SPIST Admission Portal</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="assets/styles/index_style.css">
-    <link rel="icon" href="../assets/images/spistlogo_icon.ico">
+    <link rel="icon" href="assets/images/spistlogo_icon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -41,5 +38,3 @@
 
 </form>
 </body>
-
-</html>
