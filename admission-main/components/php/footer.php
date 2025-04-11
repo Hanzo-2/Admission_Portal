@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<head>
-    <title>Footer</title>
-</head>
+
 <body>
     <footer>
         <p>&copy; 2025 SPIST. All rights reserved.</p>
@@ -14,11 +11,9 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 60px;
+    padding: 15px 0px 15px 0px;
     background: #43b14b;
     position: relative; /* Change from absolute */
     border-top: 8px solid #ffde59;
 }
 </style>
-
-</html>

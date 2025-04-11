@@ -1,8 +1,17 @@
-<!DOCTYPE html>
+<?php
 
-<head>
-    <title>Header</title>    
-</head>
+// Check if the user is logged in
+if (isset($_SESSION['user'])) {
+    $username = $_SESSION['user']['name']; // The user's name from Google
+    $email = $_SESSION['user']['email']; // The user's email
+    $profile_picture = $_SESSION['user']['profile_picture']; // The user's profile picture URL
+} else {
+    // If not logged in, you can set default values or redirect to login
+    $username = 'Guest';
+    $email = '';
+    $profile_picture = '../assets/images/Profile-icon-placeholder.png'; // Default image
+}
+?>
 
 <body>
     <header>
@@ -11,12 +20,20 @@
           <p>SPIST Admission Portal</p>
         </div>
         <div class="profile-container">
-          <img src="../assets/images/Profile-icon-placeholder.png" alt="Profile Icon" class="profile-icon" onclick="toggleProfileDropdown()">
-          <div class="profile-dropdown" id="profile-dropdown">
-            <p id="username">Yen-san</p>
-            <p>yensirdalmadrid@example.com</p>
-            <button id="logout-button" onclick="logout()">Log out</button>
-          </div>
+            <!-- Dynamically display profile picture -->
+            <img src="<?php echo isset($_SESSION['user']['profile_picture']) ? $_SESSION['user']['profile_picture'] : '../assets/images/Profile-icon-placeholder.png'; ?>" 
+                alt="Profile Icon" class="profile-icon" onclick="toggleProfileDropdown()">
+            
+            <div class="profile-dropdown" id="profile-dropdown">
+                <!-- Dynamically display username and email -->
+                <p id="username" name="username">
+                    <?php echo isset($_SESSION['user']['name']) ? $_SESSION['user']['name'] : 'Guest'; ?>
+                </p>
+                <p name="email">
+                    <?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'No email available'; ?>
+                </p>
+                <a style="text-decoration: none" href="../components/php/logout.php"><button id="logout-button">Log out</button></a>
+            </div>
         </div>
       </header> 
 </body>
@@ -39,7 +56,7 @@
 }
 
 .profile-container {
-    position: relative;
+    position: initial;
     margin-left: auto;
     margin-right: 21px;
 }
@@ -115,5 +132,3 @@ header p {
     font-family: Georgia, serif;
 }
 </style>
-
-</html>
