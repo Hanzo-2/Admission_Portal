@@ -1,30 +1,32 @@
 <?php
-    require __DIR__ ."/vendor/autoload.php";
-    $client = new Google\Client;
-    $client->setClientId('google id here');
-    $client->setClientSecret('google secret here');
-    $client->setRedirectUri("http://localhost/admission_portal/admission-main/pages/admission_application.php");
-    $client->addScope("email");
-    $client->addScope("profile");
-    $url = $client->createAuthUrl() . '&hl=en';
+require __DIR__ . '../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+$client = new Google\Client();
+$client->setClientId($_ENV['GOOGLE_CLIENT_ID']);
+$client->setClientSecret($_ENV['GOOGLE_CLIENT_SECRET']);
+$client->setRedirectUri($_ENV['GOOGLE_REDIRECT_URI']);
+$client->addScope("email");
+$client->addScope("profile");
+$authUrl = htmlspecialchars($client->createAuthUrl() . '&hl=en');
+?>
 
-?> 
 
 <head>
-    <title>SPIST Admission Portal</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="assets/styles/index_style.css">
-    <link rel="icon" href="assets/images/spistlogo_icon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPIST Admission Portal</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="assets/styles/index_style.css">
+  <link rel="icon" href="assets/images/spistlogo_icon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-<form action="" class="form" >
+  <form class="form">
     <img src="assets/images/spistlogo.png" class="fit-picture">
     <p><span class="spist">SPIST</span><br>Admission Portal</p>
 
-    <a style="text-decoration: none;" href="<?= htmlspecialchars($url) ?>">
-    <button class="oauthButton" type="button">
+    <a href="<?= $authUrl ?>" style="text-decoration: none;">
+      <button class="oauthButton" type="button">
         <svg class="icon" viewBox="0 0 24 24">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
             <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
@@ -33,8 +35,7 @@
             <path d="M1 1h22v22H1z" fill="none"></path>
         </svg>
         Continue with Google
-    </button>
+      </button>
     </a>
-
-</form>
+  </form>
 </body>

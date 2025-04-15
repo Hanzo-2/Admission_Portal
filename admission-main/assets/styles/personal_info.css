@@ -56,6 +56,7 @@ body {
     z-index: 1;
 }
 
+
 .form-header {
     display: flex;
     align-items: center;
@@ -71,6 +72,14 @@ body {
 .form-header-text h2 {
     color: #333;
     font-size: 45px;
+}
+
+h3 {
+    font-size: 30px;
+    color: grey;
+    padding-bottom: 5px;
+    margin-top: 40px;
+    border-bottom: 2px solid lightgray;
 }
 
 .form-header-text p {
@@ -106,6 +115,7 @@ body {
 .form-group input,
 .form-group select {
     padding: 10px;
+    padding-bottom: 11px;
     border: 2px solid darkgrey;
     border-radius: 4px;
     font-size: 18px;
@@ -147,9 +157,10 @@ input[type="date"]:valid {
     color: black;
 }
 
-#province {
-    margin-right: 200px;
+#personal-birthdate {
+    padding-bottom: 8px;
 }
+
 
 .button-container {
     display: flex;
@@ -202,3 +213,5 @@ button:hover {
 button:hover::before {
     width: 100%;
 }
+
+

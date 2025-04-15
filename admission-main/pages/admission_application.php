@@ -1,41 +1,37 @@
 <?php
 session_start();
-
-require_once '../vendor/autoload.php'; // path to your autoload if different
+require __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();
 $client = new Google\Client();
-$client->setClientId('google id here');
-$client->setClientSecret('google secret here');
-$client->setRedirectUri('http://localhost/admission_portal/admission-main/pages/admission_application.php');
-
+$client->setClientId($_ENV['GOOGLE_CLIENT_ID']);
+$client->setClientSecret($_ENV['GOOGLE_CLIENT_SECRET']);
+$client->setRedirectUri($_ENV['GOOGLE_REDIRECT_URI']);
+$client->addScope("email");
+$client->addScope("profile");
 if (isset($_GET['code'])) {
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+
     if (!isset($token['error'])) {
         $client->setAccessToken($token['access_token']);
         $google_oauth = new Google\Service\Oauth2($client);
-        $google_account_info = $google_oauth->userinfo->get();
+        $user_info = $google_oauth->userinfo->get();
 
-        $_SESSION['google_id'] = $google_account_info->id; // Store Google ID
+        $_SESSION['google_id'] = $user_info->id;
         $_SESSION['user'] = [
-            'id' => $google_account_info->id,
-            'email' => $google_account_info->email,
-            'name' => $google_account_info->name,
-            'profile_picture' => $google_account_info->picture
+            'id' => $user_info->id,
+            'email' => $user_info->email,
+            'name' => $user_info->name,
+            'profile_picture' => $user_info->picture
         ];
 
-        // Optional: Redirect to clean the URL (remove the "code" GET param)
         header("Location: admission_application.php");
         exit();
     } else {
-        echo "Authentication Error: " . htmlspecialchars($token['error']);
-        exit();
+        die("Authentication Error: " . htmlspecialchars($token['error']));
     }
 }
 
-// Redirect to login if not authenticated
-if (!isset($_SESSION['google_id'])) {
-    header("Location: http://localhost/admission_portal/admission-main/index.php");
-    exit();
-}
 
 include '../components/php/header.php';
 
@@ -45,7 +41,8 @@ if (isset($_SESSION['google_id'])) {
     echo "Session not active.";
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Handle form POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION['school_campus'] = $_POST['school_campus'] ?? '';
     $_SESSION['classification'] = $_POST['classification'] ?? '';
     $_SESSION['grade_level'] = $_POST['grade_level'] ?? '';
@@ -54,21 +51,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['preferred_course'] = $_POST['preferred_course'] ?? '';
 
     if (!empty($_SESSION['application_type']) && !empty($_SESSION['preferred_course'])) {
-        // Redirect if valid
-        header('Location: personal_info.html'); // change to your next page
+        header('Location: personal_info.php');
         exit();
     } else {
         $error = "Please fill out all required fields.";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
   
 <head>
-<title>SPIST Admission - Application</title>
+  <title>SPIST Admission - Application</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../assets/styles/admission_application.css">
@@ -155,25 +150,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
           </div>
         </form>
-  
-  <?php if (isset($_SESSION['application_type']) || isset($_SESSION['preferred_course'])): ?>
-  <div class="submitted-data" style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
-    <h3>Submitted Information Preview:</h3>
-    <ul>
-      <li><strong>School Campus:</strong> <?= htmlspecialchars($_SESSION['school_campus'] ?? 'Not set') ?></li>
-      <li><strong>Classification:</strong> <?= htmlspecialchars($_SESSION['classification'] ?? 'Not set') ?></li>
-      <li><strong>Grade/Level:</strong> <?= htmlspecialchars($_SESSION['grade_level'] ?? 'Not set') ?></li>
-      <li><strong>Academic Year and Term:</strong> <?= htmlspecialchars($_SESSION['academic_year_term'] ?? 'Not set') ?></li>
-      <li><strong>Application Type:</strong> <?= htmlspecialchars($_SESSION['application_type'] ?? 'Not set') ?></li>
-      <li><strong>Preferred Course:</strong> <?= htmlspecialchars($_SESSION['preferred_course'] ?? 'Not set') ?></li>
-    </ul>
-  </div>
- <?php endif; ?>
-
+        <?php if (isset($_SESSION['application_type']) || isset($_SESSION['preferred_course'])): ?>
+        <div class="submitted-data" style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
+            <h3>Submitted Information Preview:</h3>
+            <ul>
+            <li><strong>School Campus:</strong> <?= htmlspecialchars($_SESSION['school_campus'] ?? 'Not set') ?></li>
+            <li><strong>Classification:</strong> <?= htmlspecialchars($_SESSION['classification'] ?? 'Not set') ?></li>
+            <li><strong>Grade/Level:</strong> <?= htmlspecialchars($_SESSION['grade_level'] ?? 'Not set') ?></li>
+            <li><strong>Academic Year and Term:</strong> <?= htmlspecialchars($_SESSION['academic_year_term'] ?? 'Not set') ?></li>
+            <li><strong>Application Type:</strong> <?= htmlspecialchars($_SESSION['application_type'] ?? 'Not set') ?></li>
+            <li><strong>Preferred Course:</strong> <?= htmlspecialchars($_SESSION['preferred_course'] ?? 'Not set') ?></li>
+            </ul>
+        </div>
+        <?php endif; ?>
       </div>
     </section>
-
   </div>
 </body>
 </html>
 <?php include '../components/php/footer.php'; ?>
+<script src="../components/javascript/check_session_interval.js"></script>

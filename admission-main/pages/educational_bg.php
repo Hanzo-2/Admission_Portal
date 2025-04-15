@@ -1,13 +1,32 @@
+<?php
+session_start();
+
+// Redirect to login if not authenticated
+if (!isset($_SESSION['google_id'])) {
+    header("Location: http://localhost/admission_portal/admission-main/index.php");
+    exit();
+}
+
+include '../components/php/header.php';
+
+if (isset($_SESSION['google_id'])) {
+    echo "Session is active for user ID: " . $_SESSION['google_id'];
+} else {
+    echo "Session not active.";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
+  <title>SPIST Admission - Education</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../assets/images/spistlogo_icon.ico">
   <link rel="stylesheet" href="../assets/styles/educational_bg.css">
-  <title>SPIST Admission - Education</title>
-  <script src="../components/modal/profile_dropdown.js"></script>
+  <script src="../components/javascript/profile_dropdown.js"></script>
 </head>
 
 <body>
@@ -96,7 +115,7 @@
       </div>
 
         <div class="button-container">
-            <button id="back-btn" type="button">Back</button>
+            <a href="personal_info.php" style="text-decoration: none"><button id="back-btn" type="button">Back</button></a>
             <button type="submit">Next</button>
         </div>
     </form>
@@ -105,8 +124,8 @@
   </section>
 </div>
 
-  <div id="footer"></div>  <!-- Footer -->
-  <script src="../components/script-head-foot.js"></script> <!-- Shows Header & Footer -->
-  <script src="../components/educational_bg.js"></script>
 </body>
 </html>
+<?php include '../components/php/footer.php'; ?>
+<script src="../components/javascript/educational_bg.js"></script>
+<script src="../components/javascript/check_session_interval.js"></script>

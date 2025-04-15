@@ -108,27 +108,3 @@ function formatTelephone(input) {
 }
 // Function to format telephone number as XX-XXXX-XXXX - end
 
-function goBack() {
-    window.location.href = 'admission_application.html';
-}
-
-function validateForm() {
-    let form = document.querySelector("form");
-    let requiredFields = form.querySelectorAll("[required]");
-    let isValid = true;
-
-    requiredFields.forEach(function (field) {
-        if (!field.value) {
-            isValid = false;
-            field.reportValidity(); // Show alert like "required" fields
-        }
-    });
-
-    if (isValid) {
-        window.location.href = 'family_info.html'; // Redirect to the next page
-    }
-}
-
-function goBack() {
-    window.location.href = 'admission_application.html';
-}
