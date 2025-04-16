@@ -1,4 +1,16 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SPIST Admission - Application</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="../assets/styles/admission_application.css">
+  <link rel="icon" href="../assets/images/spistlogo_icon.ico">
+  <script src="../components/javascript/profile_dropdown.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<?php 
 session_start();
 require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
@@ -9,67 +21,8 @@ $client->setClientSecret($_ENV['GOOGLE_CLIENT_SECRET']);
 $client->setRedirectUri($_ENV['GOOGLE_REDIRECT_URI']);
 $client->addScope("email");
 $client->addScope("profile");
-if (isset($_GET['code'])) {
-    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-
-    if (!isset($token['error'])) {
-        $client->setAccessToken($token['access_token']);
-        $google_oauth = new Google\Service\Oauth2($client);
-        $user_info = $google_oauth->userinfo->get();
-
-        $_SESSION['google_id'] = $user_info->id;
-        $_SESSION['user'] = [
-            'id' => $user_info->id,
-            'email' => $user_info->email,
-            'name' => $user_info->name,
-            'profile_picture' => $user_info->picture
-        ];
-
-        header("Location: admission_application.php");
-        exit();
-    } else {
-        die("Authentication Error: " . htmlspecialchars($token['error']));
-    }
-}
-
-
-include '../components/php/header.php';
-
-if (isset($_SESSION['google_id'])) {
-    echo "Session is active for user ID: " . $_SESSION['google_id'];
-} else {
-    echo "Session not active.";
-}
-
-// Handle form POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $_SESSION['school_campus'] = $_POST['school_campus'] ?? '';
-    $_SESSION['classification'] = $_POST['classification'] ?? '';
-    $_SESSION['grade_level'] = $_POST['grade_level'] ?? '';
-    $_SESSION['academic_year_term'] = $_POST['academic_year_term'] ?? '';
-    $_SESSION['application_type'] = $_POST['application_type'] ?? '';
-    $_SESSION['preferred_course'] = $_POST['preferred_course'] ?? '';
-
-    if (!empty($_SESSION['application_type']) && !empty($_SESSION['preferred_course'])) {
-        header('Location: personal_info.php');
-        exit();
-    } else {
-        $error = "Please fill out all required fields.";
-    }
-}
+include '../components/php/script_admission_application.php' 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-  
-<head>
-  <title>SPIST Admission - Application</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/styles/admission_application.css">
-  <link rel="icon" href="../assets/images/spistlogo_icon.ico">
-  <script src="../components/javascript/profile_dropdown.js"></script>
-</head>
 
 <body>
   <div class="main-content">
@@ -150,23 +103,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
           </div>
         </form>
-        <?php if (isset($_SESSION['application_type']) || isset($_SESSION['preferred_course'])): ?>
-        <div class="submitted-data" style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
-            <h3>Submitted Information Preview:</h3>
-            <ul>
-            <li><strong>School Campus:</strong> <?= htmlspecialchars($_SESSION['school_campus'] ?? 'Not set') ?></li>
-            <li><strong>Classification:</strong> <?= htmlspecialchars($_SESSION['classification'] ?? 'Not set') ?></li>
-            <li><strong>Grade/Level:</strong> <?= htmlspecialchars($_SESSION['grade_level'] ?? 'Not set') ?></li>
-            <li><strong>Academic Year and Term:</strong> <?= htmlspecialchars($_SESSION['academic_year_term'] ?? 'Not set') ?></li>
-            <li><strong>Application Type:</strong> <?= htmlspecialchars($_SESSION['application_type'] ?? 'Not set') ?></li>
-            <li><strong>Preferred Course:</strong> <?= htmlspecialchars($_SESSION['preferred_course'] ?? 'Not set') ?></li>
-            </ul>
-        </div>
-        <?php endif; ?>
+          <?php if (isset($_SESSION['application_type']) || isset($_SESSION['preferred_course'])): ?>
+            <div class="submitted-data" style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
+                <h3>Submitted Information Preview:</h3>
+                <ul>
+                <li><strong>School Campus:</strong> <?= htmlspecialchars($_SESSION['school_campus'] ?? 'Not set') ?></li>
+                <li><strong>Classification:</strong> <?= htmlspecialchars($_SESSION['classification'] ?? 'Not set') ?></li>
+                <li><strong>Grade/Level:</strong> <?= htmlspecialchars($_SESSION['grade_level'] ?? 'Not set') ?></li>
+                <li><strong>Academic Year and Term:</strong> <?= htmlspecialchars($_SESSION['academic_year_term'] ?? 'Not set') ?></li>
+                <li><strong>Application Type:</strong> <?= htmlspecialchars($_SESSION['application_type'] ?? 'Not set') ?></li>
+                <li><strong>Preferred Course:</strong> <?= htmlspecialchars($_SESSION['preferred_course'] ?? 'Not set') ?></li>
+                </ul>
+            </div>
+          <?php endif; ?>
       </div>
     </section>
   </div>
+  <script src="../components/javascript/admission_application.js"></script>
+  <script src="../components/javascript/check_session_interval.js"></script>
 </body>
 </html>
 <?php include '../components/php/footer.php'; ?>
-<script src="../components/javascript/check_session_interval.js"></script>

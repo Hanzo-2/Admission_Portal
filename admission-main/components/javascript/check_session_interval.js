@@ -4,7 +4,7 @@ setInterval(function () {
         .then(data => {
             if (!data.authenticated) {
                 alert("You have been logged out.");
-                window.location.href = '../index.php'; // Redirect to login page
+                window.location.href = 'http://localhost/admission_portal/admission-main/index.php'; // Redirect to login page
             }
         });
-}, 5000); // Check every 5 seconds
+}, 3000); // Check every 3 seconds

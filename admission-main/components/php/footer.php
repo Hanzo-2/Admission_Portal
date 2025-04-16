@@ -1,10 +1,8 @@
-
 <body>
     <footer>
         <p>&copy; 2025 SPIST. All rights reserved.</p>
     </footer>
 </body>
-
 <style>
     footer {
     display: flex;

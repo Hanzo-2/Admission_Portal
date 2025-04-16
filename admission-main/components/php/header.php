@@ -1,10 +1,9 @@
 <?php
-
 // Check if the user is logged in
 if (isset($_SESSION['user'])) {
-    $username = $_SESSION['user']['name']; // The user's name from Google
-    $email = $_SESSION['user']['email']; // The user's email
-    $profile_picture = $_SESSION['user']['profile_picture']; // The user's profile picture URL
+    $username = htmlspecialchars($_SESSION['user']['name'] ?? 'Guest', ENT_QUOTES, 'UTF-8');
+    $email = htmlspecialchars($_SESSION['user']['email'] ?? '', ENT_QUOTES, 'UTF-8');
+    $profile_picture = htmlspecialchars($_SESSION['user']['profile_picture'] ?? '../assets/images/Profile-icon-placeholder.png', ENT_QUOTES, 'UTF-8');
 } else {
     // If not logged in, you can set default values or redirect to login
     $username = 'Guest';
@@ -12,7 +11,6 @@ if (isset($_SESSION['user'])) {
     $profile_picture = '../assets/images/Profile-icon-placeholder.png'; // Default image
 }
 ?>
-
 <body>
     <header>
         <div class="header-content">    
@@ -21,9 +19,14 @@ if (isset($_SESSION['user'])) {
         </div>
         <div class="profile-container">
             <!-- Dynamically display profile picture -->
-            <img src="<?php echo isset($_SESSION['user']['profile_picture']) ? $_SESSION['user']['profile_picture'] : '../assets/images/Profile-icon-placeholder.png'; ?>" 
-                alt="Profile Icon" class="profile-icon" onclick="toggleProfileDropdown()">
-            
+            <img id="profile-pic" class="profile-icon" alt="User Profile Icon" loading="lazy" onclick="toggleProfileDropdown()">
+                <script>
+                    const profilePic = document.getElementById("profile-pic");
+                    profilePic.src = "<?php echo isset($_SESSION['user']['profile_picture']) ? $_SESSION['user']['profile_picture'] : '../assets/images/Profile-icon-placeholder.png'; ?>";
+                    profilePic.onerror = function() {
+                    this.src = '../assets/images/Profile-icon-placeholder.png';
+                    };
+                </script>
             <div class="profile-dropdown" id="profile-dropdown">
                 <!-- Dynamically display username and email -->
                 <p id="username" name="username">
@@ -37,7 +40,6 @@ if (isset($_SESSION['user'])) {
         </div>
       </header> 
 </body>
-
 <style>
     header {
     display: flex;

@@ -59,13 +59,13 @@ body::before {
   justify-content: center;
   align-items: center;
   gap: 6px;
-  padding: 20px 20px ;
   width: 250px;
   height: 40px;
   border-radius: 10px;
   border: 2px solid #FFD700;
   background-color: green;
   box-shadow: 2px 2px #FFD700;
+  font-family:Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: #f5f5dc;
