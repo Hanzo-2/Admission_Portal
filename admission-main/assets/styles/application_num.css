@@ -5,6 +5,7 @@
 }
 html, body {
     height: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -82,3 +83,4 @@ body {
     display: inline-block;
     margin-top: 10px;
 }
+

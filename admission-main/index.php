@@ -44,7 +44,6 @@ $authUrl = htmlspecialchars($client->createAuthUrl() . '&hl=en');
         Continue with Google
     </a>
   </form>
-  <script src="../components/javascript/check_session_auto.js"></script>
 </body>
 
 </html>

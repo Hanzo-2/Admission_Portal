@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="../assets/images/spistlogo_icon.ico">
-  <link rel="stylesheet" href="../assets/styles/family_info.css">
   <title>SPIST Admission - Family</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../assets/styles/family_info.css">
+  <link rel="stylesheet" href="../assets/styles/form_button.css">
+  <link rel="icon" href="../assets/images/spistlogo_icon.ico">
   <script src="../components/modal/profile_dropdown.js"></script>
 </head>
 
+<?php 
+session_start(); 
+include '../components/php/script_family_info.php';
+?>
+
 <body>
-<div id="header"></div>  <!-- Header -->
 <div class="main-content">
   <section>
     <div class="form-container">
-
       <div class="form-header">
         <img src="../assets/images/document_logo.png" alt="Document Logo" width="65px" height="75px">
         <div class="form-header-text">
@@ -24,9 +28,10 @@
         </div>
       </div>
 
-      <form action="#" method="post">
+      <form action="family_info.php" method="post">
         <div class="form-grid">
-            <h2>Father’s Name</h2>
+           <h2>Father's Name</h2>
+
             <div class="row">
                 <div class="form-group">
                     <label for="father-firstname">First Name:</label>
@@ -169,7 +174,7 @@
             <div class="row">
               <div class="form-group">
                 <label class="complete-name" for="complete-name">Complete Name:</label>
-                <div class="input-container">
+                <div class="input-container-emergency">
                     <input type="text" id="complete-name" name="complete_name" required placeholder="Enter Emergency Contact Name or Select from List">
                     <select name="complete_name_select">
                         <option value="">Pick from List</option>
@@ -212,17 +217,19 @@
         </div>
     
         <div class="button-container">
-          <button id="back-btn" type="button" onclick="redirectToPersonalInfo()">Back</button>
+          <a href="educational_bg.php" style="text-decoration: none"> <button id="back-btn" type="button">Back</button> </a>
             <button type="submit">Next</button>
         </div>
+
     </form>
 
-    </div>
-  </section>
-</div>
-
-  <div id="footer"></div>  <!-- Footer -->
-  <script src="../components/script-head-foot.js"></script> <!-- Shows Header & Footer -->
-  <script src="../components/family_info.js"></script>
+      </div>
+    </section>
+  </div>
+<script src="../components/family_info.js"></script>
+<script src="../components/javascript/check_session_interval.js"></script>
+<script src="../components/javascript/autosave.js"></script>
+<?php include '../components/php/modal_inactivity.php'; ?>
 </body>
+<?php include '../components/php/footer.php'; ?>
 </html>

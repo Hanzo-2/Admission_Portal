@@ -1,14 +1,17 @@
 <?php
-// Check if the user is logged in
+if (!isset($_SESSION['google_id'])) {
+    header("Location: http://localhost/admission_portal/admission-main/index.php");
+    exit();
+} //checks whether the user is logged in or has log out, will redirect user to login page when not authorized
+
 if (isset($_SESSION['user'])) {
     $username = htmlspecialchars($_SESSION['user']['name'] ?? 'Guest', ENT_QUOTES, 'UTF-8');
     $email = htmlspecialchars($_SESSION['user']['email'] ?? '', ENT_QUOTES, 'UTF-8');
     $profile_picture = htmlspecialchars($_SESSION['user']['profile_picture'] ?? '../assets/images/Profile-icon-placeholder.png', ENT_QUOTES, 'UTF-8');
 } else {
-    // If not logged in, you can set default values or redirect to login
     $username = 'Guest';
     $email = '';
-    $profile_picture = '../assets/images/Profile-icon-placeholder.png'; // Default image
+    $profile_picture = '../assets/images/Profile-icon-placeholder.png';
 }
 ?>
 <body>
@@ -18,7 +21,6 @@ if (isset($_SESSION['user'])) {
           <p>SPIST Admission Portal</p>
         </div>
         <div class="profile-container">
-            <!-- Dynamically display profile picture -->
             <img id="profile-pic" class="profile-icon" alt="User Profile Icon" loading="lazy" onclick="toggleProfileDropdown()">
                 <script>
                     const profilePic = document.getElementById("profile-pic");
@@ -28,7 +30,6 @@ if (isset($_SESSION['user'])) {
                     };
                 </script>
             <div class="profile-dropdown" id="profile-dropdown">
-                <!-- Dynamically display username and email -->
                 <p id="username" name="username">
                     <?php echo isset($_SESSION['user']['name']) ? $_SESSION['user']['name'] : 'Guest'; ?>
                 </p>
@@ -71,20 +72,20 @@ if (isset($_SESSION['user'])) {
 }
 
 .profile-dropdown {
-    color: #ffffff; /* Ensures it's readable */
+    color: #ffffff; 
     font-weight: bold;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9); /* Adds subtle contrast */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9); 
     display: none;
     position: absolute;
     right: 0;
-    background-color: rgba(67, 177, 75, 0.98); /* Slight transparency */
+    background-color: rgba(67, 177, 75, 0.98);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px; /* More spacing */
+    padding: 10px;
     border: 3px solid black;
     border-radius: 5px;
-    min-width: 180px; /* Increased width for better spacing */
+    min-width: 180px;
     text-align: center;
-    z-index: 1000; /* Ensures it stays on top */
+    z-index: 1000;
 }
 
 #username{

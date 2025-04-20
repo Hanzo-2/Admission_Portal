@@ -26,12 +26,6 @@ if (isset($_GET['code'])) {
     }
 }
 
-if (!isset($_SESSION['google_id'])) {
-  header("Location: http://localhost/admission_portal/admission-main/index.php");
-  exit();
-}
-
-
 include '../components/php/header.php';
 
 if (isset($_SESSION['google_id'])) {
@@ -50,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION['preferred_course'] = $_POST['preferred_course'] ?? '';
 
     if (!empty($_SESSION['application_type']) && !empty($_SESSION['preferred_course'])) {
-        header('Location: personal_info.php');
+        header('Location: http://localhost/admission_portal/admission-main/pages/personal_info.php');
         exit();
     } else {
         $error = "Please fill out all required fields.";

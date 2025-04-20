@@ -9,21 +9,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const shsAverageInput = document.getElementById("shs-average");
     shsAverageInput.addEventListener("input", function () {
-        let value = this.value.replace(/[^0-9]/g, ""); // Allow only numbers, remove everything else
-        
-        // Automatically insert the decimal point after two digits
-        if (value.length > 2) {
-            value = value.slice(0, 2) + "." + value.slice(2, 4); // Insert decimal after 2 digits
+        let raw = this.value.replace(/[^0-9]/g, ""); // Keep only digits
+        // Allow backspacing by checking if the input is empty
+        if (raw === "") {
+            this.value = "";
+            return;
         }
-    
-        // Ensure the value does not exceed 5 characters (100.00 is the maximum)
-        if (value.length > 5) {
-            value = value.slice(0, 5); // Limit to 5 characters (including the period)
+        // If the first digit exists and is less than 6, replace it with 6
+        if (raw.length >= 1 && parseInt(raw.charAt(0)) < 6) {
+            raw = "6" + raw.slice(1);
         }
-    
-        // Set the formatted value back to the input
-        this.value = value;
+        // Automatically insert a decimal after the first two digits
+        if (raw.length > 2) {
+            raw = raw.slice(0, 2) + "." + raw.slice(2, 4); // e.g., 7512 => 75.12
+        }
+        // Limit to 5 characters (including the decimal point)
+        if (raw.length > 5) {
+            raw = raw.slice(0, 5);
+        }
+        this.value = raw;
     });
+
 });
 
 document.getElementById("year-graduation").addEventListener("input", function () {
