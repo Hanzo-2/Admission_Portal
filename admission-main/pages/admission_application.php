@@ -41,32 +41,32 @@ include '../components/php/script_admission_application.php';
         <form action="admission_application.php" method="post">
           <div class="form-grid">
             <div class="form-group-text">
-              <label for="school_campus">School Campus:</label>
-                <input type="hidden" name="school_campus" value="<?= htmlspecialchars($_SESSION['school_campus'] ?? 'ANABU') ?>">
+              <h1>School Campus:</h1>
+                <input id="school_campus" type="hidden" name="school_campus" value="<?= htmlspecialchars($_SESSION['school_campus'] ?? 'ANABU') ?>">
                 <p><?= htmlspecialchars($_SESSION['school_campus'] ?? 'ANABU') ?></p>
               </div>
 
             <div class="form-group-text">
-              <label for="classification">Classification:</label>
-                <input type="hidden" name="classification" value="<?= htmlspecialchars($_SESSION['classification'] ?? 'College') ?>">
+              <h1>Classification:</h1>
+                <input id="classification" type="hidden" name="classification" value="<?= htmlspecialchars($_SESSION['classification'] ?? 'College') ?>">
                 <p><?= htmlspecialchars($_SESSION['classification'] ?? 'College') ?></p>
             </div>
 
             <div class="form-group-text">
-              <label for="grade_level">Grade/Level:</label>
-                <input type="hidden" name="grade_level" value="<?= htmlspecialchars($_SESSION['grade_level'] ?? '1st Year') ?>">
+              <h1>Grade/Level:</h1>
+                <input id="grade_level" type="hidden" name="grade_level" value="<?= htmlspecialchars($_SESSION['grade_level'] ?? '1st Year') ?>">
                 <p><?= htmlspecialchars($_SESSION['grade_level'] ?? '1st Year') ?></p>
             </div>
 
             <div class="form-group-text-space">
-              <label for="academic_year_term">Academic Year and Term:</label>
-                <input type="hidden" name="academic_year_term" value="<?= htmlspecialchars($_SESSION['academic_year_term'] ?? '2025 - 2026 - First Semester') ?>">
+              <h1>Academic Year and Term:</h1>
+                <input id="academic_year_term" type="hidden" name="academic_year_term" value="<?= htmlspecialchars($_SESSION['academic_year_term'] ?? '2025 - 2026 - First Semester') ?>">
                 <p><?= htmlspecialchars($_SESSION['academic_year_term'] ?? '2025 - 2026 - First Semester') ?></p>
             </div>
 
             <div class="form-group">
-              <label for="application_type">Application Type:</label>
-                <select name="application_type" required>
+              <label for="application_type">Application Type:&nbsp;</label>
+                <select id="application_type" name="application_type" required>
                   <option value="">Select Application Type</option>
                   <option value="New Student/Freshman" <?= (isset($_SESSION['application_type']) && $_SESSION['application_type'] == "New Student/Freshman") ? 'selected' : '' ?>>New Student/Freshman</option>
                   <option value="Transferee" <?= (isset($_SESSION['application_type']) && $_SESSION['application_type'] == "Transferee") ? 'selected' : '' ?>>Transferee</option>
@@ -77,7 +77,7 @@ include '../components/php/script_admission_application.php';
             <div class="form-group">
               <p>Preferred Course</p>
                 <label for="preferred_course">Academic Program:</label>
-                  <select name="preferred_course" required>
+                  <select id="preferred_course" name="preferred_course" required>
                    <option value="" hidden>Select Preferred Course</option>
 
                     <optgroup label="COLLEGE OF ACCOUNTANCY">

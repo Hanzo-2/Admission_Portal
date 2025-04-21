@@ -1,12 +1,5 @@
 <?php
 include '../components/php/header.php';
-
-if (isset($_SESSION['google_id'])) {
-    echo "Session is active for user ID: " . $_SESSION['google_id'];
-} else {
-    echo "Session not active.";
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['lrn_num'] = $_POST['lrn_num'] ?? '';
     $_SESSION['school_type'] = $_POST['school_type'] ?? '';
@@ -28,11 +21,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       'shs_average'
     ];
 
+
+
     $allFilled = true;
     foreach ($requiredFields as $field) {
-        if (empty($_SESSION[$field])) {
-            $allFilled = false;
-            break;
+        if ($field === 'lrn_num') {
+            if (!isset($_SESSION[$field]) || trim($_SESSION[$field]) === '' && $_SESSION[$field] !== '0') {
+                $allFilled = false;
+                break;
+            }
+        } else {
+            if (!isset($_SESSION[$field]) || trim($_SESSION[$field]) === '') {
+                $allFilled = false;
+                break;
+            }
         }
     }
 

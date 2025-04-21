@@ -114,7 +114,6 @@ h2 {
     gap: 15px;
     padding: 15px;
     width: 355px;
-    margin-bottom: 15px;
 }
 
 .checkbox-container2 {
@@ -143,14 +142,6 @@ h2 {
     padding-bottom: 2px;
 }
 
-label[for="school-type"], label[for="student-type"]  {
-    padding-left: 0px !important;
-}
-
-label[for="school-name"] {
-    margin-top: -20px;
-}
-
 .checkbox-container1 input[type="radio"],
 .checkbox-container2 input[type="radio"] {
     width: 20px; /* Adjust checkbox size */
@@ -160,7 +151,6 @@ label[for="school-name"] {
     transform: scale(2); /* Remove scale transformation */
     vertical-align: middle; /* Ensure vertical alignment */
 }
-
 
 /* Remove the thick outline when tabbing */
 input[type="checkbox"]:focus {
@@ -179,6 +169,14 @@ input[type="checkbox"]:focus {
     font-size: 25px;
     padding-left: 3px;
     color: black;
+}
+
+.form-group p {
+    margin-bottom: 12px;
+    font-size: 25px;
+    padding-left: 3px;
+    color: black;
+    cursor: default;
 }
 
 #lrn {

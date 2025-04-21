@@ -27,13 +27,6 @@ if (isset($_GET['code'])) {
 }
 
 include '../components/php/header.php';
-
-if (isset($_SESSION['google_id'])) {
-    echo "Session is active for user ID: " . $_SESSION['google_id'];
-} else {
-    echo "Session not active.";
-}
-
 // Handle form POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION['school_campus'] = $_POST['school_campus'] ?? '';

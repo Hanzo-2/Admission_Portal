@@ -1,44 +1,45 @@
 <?php
 include '../components/php/header.php';
-
-if (isset($_SESSION['google_id'])) {
-    echo "Session is active for user ID: " . $_SESSION['google_id'];
-} else {
-    echo "Session not active.";
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_SESSION['personal_firstname'] = $_POST['personal_firstname'] ?? '';
-    $_SESSION['personal_middlename'] = $_POST['personal_middlename'] ?? '';
-    $_SESSION['personal_surname'] = $_POST['personal_surname'] ?? '';
-    $_SESSION['personal_birthdate'] = $_POST['personal_birthdate'] ?? '';
-    $_SESSION['birthplace'] = $_POST['birthplace'] ?? '';
-    $_SESSION['sex'] = $_POST['sex'] ?? '';
-    $_SESSION['civilstatus'] = $_POST['civilstatus'] ?? '';
-    $_SESSION['nationality'] = $_POST['nationality'] ?? '';
-    $_SESSION['religion'] = $_POST['religion'] ?? '';
-    $_SESSION['address'] = $_POST['address'] ?? '';
-    $_SESSION['selected_province'] = $_POST['selected_province'] ?? '';
-    $_SESSION['selected_city'] = $_POST['selected_city'] ?? '';
-    $_SESSION['selected_barangay'] = $_POST['selected_barangay'] ?? '';
-    $_SESSION['personal_contact'] = $_POST['personal_contact'] ?? '';
-    $_SESSION['personal_email'] = $_POST['personal_email'] ?? '';
-    $_SESSION['telephone'] = $_POST['telephone'] ?? '';
+    $_SESSION['father_firstname'] = $_POST['father_firstname'] ?? '';
+    $_SESSION['father_middlename'] = $_POST['father_middlename'] ?? '';
+    $_SESSION['father_surname'] = $_POST['father_surname'] ?? '';
+    $_SESSION['father_birthdate'] = $_POST['father_birthdate'] ?? '';
+    $_SESSION['father_contact'] = $_POST['father_contact'] ?? '';
+    
+    $_SESSION['mother_firstname'] = $_POST['mother_firstname'] ?? '';
+    $_SESSION['mother_middlename'] = $_POST['mother_middlename'] ?? '';
+    $_SESSION['mother_surname'] = $_POST['mother_surname'] ?? '';
+    $_SESSION['mother_birthdate'] = $_POST['mother_birthdate'] ?? '';
+    $_SESSION['mother_contact'] = $_POST['mother_contact'] ?? '';
+    
+    $_SESSION['guardian_firstname'] = $_POST['guardian_firstname'] ?? '';
+    $_SESSION['guardian_middlename'] = $_POST['guardian_middlename'] ?? '';
+    $_SESSION['guardian_surname'] = $_POST['guardian_surname'] ?? '';
+    $_SESSION['guardian_address'] = $_POST['guardian_address'] ?? '';
+    $_SESSION['guardian_province'] = $_POST['guardian_province'] ?? '';
+    $_SESSION['guardian_city'] = $_POST['guardian_city'] ?? '';
+    $_SESSION['guardian_contact'] = $_POST['guardian_contact'] ?? '';
+    $_SESSION['guardian_email'] = $_POST['guardian_email'] ?? '';
+    $_SESSION['guardian_telephone'] = $_POST['guardian_telephone'] ?? '';
+    $_SESSION['emergency_complete_name'] = $_POST['emergency_complete_name'] ?? '';
+    $_SESSION['emergency_complete_name_select'] = $_POST['emergency_complete_name_select'] ?? '';
+    $_SESSION['emergency_complete_address'] = $_POST['emergency_complete_address'] ?? '';
+    $_SESSION['emergency_contact'] = $_POST['emergency_contact'] ?? '';
+    $_SESSION['emergency_email'] = $_POST['emergency_email'] ?? '';
+    $_SESSION['emergency_telephone'] = $_POST['emergency_telephone'] ?? '';
 
     $requiredFields = [
-      'personal_firstname',
-      'personal_surname',
-      'personal_birthdate',
-      'birthplace',
-      'sex',
-      'civilstatus',
-      'nationality',
-      'religion',
-      'address',
-      'selected_province',
-      'selected_city',
-      'selected_barangay',
-      'personal_contact'
+        'guardian_firstname',
+        'guardian_surname',
+        'guardian_address',
+        'guardian_province',
+        'guardian_city',
+        'guardian_contact',
+        'guardian_telephone',
+        'emergency_complete_name',
+        'emergency_complete_address',
+        'emergency_contact'
     ];
 
     $allFilled = true;

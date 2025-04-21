@@ -30,7 +30,6 @@ include '../components/php/script_educational_bg.php';
 
       <form action="educational_bg.php" method="post">
         <div class="form-grid">
-
           <div class="row">
             <div class="row2">
               <div class="form-group">
@@ -44,10 +43,10 @@ include '../components/php/script_educational_bg.php';
         <div class="row">
           <div class="row2">
             <div class="form-group">
-              <label for="school-type">School Type:</label>
+              <p>School Type:</p>
                 <div class="checkbox-container1">
                   <label>
-                    <input type="radio" name="school_type" value="Public"
+                    <input type="radio" name="school_type" value="Public" checked
                     <?= (isset($_SESSION['school_type']) && $_SESSION['school_type'] === 'Public') ? 'checked' : '' ?> required> 
                      Public
                   </label>
@@ -67,10 +66,10 @@ include '../components/php/script_educational_bg.php';
               </div>
 
               <div class="form-group">
-                <label for="student-type">Student Type:</label>
+                <p>Student Type:</p>
                   <div class="checkbox-container2">
                     <label>
-                      <input type="radio" name="student_type" value="Regular"
+                      <input type="radio" name="student_type" value="Regular" checked
                       <?= (isset($_SESSION['student_type']) && $_SESSION['student_type'] === 'Regular') ? 'checked' : '' ?> required>
                        Regular
                     </label>
@@ -95,6 +94,7 @@ include '../components/php/script_educational_bg.php';
           <div class="form-group">
             <label for="school-name">School Name:</label>
               <input type="text" id="school-name" name="school_name" required placeholder="Enter School Name"
+                     oninput="this.value = this.value.toUpperCase();"
                      value="<?= htmlspecialchars($_SESSION['school_name'] ?? '') ?>">
           </div>
         </div>
@@ -103,6 +103,7 @@ include '../components/php/script_educational_bg.php';
             <div class="form-group">
                 <label for="school-address">School Address:</label>
                 <input type="text" id="school-address" name="school_address" required placeholder="Enter School Address"
+                       oninput="this.value = this.value.toUpperCase();"
                        value="<?= htmlspecialchars($_SESSION['school_address'] ?? '') ?>">
             </div>
         </div>
@@ -112,6 +113,7 @@ include '../components/php/script_educational_bg.php';
             <div class="form-group">
                 <label for="track-strand">Track/Strand:</label>
                 <input type="text" id="track-strand" name="track_strand" required placeholder="Enter Your Senior High School Track/Strand"
+                       oninput="this.value = this.value.toUpperCase();"     
                        value="<?= htmlspecialchars($_SESSION['track_strand'] ?? '') ?>">
             </div>
 

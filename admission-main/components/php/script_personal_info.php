@@ -1,12 +1,5 @@
 <?php
 include '../components/php/header.php';
-
-if (isset($_SESSION['google_id'])) {
-    echo "Session is active for user ID: " . $_SESSION['google_id'];
-} else {
-    echo "Session not active.";
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['personal_firstname'] = $_POST['personal_firstname'] ?? '';
     $_SESSION['personal_middlename'] = $_POST['personal_middlename'] ?? '';
@@ -24,6 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['personal_contact'] = $_POST['personal_contact'] ?? '';
     $_SESSION['personal_email'] = $_POST['personal_email'] ?? '';
     $_SESSION['telephone'] = $_POST['telephone'] ?? '';
+
+    $phoneDigits = preg_replace('/\D/', '', $_SESSION['personal_contact']);
+    $telDigits = preg_replace('/\D/', '', $_SESSION['telephone']);
+
+    $isPhoneValid = strlen($phoneDigits) === 11;
+    $isTelValid = strlen($telDigits) === 9 || $_SESSION['telephone'] === ''; // Allow blank but not invalid
+
+    if (!$isPhoneValid) {
+        $_SESSION['personal_contact'] = '';
+    }
+
+    if (!$isTelValid) {
+        $_SESSION['telephone'] = '';
+    }
 
     $requiredFields = [
       'personal_firstname',

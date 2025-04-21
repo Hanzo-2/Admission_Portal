@@ -99,7 +99,12 @@ function formatvalidatePhoneNumber(input) {
         input.style.borderColor = "red"; // Invalid
     }
 
-    return isValid;
+    // Set native form validation message
+    if (!isValid) {
+        input.setCustomValidity("Phone number must be exactly 11 digits.");
+    } else {
+        input.setCustomValidity("");
+    }
 }
 // For Contact Number end
 
@@ -111,39 +116,39 @@ function formatvalidateTelephone(input) {
     // Limit to 9 digits max
     digits = digits.substring(0, 9);
 
-    // Apply formatting (XX)-XXX-YYYY for Telephone Number
+    // Apply formatting (XX)-XXX-YYYY
     let formatted = "";
     if (digits.length > 0) {
-        formatted += "(" + digits.substring(0, 2) + ")"; // Format the first 2 digits inside parentheses
+        formatted += "(" + digits.substring(0, 2) + ")";
     }
     if (digits.length > 2) {
-        formatted += "-" + digits.substring(2, 5); // Add hyphen after the next 3 digits
+        formatted += "-" + digits.substring(2, 5);
     }
     if (digits.length > 5) {
-        formatted += "-" + digits.substring(5); // Add hyphen after the next 4 digits
+        formatted += "-" + digits.substring(5);
     }
 
-    // Remove parentheses if there are fewer than 2 digits
     if (digits.length < 3) {
-        formatted = digits; // Don't include parentheses if less than 2 digits
+        formatted = digits; // Skip formatting if too short
     }
 
-    // Update field
+    // Update input value
     input.value = formatted;
 
-    // Validation
+    // Validation logic
+    const isFilled = digits.length > 0;
     const isValid = digits.length === 9;
 
-    // Set border color for visual feedback
-    if (digits === "") {
-        input.style.borderColor = "";
+    if (!isFilled) {
+        input.style.borderColor = ""; // Default style
+        input.setCustomValidity("");  // No error
     } else if (isValid) {
         input.style.borderColor = "green";
+        input.setCustomValidity("");  // Valid input
     } else {
         input.style.borderColor = "red";
+        input.setCustomValidity("Telephone number must be 9 digits.");
     }
-
-    return isValid;
 }
 // Function to format telephone number as XX-XXXX-XXXX - end
 
@@ -170,32 +175,3 @@ function validateEmail(input){
         input.style.borderColor = "red"; // Invalid email
     }
 }
-
-document.querySelector('form').addEventListener('submit', function (e) {
-    const emailInput = document.querySelector('#email');
-    const value = emailInput.value.trim();
-  
-    if (value !== "") {
-      const atIndex = value.indexOf('@');
-      const domainPart = value.substring(atIndex + 1);
-      const isValid = atIndex > 0 && domainPart.includes('.');
-  
-      if (!isValid) {
-        e.preventDefault();
-        alert("Please enter a valid email address.");
-        emailInput.focus();
-        return false;
-      }
-    }
-
-    const phoneInput = document.querySelector('#personal-contact');  // Use the correct ID
-    const isPhoneValid = validatePhoneNumber(phoneInput);
-
-    if (!isPhoneValid) {
-        e.preventDefault();
-        alert("Please enter a valid phone number (11 digits).");
-        phoneInput.focus();
-        return false;
-    }
-  });
-  

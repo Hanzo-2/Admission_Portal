@@ -35,19 +35,22 @@ include '../components/php/script_personal_info.php';
               <div class="form-group">
                 <label for="personal-firstname">First Name:</label>
                 <input type="text" id="personal-firstname" name="personal_firstname" required placeholder="First Name" 
+                       oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);"
                        value="<?= htmlspecialchars($_SESSION['personal_firstname'] ?? '') ?>">
               </div>
 
               <div class="form-group">
                 <label for="personal-middlename">Middle Name:</label>
                 <input type="text" id="personal-middlename" name="personal_middlename" placeholder="Middle Name (Optional)" 
+                       oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);"
                        value="<?= htmlspecialchars($_SESSION['personal_middlename'] ?? '') ?>">
               </div>
 
               <div class="form-group">
                 <label for="personal-surname">Surname:</label>
                 <input type="text" id="personal-surname" name="personal_surname" required placeholder="Surname" 
-                    value="<?= htmlspecialchars($_SESSION['personal_surname'] ?? '') ?>">
+                       oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);"
+                       value="<?= htmlspecialchars($_SESSION['personal_surname'] ?? '') ?>">
               </div>
             </div>
 
@@ -122,39 +125,41 @@ include '../components/php/script_personal_info.php';
             <input type="hidden" name="country" value="<?= htmlspecialchars($_SESSION['country'] ?? 'Philippines') ?>">
             
             <div class="row">
-            <div class="form-group">
-                <label for="address" style="margin-top: 1px;">House No., Street Name:</label>
-                <input type="text" id="address" name="address" required placeholder="House No., Street Name"
-                    value="<?= htmlspecialchars($_SESSION['address'] ?? '') ?>">
+              <div class="form-group">
+                  <label for="address" style="margin-top: 1px;">House No., Street Name:</label>
+                  <input type="text" id="address" name="address" required placeholder="House No., Street Name" autocomplete="address"
+                        oninput="this.value = this.value.toUpperCase();"       
+                        value="<?= htmlspecialchars($_SESSION['address'] ?? '') ?>">
+              </div>
             </div>
-            </div>
+
             <div class="row">
-            <div class="form-group">
-              <label for="province">Province/Region:</label>
-                <select id="province" name="selected_province" class="form-control" required>
-                  <option value="">Select Province/Region</option>
-                    <?php 
-                      $selectedProvince = $_SESSION['selected_province'] ?? '';
-                      $selectedCity = $_SESSION['selected_city'] ?? '';
-                      $selectedBarangay = $_SESSION['selected_barangay'] ?? '';
-                      include '../components/php/select_province.php'
-                    ?>
-                </select>
-            </div>
+              <div class="form-group">
+                <label for="province">Province/Region:</label>
+                  <select id="province" name="selected_province" class="form-control" required>
+                    <option value="">Select Province/Region</option>
+                      <?php 
+                        $selectedProvince = $_SESSION['selected_province'] ?? '';
+                        $selectedCity = $_SESSION['selected_city'] ?? '';
+                        $selectedBarangay = $_SESSION['selected_barangay'] ?? '';
+                        include '../components/php/select_province.php'
+                      ?>
+                  </select>
+              </div>
 
-            <div class="form-group">
+              <div class="form-group">
                 <label for="city">City/Municipality:</label>
-                <select id="city" name="selected_city" class="form-control" required>
-                <option value="">Select City/Municipality</option>
-                </select>
-            </div>
+                  <select id="city" name="selected_city" class="form-control" required>
+                    <option value="">Select City/Municipality</option>
+                  </select>
+              </div>
 
-            <div class="form-group">
+              <div class="form-group">
                 <label for="barangay">Barangay:</label>
-                <select id="barangay" name="selected_barangay" class="form-control" required>
-                <option value="">Select Barangay</option>
-                </select>
-            </div>
+                  <select id="barangay" name="selected_barangay" class="form-control" required>
+                    <option value="">Select Barangay</option>
+                  </select>
+              </div>
           </div>
 
           <script>
@@ -169,16 +174,16 @@ include '../components/php/script_personal_info.php';
           <h3> Personal Contact Information </h3>
             <div class="row">
               <div class="form-group">
-                <label for="personal_contact" style="margin-top: 1px">Contact Number:</label>
+                <label for="personal-contact" style="margin-top: 1px">Contact Number:</label>
                   <input type="tel" id="personal-contact" name="personal_contact" maxlength="13"
-                        placeholder="Enter Phone Number" required
-                        value="<?= htmlspecialchars($_SESSION['personal_contact'] ?? '') ?>"
-                        oninput="formatvalidatePhoneNumber(this)">
+                         placeholder="Enter Phone Number" required
+                         value="<?= htmlspecialchars($_SESSION['personal_contact'] ?? '') ?>"
+                         oninput="formatvalidatePhoneNumber(this)">
               </div>
 
               <div class="form-group">
-                <label for="personal_email" style="margin-top: 1px">Email:</label>
-                  <input type="email" id="email" name="personal_email" placeholder="Enter Email Address (Optional)" 
+                <label for="email" style="margin-top: 1px">Email:</label>
+                  <input type="email" id="email" name="personal_email" placeholder="Enter Email Address (Optional)" autocomplete="email"
                          value="<?= htmlspecialchars($_SESSION['personal_email'] ?? '') ?>"
                          oninput="validateEmail(this)">
               </div>
@@ -225,7 +230,7 @@ include '../components/php/script_personal_info.php';
       </div>
     </section>
   </div>
-<script src="../components/javascript/personal_info.js"></script>
+<script src="../components/javascript/format_validate.js"></script>
 <script src="../components/javascript/check_session_interval.js"></script>
 <script src="../components/javascript/autosave.js"></script>
 <script src="../components/javascript/select_province_city_barangay.js"></script>

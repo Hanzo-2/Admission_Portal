@@ -5,7 +5,8 @@ $nationalities = json_decode($json, true);
 asort($nationalities);
 
 foreach ($nationalities as $country => $nationality) {
-    $selected = ($selectedNationality === $nationality) ? 'selected' : ''; 
+    // Set 'Filipino' as the default selection
+    $selected = ($selectedNationality === $nationality || $nationality === 'Filipino') ? 'selected' : ''; 
     echo "<option value=\"" . htmlspecialchars($nationality) . "\" $selected>" . htmlspecialchars($nationality) . "</option>";
 }
 ?>
