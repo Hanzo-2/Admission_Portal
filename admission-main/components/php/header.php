@@ -41,6 +41,7 @@ if (isset($_SESSION['user'])) {
         </div>
       </header> 
 </body>
+
 <style>
     header {
     display: flex;

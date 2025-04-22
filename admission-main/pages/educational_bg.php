@@ -137,28 +137,13 @@ include '../components/php/script_educational_bg.php';
       </div>
 
         <div class="button-container">
-            <a href="personal_info.php" style="text-decoration: none"><button id="back-btn" type="button">Back</button></a>
-            <button type="submit">Next</button>
+          <a href="personal_info.php">
+            <button id="back-btn" type="button">Back</button>
+          </a>
+          <button type="submit">Next</button>
         </div>
-
-    </form>
-
-    <?php if (isset($_SESSION['google_id'])): ?>
-        <div class="submitted-data" style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
-            <h4>Submitted Information Preview:</h4>
-            <ul>
-            <li><strong>LRN:</strong> <?= htmlspecialchars($_SESSION['lrn_num'] ?? 'Not set') ?></li>
-            <li><strong>School Type:</strong> <?= htmlspecialchars($_SESSION['school_type'] ?? 'Not set') ?></li>
-            <li><strong>Student Type:</strong> <?= htmlspecialchars($_SESSION['student_type'] ?? 'Not set') ?></li>
-            <li><strong>School Name:</strong> <?= htmlspecialchars($_SESSION['school_name'] ?? 'Not set') ?></li>
-            <li><strong>School Address:</strong> <?= htmlspecialchars($_SESSION['school_address'] ?? 'Not set') ?></li>
-            <li><strong>Track Strand:</strong> <?= htmlspecialchars($_SESSION['track_strand'] ?? 'Not set') ?></li>
-            <li><strong>Year Graduation:</strong> <?= htmlspecialchars($_SESSION['year_graduation'] ?? 'Not set') ?></li>
-            <li><strong>SHS Average:</strong> <?= htmlspecialchars($_SESSION['shs_average'] ?? 'Not set') ?></li>
-            </ul>
-        </div>
-      <?php endif; ?>
-
+        
+      </form>
     </div>
   </section>
 </div>

@@ -64,10 +64,10 @@ include '../components/php/script_personal_info.php';
 
               <div class="form-group">
                 <label for="birthplace">Place of Birth:</label>
-                <select id="birthplace" name="birthplace" required>
+                  <select id="birthplace" name="birthplace" required>
                     <option value="">Choose your Place of Birth</option>
                     <?php include '../components/php/select_birthplace.php'; ?>
-                </select>
+                  </select>
               </div>
 
               <div class="form-group">
@@ -93,18 +93,21 @@ include '../components/php/script_personal_info.php';
                     <option value="Prefer not to say" <?=(isset($_SESSION['civilstatus'])&& $_SESSION['civilstatus'] == "Prefer not to say")? 'selected' : '' ?>>Prefer not to say</option>
                   </select>
               </div>
-                <div class="form-group">
+
+              <div class="form-group">
                 <label for="nationality">Nationality:</label>
-                <select id="nationality" name="nationality" required>
+                  <select id="nationality" name="nationality" required>
                     <option value="">Choose your Nationality</option>
-                    <?php 
-                    $selectedNationality = $_SESSION['nationality'] ?? '';
-                    include '../components/php/select_nationality.php' ?>
-                </select>
-                </div>
-                <div class="form-group">
+                      <?php 
+                        $selectedNationality = $_SESSION['nationality'] ?? '';
+                        include '../components/php/select_nationality.php' 
+                      ?>
+                  </select>
+              </div>
+
+              <div class="form-group">
                 <label for="religion">Religion:</label>
-                <select name="religion" id="religion" required>
+                  <select name="religion" id="religion" required>
                     <option value="">Select Religion</option>
                     <option value="Roman Catholic" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Roman Catholic") ? 'selected' : '' ?>>Roman Catholic</option>
                     <option value="Islam" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Islam") ? 'selected' : '' ?>>Islam</option>
@@ -117,19 +120,19 @@ include '../components/php/script_personal_info.php';
                     <option value="Hinduism" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Hinduism") ? 'selected' : '' ?>>Hinduism</option>
                     <option value="Other" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Other") ? 'selected' : '' ?>>Other</option>
                     <option value="None" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "None") ? 'selected' : '' ?>>None</option>
-                </select>
-                </div>
-            </div>
+                  </select>
+              </div>
+          </div>
             
             <h3>Current Address (Philippines) </h3>
             <input type="hidden" name="country" value="<?= htmlspecialchars($_SESSION['country'] ?? 'Philippines') ?>">
             
             <div class="row">
               <div class="form-group">
-                  <label for="address" style="margin-top: 1px;">House No., Street Name:</label>
+                <label for="address">House No., Street Name:</label>
                   <input type="text" id="address" name="address" required placeholder="House No., Street Name" autocomplete="address"
-                        oninput="this.value = this.value.toUpperCase();"       
-                        value="<?= htmlspecialchars($_SESSION['address'] ?? '') ?>">
+                         oninput="this.value = this.value.toUpperCase();"       
+                         value="<?= htmlspecialchars($_SESSION['address'] ?? '') ?>">
               </div>
             </div>
 
@@ -174,7 +177,7 @@ include '../components/php/script_personal_info.php';
           <h3> Personal Contact Information </h3>
             <div class="row">
               <div class="form-group">
-                <label for="personal-contact" style="margin-top: 1px">Contact Number:</label>
+                <label for="personal-contact">Contact Number:</label>
                   <input type="tel" id="personal-contact" name="personal_contact" maxlength="13"
                          placeholder="Enter Phone Number" required
                          value="<?= htmlspecialchars($_SESSION['personal_contact'] ?? '') ?>"
@@ -182,54 +185,32 @@ include '../components/php/script_personal_info.php';
               </div>
 
               <div class="form-group">
-                <label for="email" style="margin-top: 1px">Email:</label>
+                <label for="email">Email:</label>
                   <input type="email" id="email" name="personal_email" placeholder="Enter Email Address (Optional)" autocomplete="email"
                          value="<?= htmlspecialchars($_SESSION['personal_email'] ?? '') ?>"
                          oninput="validateEmail(this)">
               </div>
 
               <div class="form-group">
-                <label for="telephone" style="margin-top: 1px">Telephone Number:</label> 
+                <label for="telephone">Telephone Number:</label> 
                   <input type="tel" id="telephone" name="telephone" placeholder="Enter Tel. No. (Optional)" maxlength="13"
-                          value="<?= htmlspecialchars($_SESSION['telephone'] ?? '') ?>"
-                          oninput="formatvalidateTelephone(this)">
+                         value="<?= htmlspecialchars($_SESSION['telephone'] ?? '') ?>"
+                         oninput="formatvalidateTelephone(this)">
               </div>
             </div>
-         </div>
-         
-          <div class="button-container">
-            <a href="admission_application.php" style="text-decoration: none"> <button id="back-btn" type="button">Back</button> </a>
-              <button type="submit">Next</button>
-          </div>
+         </div> 
 
-        </form>
-
-        <?php if (isset($_SESSION['google_id'])): ?>
-          <div class="submitted-data" style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
-              <h4>Submitted Information Preview:</h4>
-              <ul>
-              <li><strong>Firstname:</strong> <?= htmlspecialchars($_SESSION['personal_firstname'] ?? 'Not set') ?></li>
-              <li><strong>Middlename:</strong> <?= htmlspecialchars($_SESSION['personal_middlename'] ?? 'Not set') ?></li>
-              <li><strong>Surname:</strong> <?= htmlspecialchars($_SESSION['personal_surname'] ?? 'Not set') ?></li>
-              <li><strong>Birthdate:</strong> <?= htmlspecialchars($_SESSION['personal_birthdate'] ?? 'Not set') ?></li>
-              <li><strong>Birthplace:</strong> <?= htmlspecialchars($_SESSION['birthplace'] ?? 'Not set') ?></li>
-              <li><strong>Sex:</strong> <?= htmlspecialchars($_SESSION['sex'] ?? 'Not set') ?></li>
-              <li><strong>Nationality:</strong> <?= htmlspecialchars($_SESSION['nationality'] ?? 'Not set') ?></li>
-              <li><strong>Religion:</strong> <?= htmlspecialchars($_SESSION['religion'] ?? 'Not set') ?></li>
-              <li><strong>Address:</strong> <?= htmlspecialchars($_SESSION['address'] ?? 'Not set') ?></li>
-              <li><strong>Country:</strong> <?= htmlspecialchars($_SESSION['country'] ?? 'Not set') ?></li>
-              <li><strong>Province:</strong> <?= htmlspecialchars($_SESSION['selected_province'] ?? 'Not set') ?></li>
-              <li><strong>City:</strong> <?= htmlspecialchars($_SESSION['selected_city'] ?? 'Not set') ?></li>
-              <li><strong>Barangay:</strong> <?= htmlspecialchars($_SESSION['selected_barangay'] ?? 'Not set') ?></li>
-              <li><strong>Contact Number:</strong> <?= htmlspecialchars($_SESSION['personal_contact'] ?? 'Not set') ?></li>
-              <li><strong>Email:</strong> <?= htmlspecialchars($_SESSION['personal_email'] ?? 'Not set') ?></li>
-              <li><strong>Telephone:</strong> <?= htmlspecialchars($_SESSION['telephone'] ?? 'Not set') ?></li>
-              </ul>
-          </div>
-        <?php endif; ?>
-      </div>
-    </section>
-  </div>
+        <div class="button-container">
+          <a href="admission_application.php"> 
+            <button id="back-btn" type="button">Back</button> 
+          </a>
+            <button type="submit">Next</button>
+        </div>
+      
+      </form>
+    </div>
+  </section>
+</div>
 <script src="../components/javascript/format_validate.js"></script>
 <script src="../components/javascript/check_session_interval.js"></script>
 <script src="../components/javascript/autosave.js"></script>

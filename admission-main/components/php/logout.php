@@ -1,5 +1,13 @@
 <?php
 session_start();
+// Delete all uploaded files in session
+if (isset($_SESSION['uploaded_docs']) && is_array($_SESSION['uploaded_docs'])) {
+    foreach ($_SESSION['uploaded_docs'] as $doc) {
+        if (isset($doc['path']) && file_exists($doc['path'])) {
+            unlink($doc['path']); // Delete the file
+        }
+    }
+}
 session_unset();
 session_destroy();
 // Prevent caching

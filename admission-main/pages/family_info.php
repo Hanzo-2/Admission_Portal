@@ -257,58 +257,17 @@ include '../components/php/script_family_info.php';
                            value="<?= htmlspecialchars($_SESSION['emergency_telephone'] ?? '') ?>"      
                            oninput="formatvalidateTelephone(this)">
                   </div>
-            </div>
+              </div>
         </div>
     
         <div class="button-container">
-          <a href="educational_bg.php" style="text-decoration: none"> <button id="back-btn" type="button">Back</button> </a>
+          <a href="educational_bg.php"> 
+            <button id="back-btn" type="button">Back</button> 
+          </a>
             <button type="submit">Next</button>
         </div>
 
-    </form>
-
-    <?php if (isset($_SESSION['google_id'])): ?>
-      <div class="submitted-data" style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
-          <h4>Submitted Information Preview:</h4>
-          <ul>
-              <!-- Other fields here -->
-              <li><strong>Father's First Name:</strong> <?= htmlspecialchars($_SESSION['father_firstname'] ?? 'Not set') ?></li>
-              <li><strong>Father's Middle Name:</strong> <?= htmlspecialchars($_SESSION['father_middlename'] ?? 'Not set') ?></li>
-              <li><strong>Father's Surname:</strong> <?= htmlspecialchars($_SESSION['father_surname'] ?? 'Not set') ?></li>
-              <li><strong>Father's Birthdate:</strong> <?= htmlspecialchars($_SESSION['father_birthdate'] ?? 'Not set') ?></li>
-              <li><strong>Father's Contact:</strong> <?= htmlspecialchars($_SESSION['father_contact'] ?? 'Not set') ?></li>
-              
-              <li><strong>Mother's First Name:</strong> <?= htmlspecialchars($_SESSION['mother_firstname'] ?? 'Not set') ?></li>
-              <li><strong>Mother's Middle Name:</strong> <?= htmlspecialchars($_SESSION['mother_middlename'] ?? 'Not set') ?></li>
-              <li><strong>Mother's Surname:</strong> <?= htmlspecialchars($_SESSION['mother_surname'] ?? 'Not set') ?></li>
-              <li><strong>Mother's Birthdate:</strong> <?= htmlspecialchars($_SESSION['mother_birthdate'] ?? 'Not set') ?></li>
-              <li><strong>Mother's Contact:</strong> <?= htmlspecialchars($_SESSION['mother_contact'] ?? 'Not set') ?></li>
-              
-              <li><strong>Guardian's First Name:</strong> <?= htmlspecialchars($_SESSION['guardian_firstname'] ?? 'Not set') ?></li>
-              <li><strong>Guardian's Middle Name:</strong> <?= htmlspecialchars($_SESSION['guardian_middlename'] ?? 'Not set') ?></li>
-              <li><strong>Guardian's Surname:</strong> <?= htmlspecialchars($_SESSION['guardian_surname'] ?? 'Not set') ?></li>
-              <li><strong>Guardian's Address:</strong> <?= htmlspecialchars($_SESSION['guardian_address'] ?? 'Not set') ?></li>
-              <li><strong>Guardian's Province:</strong> <?= htmlspecialchars($_SESSION['guardian_province'] ?? 'Not set') ?></li>
-              <li><strong>Guardian's City:</strong> <?= htmlspecialchars($_SESSION['guardian_city'] ?? 'Not set') ?></li>
-              <li><strong>Guardian's Contact:</strong> <?= htmlspecialchars($_SESSION['guardian_contact'] ?? 'Not set') ?></li>
-              <li><strong>Guardian's Email:</strong> <?= htmlspecialchars($_SESSION['guardian_email'] ?? 'Not set') ?></li>
-              <li><strong>Guardian's Telephone:</strong> <?= htmlspecialchars($_SESSION['guardian_telephone'] ?? 'Not set') ?></li>
-              
-              <li><strong>Emergency Complete Name:</strong> <?= htmlspecialchars($_SESSION['emergency_complete_name'] ?? 'Not set') ?></li>
-              <li><strong>Emergency Address:</strong> <?= htmlspecialchars($_SESSION['emergency_complete_address'] ?? 'Not set') ?></li>
-              <li><strong>Emergency Contact:</strong> <?= htmlspecialchars($_SESSION['emergency_contact'] ?? 'Not set') ?></li>
-              <li><strong>Emergency Email:</strong> <?= htmlspecialchars($_SESSION['emergency_email'] ?? 'Not set') ?></li>
-              <li><strong>Emergency Telephone:</strong> <?= htmlspecialchars($_SESSION['emergency_telephone'] ?? 'Not set') ?></li>
-          
-              <li><strong>Address:</strong> <?= htmlspecialchars($_SESSION['address'] ?? 'Not set') ?></li>
-              <li><strong>Province:</strong> <?= htmlspecialchars($_SESSION['selected_province'] ?? 'Not set') ?></li>
-              <li><strong>City:</strong> <?= htmlspecialchars($_SESSION['selected_city'] ?? 'Not set') ?></li>
-              <li><strong>Barangay:</strong> <?= htmlspecialchars($_SESSION['selected_barangay'] ?? 'Not set') ?></li>
-            </ul>
-      </div>
-    <?php endif; ?>
-
-
+        </form>
       </div>
     </section>
   </div>

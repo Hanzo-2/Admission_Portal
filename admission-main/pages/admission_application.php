@@ -106,30 +106,15 @@ include '../components/php/script_admission_application.php';
                   </select>
             </div>
 
-            <div class="button-container">
-              <button type="submit">Next</button>
-            </div>
-
+          <div class="button-container">
+            <button type="submit">Next</button>
           </div>
-        </form>
-
-        <?php if (isset($_SESSION['google_id'])): ?>
-          <div class="submitted-data" style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
-            <h3>Submitted Information Preview:</h3>
-            <ul>
-              <li><strong>School Campus:</strong> <?= htmlspecialchars($_SESSION['school_campus'] ?? 'Not set') ?></li>
-              <li><strong>Classification:</strong> <?= htmlspecialchars($_SESSION['classification'] ?? 'Not set') ?></li>
-              <li><strong>Grade/Level:</strong> <?= htmlspecialchars($_SESSION['grade_level'] ?? 'Not set') ?></li>
-              <li><strong>Academic Year and Term:</strong> <?= htmlspecialchars($_SESSION['academic_year_term'] ?? 'Not set') ?></li>
-              <li><strong>Application Type:</strong> <?= htmlspecialchars($_SESSION['application_type'] ?? 'Not set') ?></li>
-              <li><strong>Preferred Course:</strong> <?= htmlspecialchars($_SESSION['preferred_course'] ?? 'Not set') ?></li>
-            </ul>
-          </div>
-        <?php endif; ?>
-
-      </div>
-    </section>
-  </div>
+          
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
 <script src="../components/javascript/check_session_interval.js"></script>
 <script src="../components/javascript/autosave.js"></script>
 <?php include '../components/php/modal_inactivity.php'; ?>
