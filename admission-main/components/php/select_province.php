@@ -17,4 +17,3 @@ foreach ($provinceList as $province) {
 $isSelected = ($province === $selectedProvince) ? 'selected' : '';
 echo "<option value=\"" . htmlspecialchars($province) . "\" $isSelected>" . htmlspecialchars($province) . "</option>";
 }
-?>

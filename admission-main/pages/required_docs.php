@@ -117,7 +117,6 @@ include '../components/php/header.php';
             </a>
                 <button type="submit">Next</button>
           </div>
-          
      </form>
     </div>
   </section>

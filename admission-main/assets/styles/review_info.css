@@ -85,36 +85,31 @@ body {
 .th-header {
     font-size: 30px;
     font-weight: bolder;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .p-reminder {
-    font-size: 20px;
+    font-size: 22px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
     text-align: center;
     padding: 10px;
     margin-top: 10px;
-    color: grey;
+    color: green;
 }
 
 #review-table2 {
-    margin-top: -1px; /* Moves second table upwards */
+    margin-top: -2px; /* Moves second table upwards */
 }
 
-.tr-aligner { 
-    height: 0;
-    line-height: 0;
-    font-size: 0;
-    border: none;
-    padding: 0;
-    overflow: hidden;
-   
+.tr-td-labels td{
+    font-weight: bolder; 
+    font-size: 20px;
 }
 
-.tr-aligner td { 
-    border: none !important;
-    padding: 0 !important;
-    
+.tr-td-remarks, .tr-td-number {
+    text-align: center !important;
 }
 
 tr {
@@ -125,15 +120,20 @@ tr {
     width: 16.67%;
 }
 
+.td-1 {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 17px;
+}
+
 .td-2 {
     font-weight: bolder;
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 .td-4{
     font-weight: bolder;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 /* General Table Styling */
@@ -142,6 +142,7 @@ tr {
     border-collapse: collapse;
     margin-top: 20px;
     font-family: Arial, sans-serif;
+    border: 3px solid black;
 }
 
 /* Table Header */
@@ -150,8 +151,14 @@ tr {
     color: white;
 }
 
-.custom-table th, .custom-table td {
-    padding: 15px;
+.custom-table th {
+    padding: 9px;
+    border: 3px solid black;
+    text-align: left;
+}
+
+.custom-table td {
+    padding: 9px;
     border: 2px solid lightgrey;
     text-align: left;
 }
@@ -177,4 +184,58 @@ tr {
     width: 100%;
     margin: auto;
     text-align: center;
+}
+
+.custom-table3 {
+    margin-top: 10px;
+    width: 100%; 
+    border-collapse: collapse; 
+    background-color: white; 
+    border: 3px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.custom-table-td3 {
+    background-color: #4CAF50;
+    border: 3px solid black; 
+    color: white; 
+    padding: 20px; 
+    text-align: left;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.custom-table-text {
+    text-align: left; 
+    padding: 25px;
+    padding-top: 15px; 
+    font-size: 17px; 
+    color: #333;
+}
+
+.custom-table-checkbox {
+    padding: 15px; 
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.checkbox {
+    transform: scale(1.5); 
+    margin-right: 10px;
+}
+
+.checkbox-text {
+    font-size: 18px;
+}
+
+.btn-view {
+    background-color: #007bff;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 12px;
+}
+.btn-view:hover {
+    background-color: #0056b3;
 }

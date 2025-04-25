@@ -13,6 +13,7 @@
 
 <?php
 session_start();
+include '../components/php/header.php';
 include '../components/php/script_educational_bg.php';
 ?>
 
@@ -46,6 +47,7 @@ include '../components/php/script_educational_bg.php';
               <p>School Type:</p>
                 <div class="checkbox-container1">
                   <label>
+                    <?php if (!isset($_SESSION['school_type'])) {$_SESSION['school_type'] = 'Public';} ?>
                     <input type="radio" name="school_type" value="Public" checked
                     <?= (isset($_SESSION['school_type']) && $_SESSION['school_type'] === 'Public') ? 'checked' : '' ?> required> 
                      Public
@@ -69,6 +71,7 @@ include '../components/php/script_educational_bg.php';
                 <p>Student Type:</p>
                   <div class="checkbox-container2">
                     <label>
+                      <?php if (!isset($_SESSION['student_type'])) {$_SESSION['student_type'] = 'Regular';} ?>
                       <input type="radio" name="student_type" value="Regular" checked
                       <?= (isset($_SESSION['student_type']) && $_SESSION['student_type'] === 'Regular') ? 'checked' : '' ?> required>
                        Regular

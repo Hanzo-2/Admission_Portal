@@ -26,4 +26,3 @@ foreach ($places as $place) {
     $selected = (isset($_SESSION['birthplace']) && $_SESSION['birthplace'] === $place) ? 'selected' : '';
     echo "<option value=\"$safePlace\" $selected>$safePlace</option>";
 }
-?>

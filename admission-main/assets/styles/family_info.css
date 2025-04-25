@@ -85,22 +85,26 @@ body {
     gap: 20px;
 }
 
+.form-title {
+    border: none !important;
+}
 
 h1, h3 {
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 h1, h2 {
-    font-size: 35px;
+    font-size: 40px;
     font-weight: bolder;
     margin-bottom: 5px;
+    border-bottom: 2px solid #9999;
 }
 
 h3 {
-    font-size: 27px;
-    color: #666;
+    font-size: 35px;
+    color: #555;
     padding-bottom: 5px;
-    border-bottom: 2px solid lightgray;
+    border-bottom: 2px solid #9999;
 }
 
 .row, .row2 {
@@ -108,7 +112,7 @@ h3 {
     gap: 25px;
 }
 
-.row2, .emergency-complete-name, .emergency-complete-address {
+.row2, .emergency-complete-address {
     margin-top: 15px;
 }
 

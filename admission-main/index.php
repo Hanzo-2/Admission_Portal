@@ -30,7 +30,7 @@ $authUrl = htmlspecialchars($client->createAuthUrl() . '&hl=en');
 
 <body>
   <form class="form">
-    <img src="assets/images/spistlogo.png" class="fit-picture">
+    <img src="assets/images/spistlogo.png" class="fit-picture" alt="SPIST-logo">
     <p><span class="spist">SPIST</span><br>Admission Portal</p>
 
     <a href="<?= $authUrl ?>" style="text-decoration: none;" class="oauthButton">

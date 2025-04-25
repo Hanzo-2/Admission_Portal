@@ -6,4 +6,3 @@ if (!isset($_SESSION['google_id'])) {
 } else {
     echo json_encode(['authenticated' => true]);
 }
-?>

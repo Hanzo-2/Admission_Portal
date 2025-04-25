@@ -1,4 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
+  //Restore previously uploaded files
+  const restoreUploadedFiles = async () => {
+    const response = await fetch("../components/php/script_required_docs.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "action=fetch_uploaded_docs"
+    });
+
+    const data = await response.json();
+
+    if (data.success && data.docs) {
+      Object.entries(data.docs).forEach(([key, file]) => {
+        const index = key.replace("file_", "");
+        document.querySelector(`.attachment-${index}`).innerHTML = `<a href="${file.path}" target="_blank" class="text-primary">View</a>`;
+        document.querySelector(`#remove-button-${index}`).style.display = "inline";
+        document.querySelector(`.remark-${index}`).textContent = "Upload Successful!";
+        document.querySelector(`.remark-${index}`).classList.remove("text-secondary", "text-danger");
+        document.querySelector(`.remark-${index}`).classList.add("text-success");
+      });
+    }
+  };
+
+  restoreUploadedFiles();
+
   // Upload File Function
   const uploadFile = async (input, index) => {
     const file = input.files[0];
@@ -29,8 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Remove File Function
   const removeFile = async (index) => {
     const formData = new FormData();
-    formData.append("action", "remove"); // <--- this is key!
-    formData.append("file_index", index); // <--- send the actual index
+    formData.append("action", "remove");
+    formData.append("file_index", index);
 
     const response = await fetch("../components/php/script_required_docs.php", {
       method: "POST",
@@ -63,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.uploadFile = uploadFile;
   window.removeFile = removeFile;
 
-  // Form submission validation
+  // Validate and submit
   document.getElementById("uploadForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -83,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 function showToast(message, type = "error") {
   let toast = document.createElement("div");
   toast.classList.add("toast", "show");
@@ -93,7 +116,7 @@ function showToast(message, type = "error") {
   document.body.appendChild(toast);
 
   setTimeout(() => {
-      toast.classList.remove("show");
-      setTimeout(() => toast.remove(), 500);
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 500);
   }, 5000);
 }

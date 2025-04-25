@@ -19,7 +19,7 @@ if (isset($_GET['code'])) {
             'profile_picture' => $user_info->picture
         ];
 
-        header("Location: http://localhost/admission_portal/admission-main/pages/admission_application.php");
+        header("Location: http://localhost/admission_portal/admission-main/pages/required_docs.php");
         exit();
     } else {
         die("Authentication Error: " . htmlspecialchars($token['error']));
@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION['academic_year_term'] = $_POST['academic_year_term'] ?? '';
     $_SESSION['application_type'] = $_POST['application_type'] ?? '';
     $_SESSION['preferred_course'] = $_POST['preferred_course'] ?? '';
+    $_SESSION['admission_submit'] = $_POST['admission_submit'] ?? '';
 
     if (!empty($_SESSION['application_type']) && !empty($_SESSION['preferred_course'])) {
         header('Location: http://localhost/admission_portal/admission-main/pages/personal_info.php');
@@ -43,4 +44,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "Please fill out all required fields.";
     }
 }
-?>

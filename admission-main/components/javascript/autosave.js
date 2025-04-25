@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('../components/php/autosave.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         },
         body: `field=${encodeURIComponent(fieldName)}&value=${encodeURIComponent(value)}`
       })

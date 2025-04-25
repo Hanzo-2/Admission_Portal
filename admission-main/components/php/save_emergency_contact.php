@@ -15,4 +15,3 @@ if ($data) {
 }
 
 http_response_code(200); // OK
-?>

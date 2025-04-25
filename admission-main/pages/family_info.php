@@ -13,6 +13,7 @@
 
 <?php 
 session_start(); 
+include '../components/php/header.php';
 include '../components/php/script_family_info.php';
 ?>
 
@@ -23,7 +24,7 @@ include '../components/php/script_family_info.php';
       <div class="form-header">
         <img src="../assets/images/document_logo.png" alt="Document Logo" width="65px" height="75px">
         <div class="form-header-text">
-          <h2>Family Information</h2>
+          <h2 class="form-title">Family Information</h2>
           <p>First Semester, 2025 - 2026</p>
         </div>
       </div>

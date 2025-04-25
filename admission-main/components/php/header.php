@@ -7,12 +7,13 @@ if (!isset($_SESSION['google_id'])) {
 if (isset($_SESSION['user'])) {
     $username = htmlspecialchars($_SESSION['user']['name'] ?? 'Guest', ENT_QUOTES, 'UTF-8');
     $email = htmlspecialchars($_SESSION['user']['email'] ?? '', ENT_QUOTES, 'UTF-8');
-    $profile_picture = htmlspecialchars($_SESSION['user']['profile_picture'] ?? '../assets/images/Profile-icon-placeholder.png', ENT_QUOTES, 'UTF-8');
+    $profile_picture = $_SESSION['user']['profile_picture'] ?? '../assets/images/Profile-icon-placeholder.png'; // ← no htmlspecialchars here
 } else {
     $username = 'Guest';
     $email = '';
     $profile_picture = '../assets/images/Profile-icon-placeholder.png';
 }
+
 ?>
 <body>
     <header>
@@ -21,14 +22,16 @@ if (isset($_SESSION['user'])) {
           <p>SPIST Admission Portal</p>
         </div>
         <div class="profile-container">
-            <img id="profile-pic" class="profile-icon" alt="User Profile Icon" loading="lazy" onclick="toggleProfileDropdown()">
+            <img id="profile-pic" class="profile-icon" src="<?= htmlspecialchars($profile_picture, ENT_QUOTES, 'UTF-8') ?>" alt="User Profile Icon" 
+                onerror="this.src='../assets/images/Profile-icon-placeholder.png';" loading="lazy" onclick="toggleProfileDropdown()">
                 <script>
                     const profilePic = document.getElementById("profile-pic");
-                    profilePic.src = "<?php echo isset($_SESSION['user']['profile_picture']) ? $_SESSION['user']['profile_picture'] : '../assets/images/Profile-icon-placeholder.png'; ?>";
+                    profilePic.src = "<?php echo isset($profile_picture) ? $profile_picture : '../assets/images/Profile-icon-placeholder.png'; ?>";
                     profilePic.onerror = function() {
-                    this.src = '../assets/images/Profile-icon-placeholder.png';
+                        this.src = '../assets/images/Profile-icon-placeholder.png';
                     };
                 </script>
+
             <div class="profile-dropdown" id="profile-dropdown">
                 <p id="username" name="username">
                     <?php echo isset($_SESSION['user']['name']) ? $_SESSION['user']['name'] : 'Guest'; ?>
@@ -36,13 +39,16 @@ if (isset($_SESSION['user'])) {
                 <p name="email">
                     <?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'No email available'; ?>
                 </p>
-                <a style="text-decoration: none" href="../components/php/logout.php"><button id="logout-button">Log out</button></a>
+                <a href="../components/php/logout.php"><button id="logout-button">Log out</button></a>
             </div>
         </div>
       </header> 
 </body>
 
 <style>
+    a {
+    text-decoration: none;
+    }
     header {
     display: flex;
     align-items: center;

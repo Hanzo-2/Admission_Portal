@@ -1,5 +1,4 @@
 <?php
-include '../components/php/header.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['personal_firstname'] = $_POST['personal_firstname'] ?? '';
     $_SESSION['personal_middlename'] = $_POST['personal_middlename'] ?? '';
@@ -49,4 +48,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Please fill out all required fields.";
     }
 }
-?>

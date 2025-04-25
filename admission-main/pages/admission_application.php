@@ -37,7 +37,7 @@ include '../components/php/script_admission_application.php';
               <p>Please Complete the form for your application</p>
             </div>
         </div>
-
+        
         <form action="admission_application.php" method="post">
           <div class="form-grid">
             <div class="form-group-text">
@@ -96,7 +96,7 @@ include '../components/php/script_admission_application.php';
                     <optgroup label="COLLEGE OF ENGINEERING AND COMPUTER STUDIES">
                       <option value="BSCpE" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSCpE") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Computer Engineering</option>
                       <option value="BSCS" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSCS") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Computer Science</option>
-                      <option value="BSIT" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSIT") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Information Technology</option>  
+                      <option value="BSIT - Bachelor of Science in Information Technology" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSIT - Bachelor of Science in Information Technology") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Information Technology</option>  
                     </optgroup>
 
                     <optgroup label="COLLEGE OF TOURISM AND HOSPITALITY MANAGEMENT">

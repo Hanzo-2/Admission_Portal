@@ -12,7 +12,8 @@
 </head>
 
 <?php 
-session_start(); 
+session_start();
+include '../components/php/header.php'; 
 include '../components/php/script_personal_info.php';
 ?>
 

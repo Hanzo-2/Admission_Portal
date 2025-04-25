@@ -1,10 +1,12 @@
 <?php
 session_start();
 // Delete all uploaded files in session
-if (isset($_SESSION['uploaded_docs']) && is_array($_SESSION['uploaded_docs'])) {
-    foreach ($_SESSION['uploaded_docs'] as $doc) {
-        if (isset($doc['path']) && file_exists($doc['path'])) {
-            unlink($doc['path']); // Delete the file
+if (isset($_SESSION['google_id'], $_SESSION['uploaded_docs'][$_SESSION['google_id']]) 
+    && is_array($_SESSION['uploaded_docs'][$_SESSION['google_id']])) {
+    
+    foreach ($_SESSION['uploaded_docs'][$_SESSION['google_id']] as $doc) {
+        if (isset($doc['server_path']) && file_exists($doc['server_path'])) {
+            unlink($doc['server_path']); // Delete the file
         }
     }
 }
@@ -16,4 +18,3 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 header('Location: ../../index.php');
 exit();
-?>
