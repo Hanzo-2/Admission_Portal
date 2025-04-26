@@ -27,7 +27,6 @@ include '../components/php/script_review_info.php';
           <h2>Review Information</h2>
          </div>
       </div>
-
       <form id="uploadForm" action="review_info.php" method="post">
         <div class="container">
             <table class="custom-table" id="review-table">
@@ -339,7 +338,7 @@ include '../components/php/script_review_info.php';
                 <button id="back-btn" type="button">Back</button> 
             </a>
             <button id="download-pdf" type="button">Download PDF</button>
-            <button id="edit-btn" type="button">Edit</button>
+            <!-- <button id="edit-btn" type="button">Edit</button> -->
             <button id="save-btn" type="button" style="display: none;">Save Changes</button>
             <button type="submit">Submit</button>
         </div>
@@ -347,10 +346,7 @@ include '../components/php/script_review_info.php';
     </div>
   </section>
 </div>
-<script src="../components/javascript/format_validate.js"></script>
 <script src="../components/javascript/check_session_interval.js"></script>
-<script src="../components/javascript/autosave.js"></script>
-<script src="../components/javascript/select_province_city_barangay.js"></script>
 <script src="../components/javascript/review_info.js"></script>
 <?php include '../components/php/modal_inactivity.php'; ?>
 </body>

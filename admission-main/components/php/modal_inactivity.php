@@ -1,6 +1,9 @@
 <div id="inactivityModal" class="modal-overlay">
     <div class="modal-content">
-        <p>You've been inactive for a while.<br>Do you want to stay logged in?</p>
+    <p>You've been inactive for a while.<br>
+       Do you want to stay logged in?<br>
+    <span style="font-size: 18px;">Auto Log Out in <strong id="countdown"></strong> seconds...</span>
+    </p>
         <div class="modal-buttons">
             <button id="stayLoggedInBtn">Yes, Keep Me Logged In</button>
             <button id="logoutNowBtn">No, Log Me Out</button>

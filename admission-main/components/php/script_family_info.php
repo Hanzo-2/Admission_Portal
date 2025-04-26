@@ -35,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'guardian_province',
         'guardian_city',
         'guardian_contact',
-        'guardian_telephone',
         'emergency_complete_name',
         'emergency_complete_address',
         'emergency_contact'

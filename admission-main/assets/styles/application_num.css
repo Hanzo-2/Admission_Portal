@@ -3,84 +3,164 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 html, body {
     height: 100%;
-    scroll-behavior: smooth;
+}
+
+.main-content {
+    position: relative;
+    height: 100%;
 }
 
 body {
-    background: url('../images/oldspistbg.png') no-repeat center center fixed;
+    background: url('../images/oldspistbg.png') no-repeat center center fixed; /* Background Image */
     background-size: cover;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-.container {
-    width: 90%;
-    max-width: 1000px;
-    margin: auto;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.main-content {
-    flex: 1;
-    padding: 30px;
+.form-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.message-box {
-    border: 2px solid #4CAF50;
-    padding: 30px;
-    border-radius: 5px;
-    background-color: #e8f5e9;
-    font-size: 1.5em; /* Font size adjusted to match example */
-    font-weight: bold; /* Bold text for emphasis */
-    font-family: 'Arial Black', Gadget, sans-serif; /* Updated font family */
-    margin-right: 20px; /* Space between message box and admission number box */
+.form-container {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    background: rgba(255, 255, 225, 0.91);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* required for ::before to work correctly */
+}
+
+
+/* Background Logo Effect - Behind Form */
+.form-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: url('../images/spistlogo.png') no-repeat center center;
+    background-size: contain;
+    z-index: -1;
+    pointer-events: none;
+}
+
+tr {
+    width: 100%;
+}
+
+/* General Table Styling */
+.custom-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 30px;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+}
+
+/* Table Header */
+.custom-table thead tr {
+    background-color: #43b14b;
+    color: white;
+}
+
+.custom-table th {
+    padding: 9px;
+    border: 3px solid black;
+    text-align: left;
+}
+
+.custom-table td {
+    padding: 10px;
+    border: 2px solid #39a542;
+    border-radius: 15px;
+}
+
+.custom-table tbody {
+    background-color: white;
+}
+
+.container {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.text-box {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #111;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.text-box-td {
+    border: 2px solid #39a542;
+    border-radius: 15px;
 }
 
 .admission-number-box {
-    background-color: #ffffff;
-    border: 2px solid #4CAF50;
-    border-radius: 5px;
-    padding: 10px;
+    background-color: white;
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+    padding: 10px !important;
+    justify-content: center;
+    width: 20%;
+}
+
+.admission-number-text {
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 30px;
+    font-weight: bolder;
 }
 
 .admission-number-box header {
-    background-color: #4CAF50;
-    color: #ffffff;
-    padding: 10px;
-    border-radius: 5px 5px 0 0;
+    background-color: #39a542;
+    color: white;
     font-weight: bold;
+    font-size: 20px;
+    justify-content: center;
+    margin-top: 0px;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 10px solid #ffd966;
+    border-radius: 10px 10px 0 0;
 }
 
-.admission-number-box p {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 0 0 5px 5px;
-    font-size: 1.2em;
+.document-logo {
+    width: 20%;
 }
 
-.copy-text {
-    cursor: pointer;
-    background-color: #e0f7fa;
-    padding: 10px;
-    border-radius: 5px;
-    display: inline-block;
-    margin-top: 10px;
+.document-img {
+    width: 50%;
+    height: 50%;
 }
 
+.document-submit-date {
+    font-size: 12px;
+}
+
+.document-submit-time {
+    font-size: 12px;
+}
+
+.reminder {
+    font-size: 20px;
+    line-height: 1.2;
+}

@@ -79,29 +79,29 @@ function enablePDFDownload() {
     });
 }
 
-// Edit/Save functionality
-document.getElementById('edit-btn').addEventListener('click', function () {
-    const cells = document.querySelectorAll("#review-table td.td-2, #review-table td.td-4");
+// // Edit/Save functionality
+// document.getElementById('edit-btn').addEventListener('click', function () {
+//     const cells = document.querySelectorAll("#review-table td.td-2, #review-table td.td-4");
 
-    cells.forEach(cell => {
-        cell.contentEditable = "true";
-        cell.classList.add("editing");
-        cell.style.backgroundColor = "lightgreen";
-    });
+//     cells.forEach(cell => {
+//         cell.contentEditable = "true";
+//         cell.classList.add("editing");
+//         cell.style.backgroundColor = "lightgreen";
+//     });
 
-    document.getElementById('edit-btn').style.display = "none";
-    document.getElementById('save-btn').style.display = "inline-block";
-});
+//     document.getElementById('edit-btn').style.display = "none";
+//     document.getElementById('save-btn').style.display = "inline-block";
+// });
 
-document.getElementById('save-btn').addEventListener('click', function () {
-    const cells = document.querySelectorAll("#review-table td.td-2, #review-table td.td-4");
+// document.getElementById('save-btn').addEventListener('click', function () {
+//     const cells = document.querySelectorAll("#review-table td.td-2, #review-table td.td-4");
 
-    cells.forEach(cell => {
-        cell.contentEditable = "false";
-        cell.classList.remove("editing");
-        cell.style.backgroundColor = "";
-    });
+//     cells.forEach(cell => {
+//         cell.contentEditable = "false";
+//         cell.classList.remove("editing");
+//         cell.style.backgroundColor = "";
+//     });
 
-    document.getElementById('edit-btn').style.display = "inline-block";
-    document.getElementById('save-btn').style.display = "none";
-});
+//     document.getElementById('edit-btn').style.display = "inline-block";
+//     document.getElementById('save-btn').style.display = "none";
+// });

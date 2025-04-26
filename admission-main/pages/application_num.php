@@ -16,19 +16,48 @@ include '../components/php/header.php';
 ?>
 
 <body>
-    <div class="container">
-        <main class="main-content">
-            <div class="message-box">
-                <p class="success-message">Your Application Has Been Successfully Sent To Our Registrar.</p>
-            </div>
-            <div class="admission-number-box">
-                <header>Your Admission Number</header>
-                <p class="copy-text" id="admissionNumber">00001</p>
-            </div>
-        </main>
+<div class="main-content">
+    <section>
+    <div class="form-wrapper">
+        <div class="form-container">
+            <form>
+                <div class="container">
+                    <table class="custom-table">
+                        <tbody>
+                            <tr>
+                                <td class="document-logo">
+                                    <img src="../assets/images/document_logo.png" alt="Document Logo" class="document-img">
+                                    <p class="document-submit-date">Date Submitted: 04-25-2025
+                                    </p>
+                                    <p class="document-submit-time">Time Submitted: 03:06:43 PM</p>
+                                </td>
+                                
+                                <td class="text-box-td">
+                                    <p class="text-box">
+                                        Your Application <br>
+                                        Has Been <br>
+                                        Successfully Submitted <br>
+                                        To Our Registrar
+                                    </p>
+                                </td>
+                            
+                                <td class="admission-number-box">
+                                    <header>Admission<br>Number</header>
+                                    <p class="admission-number-text">00001</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="reminder">Please check your registered email address (<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'No email available'; ?>) for any updates</p>
+                </div>
+            </form>
+        </div>
     </div>
-<script src="../components/javascript/check_session_interval.js"></script>
-<?php include '../components/php/modal_inactivity.php'; ?>   
+    </section>
+</div>
+
+  <script src="../components/javascript/check_session_interval.js"></script>
+  <?php include '../components/php/modal_inactivity.php'; ?>   
 </body>
 <?php include '../components/php/footer.php'; ?>
 </html>

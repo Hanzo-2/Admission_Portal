@@ -19,7 +19,7 @@ if (isset($_GET['code'])) {
             'profile_picture' => $user_info->picture
         ];
 
-        header("Location: http://localhost/admission_portal/admission-main/pages/required_docs.php");
+        header("Location: http://localhost/admission_portal/admission-main/pages/admission_application.php");
         exit();
     } else {
         die("Authentication Error: " . htmlspecialchars($token['error']));

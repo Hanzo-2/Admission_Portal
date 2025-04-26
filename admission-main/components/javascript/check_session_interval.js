@@ -3,15 +3,22 @@ setInterval(function () {
         .then(response => response.json())
         .then(data => {
             if (!data.authenticated) {
-                alert("You have been logged out.");
-                window.location.href = 'http://localhost/admission_portal/admission-main/components/php/logout.php'; // Redirect to login page
+                window.location.href = 'http://localhost/admission_portal/admission-main/components/php/logout.php';
             }
         });
 }, 5000); // Check every 5 seconds
 
-let inactivityTime = 45 * 60 * 1000; // 45 x 60 x 1000 milliseconds = 2,700,000 / 60000 or 1 second = 45 minutes
-let warningTime = 44 * 60 * 1000; // 44 minutes
+let inactivityTime = 30 * 60 * 1000; // Change to 30 * 60 * 1000 for 30 mins
+let warningTime = 29 * 60 * 1000;     // Change to 29 * 60 * 1000 for 29 mins
 let logoutTimer, warningTimer;
+let flashInterval;
+let originalTitle = document.title;
+
+// Shared reset activity across tabs
+function resetTimersShared() {
+    localStorage.setItem('user-activity', Date.now()); // Broadcast to other tabs
+    resetTimers();
+}
 
 function resetTimers() {
     clearTimeout(logoutTimer);
@@ -19,47 +26,63 @@ function resetTimers() {
 
     warningTimer = setTimeout(() => {
         showInactivityModal();
-    }, warningTime);    
+    }, warningTime);
 
     logoutTimer = setTimeout(() => {
         logout();
     }, inactivityTime);
 }
 
+// Logout and broadcast to other tabs
 function logout() {
-    alert("Logged Out due to Inactivity.");
+    localStorage.setItem('force-logout', Date.now()); // Force logout all tabs
     window.location.href = 'http://localhost/admission_portal/admission-main/components/php/logout.php';
 }
 
-window.onload = resetTimers;
-['click', 'mousemove', 'keydown', 'keyup', 'keypress', 'scroll', 'touchstart'].forEach(evt =>
-    document.addEventListener(evt, resetTimers)
-);
-
-
+let countdownInterval;
+// Handle modal and visual warnings
 function showInactivityModal() {
     const modal = document.getElementById('inactivityModal');
-    modal.style.display = 'flex';
+    const countdownElement = document.getElementById('countdown');
 
-    document.getElementById('stayLoggedInBtn').onclick = () => {
-        modal.style.display = 'none';
-        resetTimers();
-        stopAttentionGrabbers();
-    };
+    const remainingTime = Math.floor((inactivityTime - warningTime) / 1000); // dynamically calculate countdown
+    let countdown = remainingTime;
 
-    document.getElementById('logoutNowBtn').onclick = () => {
-        logout();
-        stopAttentionGrabbers();
-    };
+    if (modal) modal.style.display = 'flex';
+    if (countdownElement) countdownElement.textContent = countdown;
 
-    // Start attention-grabbing methods if tab is inactive
+    countdownInterval = setInterval(() => {
+        countdown--;
+        if (countdownElement) countdownElement.textContent = countdown;
+        if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            logout(); // Auto logout if time runs out
+        }
+    }, 1000);
+
+    const stayBtn = document.getElementById('stayLoggedInBtn');
+    const logoutBtn = document.getElementById('logoutNowBtn');
+
+    if (stayBtn && logoutBtn) {
+        stayBtn.onclick = () => {
+            if (modal) modal.style.display = 'none';
+            clearInterval(countdownInterval);
+            resetTimersShared();
+            stopAttentionGrabbers();
+            localStorage.setItem('reset-from-modal', Date.now());
+        };
+
+        logoutBtn.onclick = () => {
+            clearInterval(countdownInterval);
+            logout();
+            stopAttentionGrabbers();
+        };
+    }
+
     if (document.visibilityState !== 'visible') {
         startAttentionGrabbers();
     }
 }
-
-let flashInterval;
-let originalTitle = document.title;
 
 function startAttentionGrabbers() {
     flashInterval = setInterval(() => {
@@ -71,3 +94,31 @@ function stopAttentionGrabbers() {
     clearInterval(flashInterval);
     document.title = originalTitle;
 }
+
+// Listen to user activity
+['click', 'mousemove', 'keydown', 'keyup', 'keypress', 'scroll', 'touchstart'].forEach(evt =>
+    document.addEventListener(evt, resetTimersShared)
+);
+
+// Handle events from other tabs
+window.addEventListener('storage', (event) => {
+    if (event.key === 'user-activity') {
+        resetTimers(); // Sync activity
+    }
+
+    if (event.key === 'force-logout') {
+        logout(); // Sync logout
+    }
+
+    if (event.key === 'reset-from-modal') {
+        const modal = document.getElementById('inactivityModal');
+        if (modal) modal.style.display = 'none';
+        clearInterval(countdownInterval);
+        resetTimers();
+        stopAttentionGrabbers();
+    }
+});
+
+
+// Initialize timers on load
+window.onload = resetTimersShared;
