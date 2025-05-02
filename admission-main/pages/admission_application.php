@@ -33,25 +33,13 @@ include '../components/php/header.php';
       <div class="form-container">
         <div class="form-header">
           <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo">
-          <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo">
             <div class="form-header-text">
               <h2>Admission Application</h2>
               <p>Welcome to Southern Philippines Institute of Science and Technology</p>
               <p>Please Complete the form for your application</p>
             </div>
         </div>
-
-        <!-- Display session countdown -->
-        <div id="session-timer">
-          <p>Session will expire in: <span id="countdown">Loading...</span></p>
-        </div>
-
-
-        <!-- Display session countdown -->
-        <div id="session-timer">
-          <p>Session will expire in: <span id="countdown">Loading...</span></p>
-        </div>
-
+        
         <form action="admission_application.php" method="post">
           <div class="form-grid">
           <div class="form-group-text">
@@ -136,33 +124,6 @@ include '../components/php/header.php';
       </div>
     </section>
   </div>
-  <script>
-function formatTime(seconds) {
-  const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
-  const secs = (seconds % 60).toString().padStart(2, '0');
-  return `${mins}:${secs}`;
-}
-
-function startLiveSessionCountdown() {
-  const countdown = document.getElementById("countdown");
-
-  const interval = setInterval(() => {
-    fetch('../components/php/check_session.php')
-      .then(res => res.json())
-      .then(data => {
-        if (!data.authenticated) {
-          clearInterval(interval);
-          countdown.textContent = "Session expired.";
-          window.location.href = '../components/php/logout.php';
-        } else {
-          countdown.textContent = formatTime(data.remaining);
-        }
-      });
-  }, 1000);
-}
-
-startLiveSessionCountdown();
-</script>
   <script src="../components/javascript/check_session_interval.js"></script>
   <script src="../components/javascript/autosave.js"></script>
   <?php include '../components/php/modal_inactivity.php'; ?>

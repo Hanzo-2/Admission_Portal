@@ -54,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!empty($_SESSION['application_type']) && !empty($_SESSION['preferred_course'])) {
         header('Location: personal_info.php');
-        header('Location: personal_info.php');
         exit();
     } else {
         $error = "Please fill out all required fields.";

@@ -87,15 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (isset($_SESSION['review_pdf_path']) && file_exists($_SESSION['review_pdf_path'])) {
                 $mailRegistrar->addAttachment($_SESSION['review_pdf_path'], 'Admission_Application_of_'.$applicantSurname.'_'.$applicantFirstname.'_'.$applicantMiddlename.'_.pdf');
             }
-            if (isset($_SESSION['review_pdf_path']) && file_exists($_SESSION['review_pdf_path'])) {
-                $mailRegistrar->addAttachment($_SESSION['review_pdf_path'], 'Admission_Application.pdf');
-            }
 
             $mailRegistrar->send();
-            if (isset($_SESSION['review_pdf_path']) && file_exists($_SESSION['review_pdf_path'])) {
-                unlink($_SESSION['review_pdf_path']);
-                unset($_SESSION['review_pdf_path']);
-            }
             if (isset($_SESSION['review_pdf_path']) && file_exists($_SESSION['review_pdf_path'])) {
                 unlink($_SESSION['review_pdf_path']);
                 unset($_SESSION['review_pdf_path']);
