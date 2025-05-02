@@ -102,3 +102,4 @@ include '../components/php/header.php';
 </body>
 <?php include '../components/php/footer.php'; ?>
 </html>
+
