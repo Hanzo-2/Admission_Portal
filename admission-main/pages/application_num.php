@@ -10,9 +10,14 @@
   <script src="../components/javascript/profile_dropdown.js"></script>
 </head>
 
-<?php 
+<?php
 session_start();
-include '../components/php/header.php'; 
+include '../components/php/header.php';
+
+// Retrieve admission number from query string or session
+$admissionNumber = isset($_GET['admission_number']) ? $_GET['admission_number'] : 'Not available';
+$dateSubmitted = isset($_SESSION['date_submitted']) ? $_SESSION['date_submitted'] : 'Not available';
+$timeSubmitted = isset($_SESSION['time_submitted']) ? $_SESSION['time_submitted'] : 'Not available';
 ?>
 
 <body>
@@ -27,9 +32,8 @@ include '../components/php/header.php';
                             <tr>
                                 <td class="document-logo">
                                     <img src="../assets/images/document_logo.png" alt="Document Logo" class="document-img">
-                                    <p class="document-submit-date">Date Submitted: 04-25-2025
-                                    </p>
-                                    <p class="document-submit-time">Time Submitted: 03:06:43 PM</p>
+                                    <p class="document-submit-date">Date Submitted: <?php echo htmlspecialchars($dateSubmitted); ?></p>
+                                    <p class="document-submit-time">Time Submitted: <?php echo htmlspecialchars($timeSubmitted); ?></p>
                                 </td>
                                 
                                 <td class="text-box-td">
@@ -43,7 +47,7 @@ include '../components/php/header.php';
                             
                                 <td class="admission-number-box">
                                     <header>Admission<br>Number</header>
-                                    <p class="admission-number-text">00001</p>
+                                    <p class="admission-number-text"><?php echo htmlspecialchars($admissionNumber); ?></p>
                                 </td>
                             </tr>
                         </tbody>

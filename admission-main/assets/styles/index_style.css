@@ -4,11 +4,12 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
+  padding: 20px;
   position: relative;
 }
 
@@ -24,10 +25,10 @@ body::before {
   background: rgba(0, 0, 0, 0.5); 
   z-index: -1;
 }
-/* Style for the login box */
+
 .form {
   background: rgba(0, 0, 0, 0.6);
-  padding: 50px;
+  padding: clamp(30px, 6vw, 50px);
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
@@ -35,40 +36,44 @@ body::before {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 310px;
+  width: clamp(280px, 80vw, 360px);
+  max-width: 100%;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 3px solid rgba(71, 150, 84, 0.8); 
 }
+
 .fit-picture {
   padding-top: 5px;
-  width: 235px;
+  width: clamp(160px, 60vw, 235px);
   height: auto;
 }
+
 .form > p {
   font-family: Georgia, serif;
-  color: #FFD700; /* Gold */
-  font-size: 21px;
-  text-align: center;
-  margin-bottom: 32px;
+  color: #FFD700;
+  font-size: clamp(16px, 4vw, 21px);
+  margin-bottom: clamp(20px, 5vw, 32px);
 }
+
 .spist {
-  font-size: 65px;
+  font-size: clamp(35px, 8vw, 65px);
   font-weight: bolder;
 }
+
 .oauthButton {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 6px;
-  width: 250px;
-  height: 40px;
+  width: clamp(180px, 60vw, 250px);
+  height: clamp(35px, 5vh, 45px);
   border-radius: 10px;
   border: 2px solid #FFD700;
   background-color: green;
   box-shadow: 2px 2px #FFD700;
-  font-family:Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(14px, 3.5vw, 16px);
   font-weight: 600;
   color: #f5f5dc;
   cursor: pointer;
@@ -77,6 +82,7 @@ body::before {
   overflow: hidden;
   z-index: 1;
 }
+
 .oauthButton::before {
   content: "";
   position: absolute;
@@ -86,17 +92,20 @@ body::before {
   width: 0;
   background-color: #212121;
   z-index: -1;
-  -webkit-box-shadow: 4px 8px 19px -3px rgba(255, 215, 0, 0.7);
   box-shadow: 4px 8px 19px -3px rgba(255, 215, 0, 0.7);
   transition: all 250ms;
 }
+
 .oauthButton:hover {
   color: #30db3f;
 }
+
 .oauthButton:hover::before {
   width: 100%;
 }
+
 .icon {
   width: 1.5rem;
   height: 1.5rem;
 }
+

@@ -25,8 +25,6 @@ if (isset($_GET['code'])) {
         die("Authentication Error: " . htmlspecialchars($token['error']));
     }
 }
-
-include '../components/php/header.php';
 // Handle form POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION['school_campus'] = $_POST['school_campus'] ?? '';
@@ -38,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION['admission_submit'] = $_POST['admission_submit'] ?? '';
 
     if (!empty($_SESSION['application_type']) && !empty($_SESSION['preferred_course'])) {
-        header('Location: http://localhost/admission_portal/admission-main/pages/personal_info.php');
+        header('Location: personal_info.php');
         exit();
     } else {
         $error = "Please fill out all required fields.";

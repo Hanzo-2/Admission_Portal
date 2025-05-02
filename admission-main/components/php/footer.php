@@ -4,14 +4,19 @@
     </footer>
 </body>
 <style>
-    footer {
+footer {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 15px 0px 15px 0px;
+    padding: clamp(10px, 2vw, 20px) 0;
     background: #43b14b;
-    position: relative; /* Change from absolute */
+    position: relative; /* Ensures footer doesn't overlap content */
     border-top: 8px solid #ffde59;
+    font-size: clamp(14px, 2vw, 18px);
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    flex-wrap: wrap;
 }
 </style>

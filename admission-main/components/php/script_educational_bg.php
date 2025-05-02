@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($allFilled) {
-        header('Location: http://localhost/admission_portal/admission-main/pages/family_info.php'); // Next page
+        header('Location: family_info.php'); // Next page
         exit();
     } else {
         $error = "Please fill out all required fields.";

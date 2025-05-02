@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -28,7 +27,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $dateSubmitted = date('m-d-Y');
         $timeSubmitted = date('h:i:s A');
 
-        // 1. Send email to registrar only
+        // **Admission Number Generation**
+        if (!isset($_SESSION['application_num'])) {
+            $_SESSION['application_num'] = 1; // Initialize admission number if not set
+        } else {
+            $_SESSION['application_num']++; // Increment admission number
+        }
+
+        // Format admission number (e.g., 00001, 00002)
+        $admissionNumber = str_pad($_SESSION['application_num'], 5, '0', STR_PAD_LEFT);
+
+        // 1. Send email to registrar
         $mailRegistrar = new PHPMailer(true);
         try {
             $mailRegistrar->isSMTP();
@@ -50,7 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 Application Type: $applicationType<br>
                 Preferred Course: $preferredCourse<br>
                 Date Submitted: $dateSubmitted<br>
-                Time Submitted: $timeSubmitted
+                Time Submitted: $timeSubmitted<br>
+                Admission Number: $admissionNumber
             ";
 
             // Attach uploaded documents
@@ -60,14 +70,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $mailRegistrar->addAttachment($doc['server_path'], $customFilename);
                 }
             }
-
+            if (isset($_SESSION['review_pdf_path']) && file_exists($_SESSION['review_pdf_path'])) {
+                $mailRegistrar->addAttachment($_SESSION['review_pdf_path'], 'Admission_Application_of_'.$applicantSurname.'_'.$applicantFirstname.'_'.$applicantMiddlename.'_.pdf');
+            }
             $mailRegistrar->send();
+            if (isset($_SESSION['review_pdf_path']) && file_exists($_SESSION['review_pdf_path'])) {
+                unlink($_SESSION['review_pdf_path']);
+                unset($_SESSION['review_pdf_path']);
+            }
         } catch (Exception $e) {
             echo "Error sending to registrar: {$mailRegistrar->ErrorInfo}";
             exit;
         }
 
-        // 2. Send confirmation to applicant (logged-in user only)
+        // 2. Send confirmation to applicant (logged-in user)
         if (!empty($email)) {
             $mailUser = new PHPMailer(true);
             try {
@@ -80,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $mailUser->Port       = (int) $_ENV['MAIL_PORT'];
 
                 $mailUser->setFrom($_ENV['MAIL_FROM'], 'SPIST Admissions');
-                $mailUser->addAddress($email); // Only user receives this
+                $mailUser->addAddress($email); // Logged-in user's email
 
                 $mailUser->isHTML(true);
                 $mailUser->Subject = 'Admission Application Submitted';
@@ -92,9 +108,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     Application Type: $applicationType<br>
                     Preferred Course: $preferredCourse<br>
                     Date Submitted: $dateSubmitted<br>
-                    Time Submitted: $timeSubmitted
+                    Time Submitted: $timeSubmitted<br>
+                    Admission Number: $admissionNumber
                 ";
-
                 $mailUser->send();
             } catch (Exception $e) {
                 echo "Error sending to applicant: {$mailUser->ErrorInfo}";
@@ -122,8 +138,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION[$key] = $value;
         }
 
-        header("Location: review_info.php");
+        $_SESSION['date_submitted'] = $dateSubmitted;
+        $_SESSION['time_submitted'] = $timeSubmitted;
+        // Redirect to confirmation page with admission number
+        header('Location: application_num.php');
         exit();
     }
 }
-?>

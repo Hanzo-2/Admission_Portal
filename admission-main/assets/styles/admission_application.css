@@ -1,3 +1,4 @@
+/* RESET AND BASE STYLES */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +12,7 @@ html, body {
 }
 
 body {
-    background: url('../images/oldspistbg.png') no-repeat center center fixed; /* Background Image */
+    background: url('../images/oldspistbg.png') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -23,20 +24,20 @@ body {
     flex: 1;
 }
 
+/* FORM CONTAINER */
 .form-container {
     font-family: Georgia, serif;
     max-width: 1200px; 
     width: 100%;
     margin: 75px auto;
-    background: rgba(255, 255, 225, 0.91); /* Semi-transparent for readability */
+    background: rgba(255, 255, 225, 0.91);
     padding: 40px 65px 65px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
-    position: relative; /* Ensures child elements like ::before are positioned correctly */
+    position: relative;
 }
 
-/* Background Logo Effect - Behind Form */
 .form-container::before {
     content: "";
     position: absolute;
@@ -47,11 +48,10 @@ body {
     height: 80%;
     background: url('../images/spistlogo.png') no-repeat center center;
     background-size: contain;
-    z-index: -1; /* Push behind the form */
-    pointer-events: none; /* Allows interaction with form */
+    z-index: -1;
+    pointer-events: none;
 }
 
-/* Ensuring Form Content Appears on Top */
 .form-content {
     position: relative;
     z-index: 1;
@@ -59,8 +59,8 @@ body {
 
 .form-header {
     display: flex;
-    align-items: center; /* Aligns image and text in the same row */
-    gap: 15px; /* Adds space between image and text */
+    align-items: center;
+    gap: 15px;
     padding-bottom: 50px;
 }
 
@@ -71,13 +71,13 @@ body {
 .form-header-text h2 {
     margin-top: 15px;
     color: #333;
-    font-size: 45px;
+    font-size: clamp(1.5rem, 3vw, 2.8rem);
 }
 
 .form-header-text p {
     padding-top: 5px;
     color: #666;
-    font-size: 25px;
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
 }   
 
 .form-grid {
@@ -95,13 +95,13 @@ body {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    align-items: center; /* Ensures proper vertical alignment */
+    align-items: center;
 }
 
 .form-group-text h1,
 .form-group-text-space h1 {
     margin-bottom: 40px;
-    font-size: 30px;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
     color: black;
     font-weight: lighter;
 }
@@ -110,7 +110,7 @@ body {
 .form-group-text-space p {
     margin-bottom: 40px;
     font-weight: bold;
-    font-size: 30px;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
 }
 
 .form-group-text-space p,
@@ -119,14 +119,14 @@ body {
 }
 
 .form-group p {
-    font-size: 50px;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: bolder;
     margin-top: 65px;
     margin-bottom: 30px;
 }
 
 .form-group label {
-    font-size: 40px;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
     color: black;
 }
 
@@ -137,12 +137,12 @@ body {
     background-size: 20px;
     border: 2px solid darkgrey;
     border-radius: 4px;
-    font-size: 30px;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     width: 85%;
     appearance: none;
 }
 
-#application_type{
+#application_type {
     width: 50% !important;
 }
 
@@ -152,12 +152,12 @@ body {
 }
 
 select option {
-    color:black;
+    color: black;
 }
 
 select:invalid,
 select option[value=""] {
-    color:grey;
+    color: grey;
 }
 
 optgroup {
@@ -166,4 +166,59 @@ optgroup {
 
 .button-container {
     justify-content: flex-end !important;
+}
+
+/* MEDIA QUERIES */
+.header-logo {
+    width: clamp(50px, 8vw, 90px);
+    height: auto;
+    object-fit: contain;
+}
+
+@media (min-width: 1440px) {
+    .form-container {
+        max-width: 1200px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .form-container {
+        padding: 30px;
+        max-width: 90%;
+    }
+    .form-group select {
+        width: 100%;
+    }
+    #application_type {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-header {
+        flex-direction: row;
+        text-align: left; 
+        gap: 10px;
+        align-items: center;
+    }
+
+    .form-header-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-header-text p {
+        font-size: 0.9rem;
+    }
+
+    .header-logo {
+        width: 50px;
+        height: auto;
+        margin-top: -55px;
+    }
+}
+
+@media (min-width: 446px) and (max-width: 480px) {
+    .header-logo {
+        margin-top: 0px !important;
+    }
 }

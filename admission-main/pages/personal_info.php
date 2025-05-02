@@ -13,8 +13,8 @@
 
 <?php 
 session_start();
-include '../components/php/header.php'; 
 include '../components/php/script_personal_info.php';
+include '../components/php/header.php'; 
 ?>
 
 <body>
@@ -22,7 +22,7 @@ include '../components/php/script_personal_info.php';
     <section>
       <div class="form-container">
         <div class="form-header">
-          <img src="../assets/images/document_logo.png" alt="Document Logo" width="65px" height="75px">
+          <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo">
             <div class="form-header-text">
               <h2>Personal Information</h2>
               <p>First Semester, 2025 - 2026</p>
