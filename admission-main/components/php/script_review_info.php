@@ -1,12 +1,13 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // Load .env variables
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__. '/../../../');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../../');
 $dotenv->load();
+
+require_once __DIR__ . '/../../components/php/db.php'; // Make sure this returns $pdo (PDO connection)
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (
@@ -25,10 +26,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Set timezone to PHT
         date_default_timezone_set('Asia/Manila');
-        $dateSubmitted = date('m-d-Y');
-        $timeSubmitted = date('h:i:s A');
+        $dateSubmitted = date('Y-m-d');
+        $timeSubmitted = date('H:i:s');
 
-        // 1. Send email to registrar only
+        // Insert into database and get admission number
+        try {
+            $stmt = $pdo->prepare("INSERT INTO applications 
+                (applicant_name, email, application_type, preferred_course, date_submitted, time_submitted, google_id) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)");
+            
+            $stmt->execute([
+                $applicantName,
+                $email,
+                $applicationType,
+                $preferredCourse,
+                $dateSubmitted,
+                $timeSubmitted,
+                $_SESSION['google_id'] // Store the Google ID
+            ]);
+            $lastId = $pdo->lastInsertId();
+            $_SESSION['admission_number'] = $lastId;
+            $admissionNumber = str_pad($lastId, 5, '0', STR_PAD_LEFT);
+        } catch (PDOException $e) {
+            echo "Database insert error: " . $e->getMessage();
+            exit;
+        }
+
+        // 1. Send email to registrar
         $mailRegistrar = new PHPMailer(true);
         try {
             $mailRegistrar->isSMTP();
@@ -40,34 +64,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $mailRegistrar->Port       = (int) $_ENV['MAIL_PORT'];
 
             $mailRegistrar->setFrom($_ENV['MAIL_FROM'], 'Admission Portal');
-            $mailRegistrar->addAddress($_ENV['MAIL_TO']); // Registrar only
+            $mailRegistrar->addAddress($_ENV['MAIL_TO']);
 
             $mailRegistrar->isHTML(true);
             $mailRegistrar->Subject = 'New Admission Submission from ' . $applicantName . ' - ' . date('d-m-Y h:i A');
             $mailRegistrar->Body = "
+                <strong>Admission Number:</strong> $admissionNumber<br>
                 Applicant Name: $applicantName<br>
                 Email: $email<br>
                 Application Type: $applicationType<br>
                 Preferred Course: $preferredCourse<br>
-                Date Submitted: $dateSubmitted<br>
-                Time Submitted: $timeSubmitted
+                Date Submitted: " . date('F j, Y', strtotime($dateSubmitted)) . "<br>
+                Time Submitted: " . date('h:i A', strtotime($timeSubmitted)) . "<br> 
             ";
 
-            // Attach uploaded documents
             foreach ($_SESSION['uploaded_docs'][$_SESSION['google_id']] as $index => $doc) {
                 if (isset($doc['server_path']) && file_exists($doc['server_path'])) {
                     $customFilename = "Document_{$index}_" . basename($doc['name']);
                     $mailRegistrar->addAttachment($doc['server_path'], $customFilename);
                 }
             }
+            if (isset($_SESSION['review_pdf_path']) && file_exists($_SESSION['review_pdf_path'])) {
+                $mailRegistrar->addAttachment($_SESSION['review_pdf_path'], 'Admission_Application.pdf');
+            }
 
             $mailRegistrar->send();
+            if (isset($_SESSION['review_pdf_path']) && file_exists($_SESSION['review_pdf_path'])) {
+                unlink($_SESSION['review_pdf_path']);
+                unset($_SESSION['review_pdf_path']);
+            }
         } catch (Exception $e) {
             echo "Error sending to registrar: {$mailRegistrar->ErrorInfo}";
             exit;
         }
 
-        // 2. Send confirmation to applicant (logged-in user only)
+        // 2. Confirmation to applicant
         if (!empty($email)) {
             $mailUser = new PHPMailer(true);
             try {
@@ -80,19 +111,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $mailUser->Port       = (int) $_ENV['MAIL_PORT'];
 
                 $mailUser->setFrom($_ENV['MAIL_FROM'], 'SPIST Admissions');
-                $mailUser->addAddress($email); // Only user receives this
+                $mailUser->addAddress($email);
 
                 $mailUser->isHTML(true);
                 $mailUser->Subject = 'Admission Application Submitted';
                 $mailUser->Body = "
-                    We've received your application — thank you! You'll be notified via email if there are any missing requirements or once your submission has been reviewed.<br><br>
-                    <strong>Summary of Submitted Application:</strong><br>
-                    Applicant Name: $applicantName<br> 
+                    We've received your application — thank you!<br><br>
+                    <strong>Summary:</strong><br>
+                    Admission Number: $admissionNumber<br>
+                    Applicant Name: $applicantName<br>
                     Email: $email<br>
                     Application Type: $applicationType<br>
                     Preferred Course: $preferredCourse<br>
-                    Date Submitted: $dateSubmitted<br>
-                    Time Submitted: $timeSubmitted
+                    Date Submitted: " . date('F j, Y', strtotime($dateSubmitted)) . "<br> 
+                    Time Submitted: " . date('h:i A', strtotime($timeSubmitted)) . "<br> 
                 ";
 
                 $mailUser->send();
@@ -102,13 +134,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         }
 
-        // Cleanup
+        // Cleanup uploads
         foreach ($_SESSION['uploaded_docs'][$_SESSION['google_id']] as $doc) {
             if (isset($doc['server_path']) && file_exists($doc['server_path'])) {
                 unlink($doc['server_path']);
             }
         }
 
+        // Preserve only needed session vars
         $preserve_keys = ['google_id', 'user'];
         $preserved = [];
         foreach ($preserve_keys as $key) {
@@ -122,8 +155,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION[$key] = $value;
         }
 
-        header("Location: review_info.php");
+        // Save for display
+        $_SESSION['admission_number'] = $lastId; // store the raw ID for database querying
+        $_SESSION['date_submitted'] = $dateSubmitted;
+        $_SESSION['time_submitted'] = $timeSubmitted;
+
+        header('Location: application_num.php');
         exit();
     }
 }
-?>

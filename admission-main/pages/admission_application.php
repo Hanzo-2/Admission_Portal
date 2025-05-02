@@ -14,6 +14,7 @@
 <?php 
 session_start();
 require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../components/php/db.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 $client = new Google\Client();
@@ -23,6 +24,7 @@ $client->setRedirectUri($_ENV['GOOGLE_REDIRECT_URI']);
 $client->addScope("email");
 $client->addScope("profile");
 include '../components/php/script_admission_application.php';
+include '../components/php/header.php';
 ?>
 
 <body>
@@ -30,21 +32,26 @@ include '../components/php/script_admission_application.php';
     <section>
       <div class="form-container">
         <div class="form-header">
-          <img src="../assets/images/document_logo.png" alt="Document Logo" width="90px" height="120px">
+          <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo">
             <div class="form-header-text">
               <h2>Admission Application</h2>
               <p>Welcome to Southern Philippines Institute of Science and Technology</p>
               <p>Please Complete the form for your application</p>
             </div>
         </div>
-        
+
+        <!-- Display session countdown -->
+        <div id="session-timer">
+          <p>Session will expire in: <span id="countdown">Loading...</span></p>
+        </div>
+
         <form action="admission_application.php" method="post">
           <div class="form-grid">
             <div class="form-group-text">
               <h1>School Campus:</h1>
                 <input id="school_campus" type="hidden" name="school_campus" value="<?= htmlspecialchars($_SESSION['school_campus'] ?? 'ANABU') ?>">
                 <p><?= htmlspecialchars($_SESSION['school_campus'] ?? 'ANABU') ?></p>
-              </div>
+            </div>
 
             <div class="form-group-text">
               <h1>Classification:</h1>
@@ -81,43 +88,70 @@ include '../components/php/script_admission_application.php';
                    <option value="" hidden>Select Preferred Course</option>
 
                     <optgroup label="COLLEGE OF ACCOUNTANCY">
-                      <option value="BSA" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSA") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Accountancy</option>
+                      <option value="BSA - Bachelor of Science in Accountancy" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSA - Bachelor of Science in Accountancy") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Accountancy</option>
                     </optgroup>
 
                     <optgroup label="COLLEGE OF BUSINESS MANAGEMENT">
-                      <option value="BSBA" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSBA") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Business Administration</option>
+                      <option value="BSBA - Bachelor of Science in Business Administration" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSBA - Bachelor of Science in Business Administration") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Business Administration</option>
                     </optgroup>
 
                     <optgroup label="COLLEGE OF EDUCATION">
-                      <option value="BEEd" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BEEd") ? 'selected' : '' ?>>&emsp;Bachelor in Elementary Education</option>
-                      <option value="BSEd" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSEd") ? 'selected' : '' ?>>&emsp;Bachelor in Secondary Education</option>
+                      <option value="BEEd - Bachelor in Elementary Education" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BEEd - Bachelor in Elementary Education") ? 'selected' : '' ?>>&emsp;Bachelor in Elementary Education</option>
+                      <option value="BSEd - Bachelor in Secondary Education" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSEd - Bachelor in Secondary Education") ? 'selected' : '' ?>>&emsp;Bachelor in Secondary Education</option>
                     </optgroup>
 
                     <optgroup label="COLLEGE OF ENGINEERING AND COMPUTER STUDIES">
-                      <option value="BSCpE" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSCpE") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Computer Engineering</option>
-                      <option value="BSCS" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSCS") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Computer Science</option>
+                      <option value="BSCpE - Bachelor of Science in Computer Engineering" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSCpE - Bachelor of Science in Computer Engineering") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Computer Engineering</option>
+                      <option value="BSCS - Bachelor of Science in Computer Science" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSCS - Bachelor of Science in Computer Science") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Computer Science</option>
                       <option value="BSIT - Bachelor of Science in Information Technology" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSIT - Bachelor of Science in Information Technology") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Information Technology</option>  
                     </optgroup>
 
                     <optgroup label="COLLEGE OF TOURISM AND HOSPITALITY MANAGEMENT">
-                      <option value="BSHM" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSHM") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Hospitality Management</option>
-                      <option value="BSTM" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSTM") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Tourism Management</option>
+                      <option value="BSHM - Bachelor of Science in Hospitality Management" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSHM - Bachelor of Science in Hospitality Management") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Hospitality Management</option>
+                      <option value="BSTM - Bachelor of Science in Tourism Management" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSTM - Bachelor of Science in Tourism Management") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Tourism Management</option>
                     </optgroup>
                   </select>
             </div>
 
-          <div class="button-container">
-            <button type="submit">Next</button>
+            <div class="button-container">
+              <button type="submit">Next</button>
+            </div>
           </div>
-          
-        </div>
-      </form>
-    </div>
-  </section>
-</div>
-<script src="../components/javascript/check_session_interval.js"></script>
-<script src="../components/javascript/autosave.js"></script>
-<?php include '../components/php/modal_inactivity.php'; ?>
+        </form>
+      </div>
+    </section>
+  </div>
+  <script>
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+  const secs = (seconds % 60).toString().padStart(2, '0');
+  return `${mins}:${secs}`;
+}
+
+function startLiveSessionCountdown() {
+  const countdown = document.getElementById("countdown");
+
+  const interval = setInterval(() => {
+    fetch('../components/php/check_session.php')
+      .then(res => res.json())
+      .then(data => {
+        if (!data.authenticated) {
+          clearInterval(interval);
+          countdown.textContent = "Session expired.";
+          window.location.href = '../components/php/logout.php';
+        } else {
+          countdown.textContent = formatTime(data.remaining);
+        }
+      });
+  }, 1000);
+}
+
+startLiveSessionCountdown();
+</script>
+  <script src="../components/javascript/check_session_interval.js"></script>
+  <script src="../components/javascript/autosave.js"></script>
+  <?php include '../components/php/modal_inactivity.php'; ?>
 </body>
+
 <?php include '../components/php/footer.php'; ?>
 </html>

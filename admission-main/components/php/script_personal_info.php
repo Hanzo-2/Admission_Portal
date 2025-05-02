@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($allFilled) {
-        header('Location: http://localhost/admission_portal/admission-main/pages/educational_bg.php'); // Next page
+        header('Location: educational_bg.php'); // Next page
         exit();
     } else {
         $error = "Please fill out all required fields.";

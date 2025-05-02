@@ -13,8 +13,8 @@
 
 <?php 
 session_start(); 
-include '../components/php/header.php';
 include '../components/php/script_family_info.php';
+include '../components/php/header.php';
 ?>
 
 <body>

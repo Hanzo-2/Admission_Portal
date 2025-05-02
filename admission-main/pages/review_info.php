@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="../assets/styles/form_button.css">
   <link rel="icon" href="../assets/images/spistlogo_icon.ico">
   <script src="../components/javascript/profile_dropdown.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
 <?php 
 session_start();
-include '../components/php/header.php'; 
 include '../components/php/script_review_info.php';
+include '../components/php/header.php'; 
 ?>
 
 <body>
@@ -27,7 +29,7 @@ include '../components/php/script_review_info.php';
           <h2>Review Information</h2>
          </div>
       </div>
-      <form id="uploadForm" action="review_info.php" method="post">
+      <form id="uploadForm" action="review_info.php" method="POST">
         <div class="container">
             <table class="custom-table" id="review-table">
                 <thead> <!--Admission Application - Start -->
@@ -67,7 +69,9 @@ include '../components/php/script_review_info.php';
                     <tr> 
                         <td class="td-1">Student Name:</td>
                         <td class="td-2" colspan="5" value="">
-                            <?php if (!empty($_SESSION['personal_surname'])) { echo $_SESSION['personal_surname'] . ', '; } ?>
+                            <?php if (!empty($_SESSION['personal_surname'])): ?>
+                                <?= htmlspecialchars($_SESSION['personal_surname'], ENT_QUOTES, 'UTF-8') . ', ' ?>
+                            <?php endif; ?>  
                             <?= htmlspecialchars($_SESSION['personal_firstname'] ?? '') ?>
                             <?= htmlspecialchars($_SESSION['personal_middlename'] ?? '') ?>
                         </td>
@@ -97,9 +101,15 @@ include '../components/php/script_review_info.php';
                     <tr>
                         <td class="td-1">Student Address:</td>
                         <td class="td-2" colspan="5" value="">
-                            <?php if (!empty($_SESSION['address'])) { echo $_SESSION['address'] . ', '; } ?>
-                            <?php if (!empty($_SESSION['selected_barangay'])) { echo $_SESSION['selected_barangay'] . ', '; } ?>
-                            <?php if (!empty($_SESSION['selected_city'])) { echo $_SESSION['selected_city'] . ', '; } ?>
+                            <?php if (!empty($_SESSION['address'])): ?>
+                                <?= htmlspecialchars($_SESSION['address'], ENT_QUOTES, 'UTF-8') . ', ' ?>
+                            <?php endif; ?>
+                            <?php if (!empty($_SESSION['selected_barangay'])): ?>
+                                <?= htmlspecialchars($_SESSION['selected_barangay'], ENT_QUOTES, 'UTF-8') . ', ' ?>
+                            <?php endif; ?>
+                            <?php if (!empty($_SESSION['selected_city'])): ?>
+                                <?= htmlspecialchars($_SESSION['selected_city'], ENT_QUOTES, 'UTF-8') . ', ' ?>
+                            <?php endif; ?>
                             <?= htmlspecialchars($_SESSION['selected_province'] ?? '') ?>
                         </td>
                     </tr>
@@ -169,7 +179,9 @@ include '../components/php/script_review_info.php';
                     <tr> 
                         <td class="td-1">Father's Name:</td>
                         <td class="td-2" colspan="5" value="">
-                            <?php if (!empty($_SESSION['father_surname'])) { echo $_SESSION['father_surname'] . ', '; } ?>
+                            <?php if (!empty($_SESSION['father_surname'])): ?>
+                                <?= htmlspecialchars($_SESSION['father_surname'], ENT_QUOTES, 'UTF-8') . ', ' ?>
+                            <?php endif; ?> 
                             <?= htmlspecialchars($_SESSION['father_firstname'] ?? '') ?>
                             <?= htmlspecialchars($_SESSION['father_middlename'] ?? '') ?>
                         </td>
@@ -185,7 +197,9 @@ include '../components/php/script_review_info.php';
                     <tr> 
                         <td class="td-1">Mother's Name:</td>
                         <td class="td-2" colspan="5" value="">
-                            <?php if (!empty($_SESSION['mother_surname'])) { echo $_SESSION['mother_surname'] . ', '; } ?>
+                            <?php if (!empty($_SESSION['mother_surname'])): ?>
+                                <?= htmlspecialchars($_SESSION['mother_surname'], ENT_QUOTES, 'UTF-8') . ', ' ?>
+                            <?php endif; ?>    
                             <?= htmlspecialchars($_SESSION['mother_firstname'] ?? '') ?>
                             <?= htmlspecialchars($_SESSION['mother_middlename'] ?? '') ?>
                         </td>
@@ -201,7 +215,9 @@ include '../components/php/script_review_info.php';
                     <tr> 
                         <td class="td-1">Guardian's Name:</td>
                         <td class="td-2" colspan="5" value="">
-                        <?php if (!empty($_SESSION['guardian_surname'])) { echo $_SESSION['guardian_surname'] . ', '; } ?>
+                        <?php if (!empty($_SESSION['guardian_surname'])): ?>
+                            <?= htmlspecialchars($_SESSION['guardian_surname'], ENT_QUOTES, 'UTF-8') . ', ' ?>
+                        <?php endif; ?>   
                         <?= htmlspecialchars($_SESSION['guardian_firstname'] ?? '') ?>
                         <?= htmlspecialchars($_SESSION['guardian_middlename'] ?? '') ?>
                         </td>
@@ -210,9 +226,15 @@ include '../components/php/script_review_info.php';
                     <tr>
                         <td class="td-1">Present Address:</td>
                         <td class="td-2" colspan="5" value="">
-                            <?php if (!empty($_SESSION['guardian_address'])) { echo $_SESSION['guardian_address'] . ', '; } ?>
-                            <?php if (!empty($_SESSION['guardian_barangay'])) { echo $_SESSION['guardian_barangay'] . ', '; } ?>
-                            <?php if (!empty($_SESSION['guardian_city'])) { echo $_SESSION['guardian_city'] . ', '; } ?>
+                            <?php if (!empty($_SESSION['guardian_address'])): ?>
+                                <?= htmlspecialchars($_SESSION['guardian_address'], ENT_QUOTES, 'UTF-8') . ', ' ?>
+                            <?php endif; ?>
+                            <?php if (!empty($_SESSION['guardian_barangay'])): ?>
+                                <?= htmlspecialchars($_SESSION['guardian_barangay'], ENT_QUOTES, 'UTF-8') . ', ' ?>
+                            <?php endif; ?>
+                            <?php if (!empty($_SESSION['guardian_city'])): ?>
+                                <?= htmlspecialchars($_SESSION['guardian_city'], ENT_QUOTES, 'UTF-8') . ', ' ?>
+                            <?php endif; ?>
                             <?= htmlspecialchars($_SESSION['guardian_province'] ?? '') ?>
                         </td>
                     </tr>
@@ -337,10 +359,7 @@ include '../components/php/script_review_info.php';
             <a href="required_docs.php"> 
                 <button id="back-btn" type="button">Back</button> 
             </a>
-            <button id="download-pdf" type="button">Download PDF</button>
-            <!-- <button id="edit-btn" type="button">Edit</button> -->
-            <button id="save-btn" type="button" style="display: none;">Save Changes</button>
-            <button type="submit">Submit</button>
+            <button type="button" id="final-submit-button">Submit</button>
         </div>
      </form>
     </div>

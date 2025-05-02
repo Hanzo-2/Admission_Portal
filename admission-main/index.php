@@ -12,7 +12,7 @@
 <?php
 session_start();
 if (isset($_SESSION["google_id"])) {
-    header("Location: http://localhost/admission_portal/admission-main/pages/admission_application.php");
+    header("Location: ../admission-main/pages/admission_application.php");
 }
 require __DIR__ . '../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');

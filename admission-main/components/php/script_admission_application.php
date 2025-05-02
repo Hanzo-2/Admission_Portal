@@ -11,6 +11,7 @@ if (isset($_GET['code'])) {
         $google_oauth = new Google\Service\Oauth2($client);
         $user_info = $google_oauth->userinfo->get();
 
+        // Set session
         $_SESSION['google_id'] = $user_info->id;
         $_SESSION['user'] = [
             'id' => $user_info->id,
@@ -19,6 +20,21 @@ if (isset($_GET['code'])) {
             'profile_picture' => $user_info->picture
         ];
 
+        $googleId = $_SESSION['google_id'];
+        try {
+            $stmt = $pdo->prepare("SELECT * FROM applications WHERE google_id = ?");
+            $stmt->execute([$googleId]);
+            $application = $stmt->fetch();
+
+            if ($application) {
+                header("Location: ../pages/application_num.php");
+                exit();
+            }
+        } catch (PDOException $e) {
+            echo "Database Error: " . $e->getMessage();
+            exit();
+        }
+
         header("Location: http://localhost/admission_portal/admission-main/pages/admission_application.php");
         exit();
     } else {
@@ -26,7 +42,6 @@ if (isset($_GET['code'])) {
     }
 }
 
-include '../components/php/header.php';
 // Handle form POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION['school_campus'] = $_POST['school_campus'] ?? '';
@@ -38,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION['admission_submit'] = $_POST['admission_submit'] ?? '';
 
     if (!empty($_SESSION['application_type']) && !empty($_SESSION['preferred_course'])) {
-        header('Location: http://localhost/admission_portal/admission-main/pages/personal_info.php');
+        header('Location: personal_info.php');
         exit();
     } else {
         $error = "Please fill out all required fields.";
