@@ -347,7 +347,7 @@ include '../components/php/header.php';
                 <tr>
                     <td colspan="2" class="custom-table-checkbox">
                         <label class="checkbox-text">
-                        <input type="checkbox" class="checkbox" name="terms_accept" required>
+                        <input type="checkbox" id="confirm-check" class="checkbox" name="terms_accept" required>
                         <strong>By clicking on Authorize and Accept, I agree to the Terms and Data Policy.</strong>
                         </label>
                     </td>
@@ -359,12 +359,86 @@ include '../components/php/header.php';
             <a href="required_docs.php"> 
                 <button id="back-btn" type="button">Back</button> 
             </a>
-            <button type="button" id="final-submit-button">Submit</button>
+            <button type="button" id="submit-btn" disabled>Submit</button>
         </div>
      </form>
+
+     <!-- Modal: Confirmation -->
+     <div id="submitModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <p><strong>Once submitted, <br> you can't make changes. <br>Do you want to continue?</strong></p>
+            <div class="edit-buttons">
+                <button id="modal-cancel">Cancel</button>
+                <button id="modal-edit">Edit</button>
+                <button type="button" id="final-submit-button">Proceed</button>
+            </div>
+        </div>
+    </div>
+
+        <!-- Modal: Edit Options -->
+        <div id="editModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <p><strong>Which page would you like to edit?</strong></p>
+                <div class="edit-buttons">
+                <button onclick="location.href='admission_application.php'">Admission Application</button>
+                <button onclick="location.href='personal_info.php'">Personal Information</button>
+                <button onclick="location.href='educational_bg.php'">Educational Background</button>
+                </div>
+                <div class="edit-buttons">
+                <button onclick="location.href='family_info.php'">Family Information</button>
+                <button onclick="location.href='required_docs.php'">Required Documents</button>
+                </div>
+                <button id="go-back-btn">Go Back</button>
+            </div>
+        </div>
     </div>
   </section>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const checkbox = document.getElementById('confirm-check');
+    const submitBtn = document.getElementById('submit-btn');
+    const form = document.getElementById('review-form');
+
+    const submitModal = document.getElementById('submitModal');
+    const editModal = document.getElementById('editModal');
+
+    const cancelBtn = document.getElementById('modal-cancel');
+    const editBtn = document.getElementById('modal-edit');
+    const goBackBtn = document.getElementById('go-back-btn');
+
+    checkbox.addEventListener('change', function () {
+        submitBtn.disabled = !this.checked;
+    });
+
+    submitBtn.addEventListener('click', function () {
+        if (checkbox.checked) {
+            submitModal.style.display = 'flex';
+        } 
+    });
+
+    cancelBtn.addEventListener('click', function () {
+        submitModal.style.display = 'none';
+    });
+
+    editBtn.addEventListener('click', function () {
+        submitModal.style.display = 'none';
+        editModal.style.display = 'flex';
+    });
+
+    goBackBtn.addEventListener('click', function () {
+        editModal.style.display = 'none';
+        submitModal.style.display = 'flex';
+    });
+
+    // Optional: Close modals if user clicks outside content
+    window.addEventListener('click', function (e) {
+        if (e.target === submitModal) submitModal.style.display = 'none';
+        if (e.target === editModal) editModal.style.display = 'none';
+    });
+});
+</script>
+
 <script src="../components/javascript/check_session_interval.js"></script>
 <script src="../components/javascript/review_info.js"></script>
 <?php include '../components/php/modal_inactivity.php'; ?>

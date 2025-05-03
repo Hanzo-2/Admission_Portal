@@ -239,3 +239,73 @@ tr {
 .btn-view:hover {
     background-color: #0056b3;
 }
+
+/* Modal Button Styles */
+.modal-content button {
+    display: inline-flex; /* Makes the buttons align horizontally */
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    margin: 10px;
+    min-width: 120px;  /* Optional: to ensure all buttons have similar width */
+    cursor: pointer;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+/* Ensure modal is centered and takes up full viewport */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+}
+
+/* Modal Content should have a max-width */
+.modal-content {
+    width: 80%;
+    max-width: 500px;  /* Maximum width for larger screens */
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-buttons {
+    gap: 10px;
+}
+
+.edit-buttons button::before {
+    transition: none;
+}
+
+#modal-cancel, #go-back-btn {
+    background-color: red;
+}
+
+#modal-cancel:hover, #go-back-btn:hover {
+    color: #FF073A;
+}
+
+#go-back-btn::before{
+    transition: none;
+}
+
+#modal-edit {
+    background-color: #0056b3;
+}
+
+#modal-edit:hover{
+    color: #007bff;
+}
