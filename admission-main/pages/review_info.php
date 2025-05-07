@@ -24,7 +24,7 @@ include '../components/php/header.php';
   <section>
     <div class="form-container">
       <div class="form-header">
-        <img src="../assets/images/document_logo.png" alt="Document Logo" width="70px" height="75px">
+        <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo-6">
          <div class="form-header-text">
           <h2>Review Information</h2>
          </div>
@@ -40,23 +40,23 @@ include '../components/php/header.php';
                 <tbody>
                     <tr> 
                         <td class="td-1">School Campus:</td>
-                        <td class="td-2" value=""><?= htmlspecialchars($_SESSION['school_campus'] ?? 'ANABU') ?></td>
+                        <td class="td-2" ><?= htmlspecialchars($_SESSION['school_campus'] ?? 'ANABU') ?></td>
                         <td class="td-1">Classification:</td>
-                        <td class="td-2" value=""><?= htmlspecialchars($_SESSION['classification'] ?? 'College') ?></td>
+                        <td class="td-2" ><?= htmlspecialchars($_SESSION['classification'] ?? 'College') ?></td>
                         <td class="td-1">Grade/Level:</td>
-                        <td class="td-2" value=""><?= htmlspecialchars($_SESSION['grade_level'] ?? '1st Year') ?></td>
+                        <td class="td-2" ><?= htmlspecialchars($_SESSION['grade_level'] ?? '1st Year') ?></td>
                     </tr>
 
                     <tr>
                         <td class="td-1">Year & Term:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['academic_year_term'] ?? '2025 - 2026 - First Semester') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['academic_year_term'] ?? '2025 - 2026 - First Semester') ?></td>
                         <td class="td-1">Application Type:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['application_type'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['application_type'] ?? '') ?></td>
                     </tr>
                     
                     <tr>
                         <td class="td-1">Academic Program:</td>
-                        <td class="td-2" colspan="5" value=""><?= htmlspecialchars($_SESSION['preferred_course'] ?? '') ?></td>
+                        <td class="td-2" colspan="5" ><?= htmlspecialchars($_SESSION['preferred_course'] ?? '') ?></td>
                     </tr>
                 </tbody> <!--Admission Application - End -->
 
@@ -68,7 +68,7 @@ include '../components/php/header.php';
                 <tbody>
                     <tr> 
                         <td class="td-1">Student Name:</td>
-                        <td class="td-2" colspan="5" value="">
+                        <td class="td-2" colspan="5" >
                             <?php if (!empty($_SESSION['personal_surname'])): ?>
                                 <?= htmlspecialchars($_SESSION['personal_surname'], ENT_QUOTES, 'UTF-8') . ', ' ?>
                             <?php endif; ?>  
@@ -81,26 +81,26 @@ include '../components/php/header.php';
                         <td class="td-1">Date of Birth:</td>
                         <td class="td-2" colspan="2"><?= isset($_SESSION['personal_birthdate']) && $_SESSION['personal_birthdate'] !== ''? htmlspecialchars((new DateTime($_SESSION['personal_birthdate']))->format('F j, Y')): '' ?></td>                        
                         <td class="td-1">Place of Birth:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['birthplace'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['birthplace'] ?? '') ?></td>
                     </tr>
 
                     <tr>
                         <td class="td-1">Sex:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['sex'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['sex'] ?? '') ?></td>
                         <td class="td-1">Civil Status:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['civilstatus'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['civilstatus'] ?? '') ?></td>
                     </tr>
 
                     <tr>
                         <td class="td-1">Nationality:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['nationality'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['nationality'] ?? '') ?></td>
                         <td class="td-1">Religion:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['religion'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['religion'] ?? '') ?></td>
                     </tr>
 
                     <tr>
                         <td class="td-1">Student Address:</td>
-                        <td class="td-2" colspan="5" value="">
+                        <td class="td-2" colspan="5" >
                             <?php if (!empty($_SESSION['address'])): ?>
                                 <?= htmlspecialchars($_SESSION['address'], ENT_QUOTES, 'UTF-8') . ', ' ?>
                             <?php endif; ?>
@@ -116,14 +116,14 @@ include '../components/php/header.php';
 
                     <tr>
                         <td class="td-1">Contact Number:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['personal_contact'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['personal_contact'] ?? '') ?></td>
                         <td class="td-1">Telephone Number:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['telephone'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['telephone'] ?? '') ?></td>
                     </tr>
                         
                     <tr>
                         <td class="td-1">Email:</td>
-                        <td class="td-4" colspan="5" value=""><?= htmlspecialchars($_SESSION['personal_email'] ?? '') ?></td> 
+                        <td class="td-4" colspan="5" ><?= htmlspecialchars($_SESSION['personal_email'] ?? '') ?></td> 
                     </tr>
                 </tbody> <!--Personal Information - End -->
 
@@ -135,38 +135,38 @@ include '../components/php/header.php';
                 <tbody>
                     <tr> 
                         <td class="td-1">LRN:</td>
-                        <td class="td-2" colspan="2" value=""><?= (isset($_SESSION['lrn_num']) && $_SESSION['lrn_num'] == 0) ? 'N/A' : htmlspecialchars($_SESSION['lrn_num'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= (isset($_SESSION['lrn_num']) && $_SESSION['lrn_num'] == 0) ? 'N/A' : htmlspecialchars($_SESSION['lrn_num'] ?? '') ?></td>
                         <td class="td-1">School Level:</td>    
                         <td class="td-2" colspan="2">Senior High School</td>    
                     </tr>
 
                     <tr> 
                         <td class="td-1">Student Type:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['student_type'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['student_type'] ?? '') ?></td>
                         <td class="td-1">School Type:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['school_type'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['school_type'] ?? '') ?></td>
                     </tr>
 
                     <tr>
                         <td class="td-1">School Name:</td>
-                        <td class="td-2" colspan="5" value=""><?= htmlspecialchars($_SESSION['school_name'] ?? '') ?></td>
+                        <td class="td-2" colspan="5" ><?= htmlspecialchars($_SESSION['school_name'] ?? '') ?></td>
                     </tr>
 
                     <tr>
                         <td class="td-1">School Address:</td>
-                        <td class="td-2" colspan="5" value=""><?= htmlspecialchars($_SESSION['school_address'] ?? '') ?></td>
+                        <td class="td-2" colspan="5" ><?= htmlspecialchars($_SESSION['school_address'] ?? '') ?></td>
                     </tr>
 
                     <tr>
                         <td class="td-1">Track/Strand:</td>
-                        <td class="td-2" colspan="5" value=""><?= htmlspecialchars($_SESSION['track_strand'] ?? '') ?></td>
+                        <td class="td-2" colspan="5" ><?= htmlspecialchars($_SESSION['track_strand'] ?? '') ?></td>
                     </tr>
 
                     <tr>
                         <td class="td-1">Year of Graduation:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['year_graduation'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['year_graduation'] ?? '') ?></td>
                         <td class="td-1" colspan="2">Senior High School General Average:</td>
-                        <td class="td-2" value=""><?= htmlspecialchars($_SESSION['shs_average'] ?? '') ?></td>
+                        <td class="td-2" ><?= htmlspecialchars($_SESSION['shs_average'] ?? '') ?></td>
                     </tr>
                 </tbody> <!--Educational Background - End -->
 
@@ -178,7 +178,7 @@ include '../components/php/header.php';
                 <tbody>
                     <tr> 
                         <td class="td-1">Father's Name:</td>
-                        <td class="td-2" colspan="5" value="">
+                        <td class="td-2" colspan="5" >
                             <?php if (!empty($_SESSION['father_surname'])): ?>
                                 <?= htmlspecialchars($_SESSION['father_surname'], ENT_QUOTES, 'UTF-8') . ', ' ?>
                             <?php endif; ?> 
@@ -189,14 +189,14 @@ include '../components/php/header.php';
 
                     <tr>
                         <td class="td-1">Date of Birth:</td>
-                        <td class="td-2" colspan="2" value=""><?= isset($_SESSION['personal_birthdate']) && $_SESSION['father_birthdate'] !== ''? htmlspecialchars((new DateTime($_SESSION['father_birthdate']))->format('F j, Y')): '' ?></td>
+                        <td class="td-2" colspan="2" ><?= isset($_SESSION['father_birthdate']) && $_SESSION['father_birthdate'] !== ''? htmlspecialchars((new DateTime($_SESSION['father_birthdate']))->format('F j, Y')): '' ?></td>
                         <td class="td-1">Contact Number:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['father_contact'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['father_contact'] ?? '') ?></td>
                     </tr>
 
                     <tr> 
                         <td class="td-1">Mother's Name:</td>
-                        <td class="td-2" colspan="5" value="">
+                        <td class="td-2" colspan="5" >
                             <?php if (!empty($_SESSION['mother_surname'])): ?>
                                 <?= htmlspecialchars($_SESSION['mother_surname'], ENT_QUOTES, 'UTF-8') . ', ' ?>
                             <?php endif; ?>    
@@ -207,14 +207,14 @@ include '../components/php/header.php';
 
                     <tr>
                         <td class="td-1">Date of Birth:</td>
-                        <td class="td-2" colspan="2" value=""><?= isset($_SESSION['personal_birthdate']) && $_SESSION['mother_birthdate'] !== ''? htmlspecialchars((new DateTime($_SESSION['mother_birthdate']))->format('F j, Y')): '' ?></td>
+                        <td class="td-2" colspan="2" ><?= isset($_SESSION['mother_birthdate']) && $_SESSION['mother_birthdate'] !== ''? htmlspecialchars((new DateTime($_SESSION['mother_birthdate']))->format('F j, Y')): '' ?></td>
                         <td class="td-1">Contact Number:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['mother_contact'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['mother_contact'] ?? '') ?></td>
                     </tr>
 
                     <tr> 
                         <td class="td-1">Guardian's Name:</td>
-                        <td class="td-2" colspan="5" value="">
+                        <td class="td-2" colspan="5" >
                         <?php if (!empty($_SESSION['guardian_surname'])): ?>
                             <?= htmlspecialchars($_SESSION['guardian_surname'], ENT_QUOTES, 'UTF-8') . ', ' ?>
                         <?php endif; ?>   
@@ -225,7 +225,7 @@ include '../components/php/header.php';
 
                     <tr>
                         <td class="td-1">Present Address:</td>
-                        <td class="td-2" colspan="5" value="">
+                        <td class="td-2" colspan="5" >
                             <?php if (!empty($_SESSION['guardian_address'])): ?>
                                 <?= htmlspecialchars($_SESSION['guardian_address'], ENT_QUOTES, 'UTF-8') . ', ' ?>
                             <?php endif; ?>
@@ -241,14 +241,14 @@ include '../components/php/header.php';
 
                     <tr>
                         <td class="td-1">Contact Number:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['guardian_contact'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['guardian_contact'] ?? '') ?></td>
                         <td class="td-1">Telephone Number:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['guardian_telephone'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['guardian_telephone'] ?? '') ?></td>
                     </tr>
                         
                     <tr>
                         <td class="td-1">Email:</td>
-                        <td class="td-4" colspan="5" value=""><?= htmlspecialchars($_SESSION['guardian_email'] ?? '') ?></td> 
+                        <td class="td-4" colspan="5" ><?= htmlspecialchars($_SESSION['guardian_email'] ?? '') ?></td> 
                     </tr>
                 </tbody> <!--Family Information - End -->
                 
@@ -262,24 +262,24 @@ include '../components/php/header.php';
                     
                     <tr>
                         <td class="td-1" colspan="1">Complete Name:</td>
-                        <td class="td-2" colspan="5" value=""><?= htmlspecialchars($_SESSION['emergency_complete_name'] ?? '') ?></td>
+                        <td class="td-2" colspan="5" ><?= htmlspecialchars($_SESSION['emergency_complete_name'] ?? '') ?></td>
                     </tr>
 
                     <tr>
                         <td class="td-1">Complete Address:</td>
-                        <td class="td-2" colspan="5" value=""><?= htmlspecialchars($_SESSION['emergency_complete_address'] ?? '') ?></td>
+                        <td class="td-2" colspan="5" ><?= htmlspecialchars($_SESSION['emergency_complete_address'] ?? '') ?></td>
                     </tr>
 
                     <tr>
                         <td class="td-1">Contact Number:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['emergency_contact'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['emergency_contact'] ?? '') ?></td>
                         <td class="td-1">Telephone Number:</td>
-                        <td class="td-2" colspan="2" value=""><?= htmlspecialchars($_SESSION['emergency_telephone'] ?? '') ?></td>
+                        <td class="td-2" colspan="2" ><?= htmlspecialchars($_SESSION['emergency_telephone'] ?? '') ?></td>
                     </tr>
                         
                     <tr>
                         <td class="td-1">Email:</td>
-                        <td class="td-4" colspan="5" value=""><?= htmlspecialchars($_SESSION['emergency_email'] ?? '') ?></td> 
+                        <td class="td-4" colspan="5" ><?= htmlspecialchars($_SESSION['emergency_email'] ?? '') ?></td> 
                     </tr>
                 </tbody>
 
@@ -347,11 +347,14 @@ include '../components/php/header.php';
                 <tr>
                     <td colspan="2" class="custom-table-checkbox">
                         <label class="checkbox-text">
-                        <input type="checkbox" id="confirm-check" class="checkbox" name="terms_accept" required>
-                        <strong>By clicking on Authorize and Accept, I agree to the Terms and Data Policy.</strong>
+                            <input type="checkbox" id="confirm-check" class="checkbox" name="terms_accept" required>
+                            <strong>By clicking on Authorize and Accept, I agree to the Terms and Data Policy.</strong>
                         </label>
+                        <div id="checkbox-error" style="color: red; display: none; font-weight: bold; margin-top: 5px;">
+                            You must agree to the Terms and Data Policy before submitting.
+                        </div>
                     </td>
-                </tr>
+                </tr>   
             </table>
         </div>
 
@@ -359,35 +362,29 @@ include '../components/php/header.php';
             <a href="required_docs.php"> 
                 <button id="back-btn" type="button">Back</button> 
             </a>
-            <button type="button" id="submit-btn" disabled>Submit</button>
+            <button type="button" id="submit-btn">Submit</button>
         </div>
      </form>
 
      <!-- Modal: Confirmation -->
      <div id="submitModal" class="modal" style="display: none;">
-        <div class="modal-content">
+        <div class="modal-review">
             <p><strong>Once submitted, <br> you can't make changes. <br>Do you want to continue?</strong></p>
-            <div class="edit-buttons">
-                <button id="modal-cancel">Cancel</button>
-                <button id="modal-edit">Edit</button>
-                <button type="button" id="final-submit-button">Proceed</button>
-            </div>
+            <button type="button" id="final-submit-button">SUBMIT</button>
+            <button id="modal-edit">EDIT</button>
+            <button id="modal-cancel">CANCEL</button>
         </div>
     </div>
 
         <!-- Modal: Edit Options -->
         <div id="editModal" class="modal" style="display: none;">
-            <div class="modal-content">
+            <div class="modal-review">
                 <p><strong>Which page would you like to edit?</strong></p>
-                <div class="edit-buttons">
-                <button onclick="location.href='admission_application.php'">Admission Application</button>
-                <button onclick="location.href='personal_info.php'">Personal Information</button>
-                <button onclick="location.href='educational_bg.php'">Educational Background</button>
-                </div>
-                <div class="edit-buttons">
-                <button onclick="location.href='family_info.php'">Family Information</button>
-                <button onclick="location.href='required_docs.php'">Required Documents</button>
-                </div>
+                <button onclick="location.href='admission_application.php'">#1 Admission Application</button>
+                <button onclick="location.href='personal_info.php'">#2 Personal Information</button>
+                <button onclick="location.href='educational_bg.php'">#3 Educational Background</button>
+                <button onclick="location.href='family_info.php'">#4 Family Information</button>
+                <button onclick="location.href='required_docs.php'">#5 Required Documents</button>
                 <button id="go-back-btn">Go Back</button>
             </div>
         </div>
@@ -398,8 +395,7 @@ include '../components/php/header.php';
 document.addEventListener('DOMContentLoaded', function () {
     const checkbox = document.getElementById('confirm-check');
     const submitBtn = document.getElementById('submit-btn');
-    const form = document.getElementById('review-form');
-
+    const form = document.getElementById('uploadForm');
     const submitModal = document.getElementById('submitModal');
     const editModal = document.getElementById('editModal');
 
@@ -407,14 +403,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const editBtn = document.getElementById('modal-edit');
     const goBackBtn = document.getElementById('go-back-btn');
 
-    checkbox.addEventListener('change', function () {
-        submitBtn.disabled = !this.checked;
-    });
-
     submitBtn.addEventListener('click', function () {
+    const errorMessage = document.getElementById('checkbox-error');
+
         if (checkbox.checked) {
+            errorMessage.style.display = 'none';
             submitModal.style.display = 'flex';
-        } 
+        } else {
+            errorMessage.style.display = 'block';
+        }
     });
 
     cancelBtn.addEventListener('click', function () {

@@ -28,12 +28,12 @@ body {
     max-width: 1070px; 
     width: 100%;
     margin: 75px auto;
-    background: rgba(255, 255, 225, 0.91); /* Semi-transparent for readability */
+    background: rgba(255, 255, 225, 0.91);
     padding: 40px 55px 50px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
-    position: relative; /* Ensures child elements like ::before are positioned correctly */
+    position: relative; 
 }
 
 /* Background Logo Effect - Behind Form */
@@ -162,8 +162,8 @@ input[type="date"]:valid {
 }
 
 /* Responsive Enhancements */
-.header-logo {
-    width: clamp(50px, 8vw, 80px);
+.header-logo-2 {
+    width: clamp(70px, 8vw, 80px);
     height: auto;
     object-fit: contain;
 }
@@ -254,8 +254,8 @@ input[type="date"]:valid {
         align-items: center;
     }
 
-    .header-logo {
-        width: 50px;
+    .header-logo-2 {
+        width: 70px;
         height: auto;
     }
   }

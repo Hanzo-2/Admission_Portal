@@ -82,6 +82,11 @@ body {
     margin-bottom: 5px;
 } 
 
+.header-logo-5 {
+    width: clamp(80px, 5vw, 120px);
+    height: auto;
+}
+
 /* General Table Styling */
 .custom-table {
     width: 100%;
@@ -178,6 +183,7 @@ td.td-document-name {
     border: 2px solid darkred;
     font-weight: bold;
     width: 40%;
+    text-align: center;
 }
 
 .remove-btn:hover {
@@ -192,13 +198,22 @@ td.td-document-name {
 
 /* Attachment Link */
 .attachment a {
+    display: inline-block;
+    padding: 8px 14px;
+    background-color: #007bff;
+    color: #fff !important;
     text-decoration: none;
-    color: blue;
+    border-radius: 5px;
     font-weight: bold;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .attachment a:hover {
-    text-decoration: underline;
+    background-color: #0056b3;
+    text-decoration: none;
 }
 
 /* Text */
@@ -221,7 +236,7 @@ td.td-document-name {
     width: 100%;
     margin: auto;
     text-align: center;
-}
+} 
 
 .toast {
     visibility: hidden;
@@ -268,3 +283,134 @@ td.td-document-name {
     80% { opacity: 1; }
     100% { opacity: 0; transform: translateX(100px); }
 }
+
+
+@media (max-width: 365px) {
+    .header-logo-5 {
+        margin-top: -50px;
+    }
+}
+  
+@media screen and (max-width: 830px) and (min-width: 669px) {
+    /* Shrinking form container */
+    .form-container {
+        padding: 20px 30px;
+    }
+
+    .header-logo-5 {
+        width: 80px;  /* Shrinking logo */
+        height: auto;
+    }
+
+    .form-header-text h2 {
+        font-size: 28px;  /* Adjust heading size */
+    }
+
+    .form-header-text p {
+        font-size: 16px;  /* Adjust paragraph size */
+    }
+
+    /* Table adjustments */
+    .custom-table th, .custom-table td {
+        padding: 8px;  /* Smaller padding */
+        font-size: 14px;  /* Adjust font size */
+    }
+
+    /* Shrink button sizes */
+    .upload-btn, .remove-btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    /* Adjust document name text size */
+    .td-document-name {
+        font-size: 16px;
+    }
+
+    /* Adjust remarks text */
+    .remark-1, .remark-2, .remark-3, .remark-4, .remark-5 {
+        font-size: 12px;
+    }
+
+    /* Adjust spacing between table rows */
+    .custom-table tr {
+        margin-bottom: 10px;
+    }
+}
+  
+
+@media screen and (max-width: 668px) {
+    .form-container {
+      padding: 15px 10px;
+    }
+  
+    .form-header {
+      padding: 10px;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .header-logo-5 {
+      width: 70px;
+      height: auto;
+    }
+  
+    .form-header-text h2 {
+      font-size: 22px;
+    }
+  
+    .form-header-text p {
+      font-size: 14px;
+    }
+  
+    /* Stack table elements as blocks */
+    .custom-table,
+    .custom-table thead,
+    .custom-table tbody,
+    .custom-table th,
+    .custom-table td,
+    .custom-table tr {
+      display: block;
+      width: 100%;
+    }
+  
+    .custom-table thead {
+      display: none; /* Hide table headers */
+    }
+  
+    .custom-table tr {
+      margin-bottom: 20px;
+      border: 2px solid #ccc;
+      padding: 10px;
+      background: #fff;
+      border-radius: 6px;
+    }
+  
+    .custom-table td {
+      text-align: left;
+      padding: 8px 5px;
+      font-size: 14px;
+      position: relative;
+    }
+  
+    .custom-table td::before {
+        content: attr(data-label) ": ";
+        font-weight: bold;
+        color: black;
+        display: inline;     /* Same line */
+        margin-right: 4px;   /* Space after label */
+    }      
+  
+    .upload-btn,
+    .remove-btn {
+      width: 100%;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+  
+    .td-document-name {
+      font-size: 15px;
+    }
+
+  }
+ 

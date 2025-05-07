@@ -115,7 +115,7 @@ include '../components/php/header.php';
           <div class="row2">
             <div class="form-group">
                 <label for="track-strand">Track/Strand:</label>
-                <input type="text" id="track-strand" name="track_strand" required placeholder="Enter Your Senior High School Track/Strand"
+                <input type="text" id="track-strand" name="track_strand" required placeholder="Enter Your SHS Track/Strand"
                        oninput="this.value = this.value.toUpperCase();"     
                        value="<?= htmlspecialchars($_SESSION['track_strand'] ?? '') ?>">
             </div>

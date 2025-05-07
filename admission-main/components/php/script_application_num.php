@@ -10,12 +10,13 @@ $timeSubmitted = 'Not available';
 $admissionNumber = 'Not available';
 
 if ($googleId !== null) {
+    $hashedGoogleId = hash('sha256', $googleId);
     try {
         // Query to check if an application already exists for this Google ID
         $stmt = $pdo->prepare("SELECT email, date_submitted, time_submitted, admission_number 
                                FROM applications 
                                WHERE google_id = ?");
-        $stmt->execute([$googleId]);
+        $stmt->execute([$hashedGoogleId]);
 
         $result = $stmt->fetch();
 

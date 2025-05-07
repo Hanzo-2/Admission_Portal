@@ -40,8 +40,8 @@ if (isset($_SESSION['user'])) {
         <div class="modal-content">
             <p>Are you sure you want to log out?</p>
             <div class="modal-buttons">
-                <button id="cancelLogoutBtn">No, Log Me In</button>
-                <button id="confirmLogoutBtn">Yes, Log Me Out</button>
+                <button id="cancelLogoutBtn">Keep Me Logged In</button>
+                <button id="confirmLogoutBtn">Log Me Out</button>
             </div>
         </div>
     </div>
@@ -72,7 +72,7 @@ header {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    padding: 2px 10px;
+    padding: 5px;
     background: #43b14b;
     border-bottom: 8px solid #ffde59;
     flex-wrap: wrap;
@@ -84,14 +84,17 @@ header {
     justify-content: space-between; 
     width: 100%;
     font-weight: bolder;
-    padding: 10px;
-    gap: 10px;
+}
+
+.header-content img {
+    width: clamp(80px, 12vw, 120px);
+    height: clamp(80px, 12vw, 120px);
+    padding: clamp(10px, 4vw, 15px);
 }
 
 .branding {
     display: flex;
     align-items: center;
-    gap: 10px;
 }
 
 .branding p {
@@ -99,8 +102,6 @@ header {
 }
 
 .branding img {
-    width: clamp(80px, 12vw, 120px);
-    height: clamp(80px, 12vw, 120px);
     border-radius: 100%;
 }
 
@@ -112,8 +113,6 @@ header {
 }
 
 .profile-icon {
-    width: clamp(80px, 12vw, 120px);
-    height: clamp(80px, 12vw, 120px);
     cursor: pointer;
     border-radius: 100%;
 }
@@ -142,6 +141,9 @@ header {
 }
 
 .profile-dropdown.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
     display: block;
 }
 
@@ -167,23 +169,20 @@ header {
     text-align: center;
 }
 
-#logout-button:hover {
-    color: #FF073A;
+#logout-button {
+    transition: transform 0.2s ease;
 }
 
-header img {
-    width: clamp(50px, 8vw, 100px);
-    padding: 10px;
-    margin-right: 12px;
+#logout-button:hover {
+    transform: scale(1.05);
+    color: #FF073A;
 }
 
 header p {
     color: #ffde59;
-    font-size: clamp(20px, 4vw, 40px);
     font-family: Georgia, serif;
 }
 
-/* Reuse modal styling */
 #logoutConfirmModal.modal-overlay {
     display: none;
     position: fixed;
@@ -198,15 +197,22 @@ header p {
 }
 
 #logoutConfirmModal .modal-content {
-    background: white;
-    border-top: 30px solid red;
-    padding: 30px;
+    background: rgba(255, 255, 225, 1);
+    border: 4px solid #FF073A;
     border-radius: 10px;
-    text-align: center;
+    padding: clamp(20px, 5vw, 40px);
     max-width: 500px;
     width: 90%;
-    box-shadow: 0 0 10px rgba(0,0,0,0.25);
-    font-family: Arial, sans-serif;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+#logoutConfirmModal .modal-content p {
+    font-size: clamp(24px, 9vw, 40px);
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
 }
 
 #logoutConfirmModal p {
@@ -228,29 +234,76 @@ header p {
     width: 48%; /* Ensures the buttons take up nearly half of the modal's width */
 }
 
-/* Specific styles for the buttons */
+.modal-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.modal-buttons button {
+    flex: 1 1 45%;
+    padding: clamp(10px, 2vw, 14px);
+    font-size: clamp(14px, 2vw, 18px);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.modal-buttons button:hover {
+    transform: scale(1.05);
+}
+
+.modal-buttons button:active {
+    transform: scale(0.95);
+}
+
 #confirmLogoutBtn {
     background-color: #f44336;
     border: 2px solid darkred;
+    font-weight: bold;
     color: white;
-}
-
-#confirmLogoutBtn:hover {
-    color: #FF073A;
 }
 
 #cancelLogoutBtn {
     background-color: #4CAF50;
     border: 2px solid darkgreen;
+    font-weight: bold;
     color: white;
 }
 
-#cancelLogoutBtn:hover {
-    color: #30db3f;
+#cancelLogoutBtn:hover, #confirmLogoutBtn:hover {
+    color: black;
 }
 
-#cancelLogoutBtn:before {
-    left: auto;
-    right: 0;
+.fade-in {
+    animation: dropdownFadeIn 0.2s ease forwards;
+}
+
+.fade-out {
+    animation: dropdownFadeOut 0.2s ease forwards;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes dropdownFadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dropdownFadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
 }
 </style>

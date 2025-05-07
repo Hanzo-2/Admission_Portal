@@ -11,7 +11,7 @@ html, body {
 }
 
 body {
-    background: url('../images/oldspistbg.png') no-repeat center center fixed; /* Background Image */
+    background: url('../images/oldspistbg.png') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -23,20 +23,19 @@ body {
     flex: 1;
 }
 
-.form-container {
+.form-container {    
     font-family: Georgia, serif;
-    max-width: 1200px; 
+    max-width: 1200px;
     width: 100%;
     margin: 75px auto;
-    background: rgba(255, 255, 225, 0.91); /* Semi-transparent for readability */
-    padding: 40px 55px 50px;
+    background: rgba(255, 255, 225, 0.91);
+    padding: clamp(5px, 2vw, 60px) !important;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
-    position: relative; /* Ensures child elements like ::before are positioned correctly */
+    position: relative;
 }
 
-/* Background Logo Effect - Behind Form */
 .form-container::before {
     content: "";
     position: absolute;
@@ -47,11 +46,10 @@ body {
     height: 80%;
     background: url('../images/spistlogo.png') no-repeat center center;
     background-size: contain;
-    z-index: -1; /* Push behind the form */
-    pointer-events: none; /* Allows interaction with form */
+    z-index: -1;
+    pointer-events: none;
 }
 
-/* Ensuring Form Content Appears on Top */
 .form-content {
     position: relative;
     z-index: 1;
@@ -61,7 +59,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding-bottom: 35px;
+    padding-bottom: clamp(20px, 4vw, 35px);
 }
 
 .form-header-text {
@@ -71,100 +69,120 @@ body {
 
 .form-header-text h2 {
     color: #333;
-    font-size: 50px;
+    font-size: clamp(14px, 6vw, 35px);
     margin-top: 10px;
     margin-bottom: 5px;
 }
 
 .form-header-text p {
     color: #666;
-    font-size: 20px;
+    font-size: clamp(10px, 3vw, 18px);
     margin-bottom: 5px;
-} 
+}
+
+.header-logo-6 {
+    width: clamp(40px, 8vw, 80px);
+    height: auto;
+    margin-left: 10px;
+}
 
 .th-header {
-    font-size: 25px;
+    font-size: clamp(10px, 4vw, 18px) !important;
     font-weight: bolder;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
 .p-reminder {
-    font-size: 22px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
     text-align: center;
     padding: 10px;
     margin-top: 10px;
     color: green;
+    font-size: clamp(11.5px, 3.5vw, 22px);
 }
 
-#review-table2 {
-    margin-top: -2px; /* Moves second table upwards */
-}
-
-.tr-td-labels td{
-    font-weight: bolder; 
-    font-size: 20px;
+.tr-td-labels td {
+    font-weight: bolder;
+    font-size: clamp(10px, 4vw, 20px) !important;
 }
 
 .tr-td-remarks, .tr-td-number {
     text-align: center !important;
+    padding: 15px !important;
 }
 
 tr {
     width: 100%;
 }
 
-.td-1, .td-2, .td-3 {
-    width: 16.67%;
-}
-
 .td-1 {
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .td-2 {
     font-weight: bolder;
     text-transform: uppercase;
-    font-size: 17px;
 }
 
-.td-4{
+.td-4 {
     font-weight: bolder;
-    font-size: 17px;
 }
 
-/* General Table Styling */
-.custom-table {
+.custom-table,
+.custom-table3 {
     width: 100%;
+    margin-top: clamp(8px, 2vw, 15px);
     border-collapse: collapse;
-    margin-top: 20px;
-    font-family: Arial, sans-serif;
     border: 3px solid black;
+    font-family: Arial, sans-serif;
+    background-color: white;
 }
 
-/* Table Header */
 .custom-table thead tr {
     background-color: #43b14b;
     color: white;
 }
 
-.custom-table th {
-    padding: 9px;
-    border: 3px solid black;
-    text-align: left;
-}
-
+.custom-table th,
 .custom-table td {
-    padding: 9px;
+    font-size: clamp(4px, 2.6vw, 17px);
+    padding: clamp(2px, 1.2vw, 10px);
     border: 2px solid lightgrey;
     text-align: left;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
-.custom-table tbody {
-    background-color: white;
+.custom-table th {
+    border: 3px solid black;
+    padding-top: clamp(4px, 2vw, 10px);;
+    padding-bottom: clamp(4px, 2vw, 10px);;
+}
+
+.custom-table-td3 {
+    background-color: #4CAF50;
+    border: 3px solid black;
+    color: white;
+    padding: clamp(10px, 4vw, 20px);
+    text-align: left;
+    font-weight: bold;
+    font-size: clamp(18px, 3vw, 25px);
+}
+
+.custom-table-text {
+    text-align: left;
+    padding: 25px;
+    padding-top: 15px;
+    color: #333;
+    font-size: clamp(10px, 3.5vw, 17px);
+}
+
+.custom-table-checkbox {
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 15px;
 }
 
 .remove-btn {
@@ -172,90 +190,33 @@ tr {
     color: white;
     border: none;
     font-weight: bold;
-    width: 40%;
+    width: 100%;
+    font-size: clamp(10px, 2.8vw, 14px);
 }
 
 .remove-btn:hover {
     background-color: darkred;
 }
 
-/* Centering the Table */
 .container {
     width: 100%;
     margin: auto;
     text-align: center;
 }
 
-.custom-table3 {
-    margin-top: 10px;
-    width: 100%; 
-    border-collapse: collapse; 
-    background-color: white; 
-    border: 3px solid black;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.custom-table-td3 {
-    background-color: #4CAF50;
-    border: 3px solid black; 
-    color: white; 
-    padding: 20px; 
-    text-align: left;
-    font-weight: bold;
-    font-size: 25px;
-}
-
-.custom-table-text {
-    text-align: left; 
-    padding: 25px;
-    padding-top: 15px; 
-    font-size: 17px; 
-    color: #333;
-}
-
-.custom-table-checkbox {
-    padding: 15px; 
-    text-align: left;
-    margin-bottom: 15px;
-}
-
-.checkbox {
-    transform: scale(1.5); 
-    margin-right: 10px;
-}
-
-.checkbox-text {
-    font-size: 18px;
-}
-
 .btn-view {
     background-color: #007bff;
     color: white;
-    padding: 4px 10px;
-    border-radius: 4px;
+    padding: 5px 10px;
+    border-radius: 8px;
     text-decoration: none;
-    font-size: 12px;
+    font-size: clamp(16px, 3.5vw, 30px);
 }
+
 .btn-view:hover {
     background-color: #0056b3;
 }
 
-/* Modal Button Styles */
-.modal-content button {
-    display: inline-flex; /* Makes the buttons align horizontally */
-    justify-content: center;
-    align-items: center;
-    padding: 10px 15px;
-    margin: 10px;
-    min-width: 120px;  /* Optional: to ensure all buttons have similar width */
-    cursor: pointer;
-    background-color: green;
-    color: white;
-    border-radius: 5px;
-    border: none;
-}
-
-/* Ensure modal is centered and takes up full viewport */
 .modal {
     display: flex;
     justify-content: center;
@@ -269,18 +230,53 @@ tr {
     z-index: 9999;
 }
 
-/* Modal Content should have a max-width */
-.modal-content {
-    width: 80%;
-    max-width: 500px;  /* Maximum width for larger screens */
-    padding: 20px;
-    background: white;
+.modal-review {
+    max-width: 600px;
+    max-height: 90vh; 
+    overflow-y: auto; 
+    padding: clamp(10px, 2.5vw, 20px);
+    background: rgba(255, 255, 225, 1);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 4px solid #FF073A;
+    animation: modalFadeIn 0.3s ease-out;
 }
+
+.modal-review p {
+    font-size: clamp(15px, 2.5vw, 25px);
+    text-align: center;
+    margin: 15px 0px 10px 0px;
+    color: #333;
+}
+
+.modal-review button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px clamp(15px, 10.5vw, 30px);
+    cursor: pointer;
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-size: clamp(10px, 4.5vw, 21px);
+    letter-spacing: 1px;
+    margin: clamp(7px, 1vw, 25px);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-review button:hover {
+    background-color: darkgreen;
+    transform: scale(1.05);
+}
+
+.modal-review button:active {
+    transform: scale(0.98);
+}
+
 
 .edit-buttons {
     gap: 10px;
@@ -295,17 +291,63 @@ tr {
 }
 
 #modal-cancel:hover, #go-back-btn:hover {
-    color: #FF073A;
-}
-
-#go-back-btn::before{
-    transition: none;
+    background-color: #cc0000;
+    color: white;
 }
 
 #modal-edit {
     background-color: #0056b3;
+    width: 65%;
 }
 
-#modal-edit:hover{
-    color: #007bff;
+#modal-edit:hover {
+    background-color: #004494;
+    color: white;
 }
+
+#final-submit-button {
+    width: 85%;
+}
+
+#go-back-btn::before {
+    transition: none;
+}
+
+.checkbox {
+    transform: scale(1.6);
+    margin-right: 5px;
+}
+
+.checkbox-text {
+    font-size: clamp(10px, 2.8vw, 16px);
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 520px) {
+    .form-container {
+        padding: clamp(0px, 1vw, 60px) !important;
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+    }
+}
+
+@media (max-width: 647px) {
+    .checkbox {
+        transform: scale(1.3);
+    }
+
+    .form-container {
+        margin: 40px auto;
+    }
+}
+

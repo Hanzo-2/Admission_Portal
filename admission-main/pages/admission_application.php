@@ -32,7 +32,7 @@ include '../components/php/header.php';
     <section>
       <div class="form-container">
         <div class="form-header">
-          <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo">
+          <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo-1">
             <div class="form-header-text">
               <h2>Admission Application</h2>
               <p>Welcome to Southern Philippines Institute of Science and Technology</p>

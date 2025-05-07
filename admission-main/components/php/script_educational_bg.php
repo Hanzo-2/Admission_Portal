@@ -1,4 +1,7 @@
 <?php
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['lrn_num'] = $_POST['lrn_num'] ?? '';
     $_SESSION['school_type'] = $_POST['school_type'] ?? '';

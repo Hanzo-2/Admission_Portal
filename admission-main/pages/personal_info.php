@@ -22,7 +22,7 @@ include '../components/php/header.php';
     <section>
       <div class="form-container">
         <div class="form-header">
-          <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo">
+          <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo-2">
             <div class="form-header-text">
               <h2>Personal Information</h2>
               <p>First Semester, 2025 - 2026</p>
@@ -207,7 +207,6 @@ include '../components/php/header.php';
           </a>
             <button type="submit">Next</button>
         </div>
-      
       </form>
     </div>
   </section>

@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Insert into database and get admission number
         try {
+            $hashedGoogleId = hash('sha256', $_SESSION['google_id']);
             $stmt = $pdo->prepare("INSERT INTO applications 
                 (applicant_name, email, application_type, preferred_course, date_submitted, time_submitted, google_id) 
                 VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -42,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $preferredCourse,
                 $dateSubmitted,
                 $timeSubmitted,
-                $_SESSION['google_id'] // Store the Google ID
+                $hashedGoogleId
             ]);
             $lastId = $pdo->lastInsertId();
             $_SESSION['admission_number'] = $lastId;

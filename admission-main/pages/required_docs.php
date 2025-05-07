@@ -22,7 +22,7 @@ include '../components/php/header.php';
     <section>
       <div class="form-container">
         <div class="form-header">
-          <img src="../assets/images/document_logo.png" alt="Document Logo" width="90px" height="120px">
+          <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo-5">
             <div class="form-header-text">
               <h2>Required Documents</h2>
               <p>Please upload the required documents.</p>
@@ -60,32 +60,33 @@ include '../components/php/header.php';
                       $doc = $docUploaded ? $_SESSION['uploaded_docs'][$sessionKey] : null;
                   ?>
 
-                <tr>
-                  <td><?= $i ?>.</td>
-                    <td class="td-document-name">
+                  <tr>
+                    <td data-label="#"> <?= $i ?>. </td>
+
+                    <td data-label="Document Name" class="td-document-name">
                       <?php if ($i === 1): ?>
-                      <strong class="text-danger"><?= $docLabels[$i] ?></strong>
+                        <strong class="text-danger"><?= $docLabels[$i] ?></strong>
                       <?php else: ?>
-                      <?= $docLabels[$i] ?>
+                        <?= $docLabels[$i] ?>
                       <?php endif; ?>
                     </td>
 
-                    <td class="attachment attachment-<?= $i ?>">
+                    <td data-label="Attachment" class="attachment attachment-<?= $i ?>">
                       <?php if ($docUploaded): ?>
-                      <a href="<?= $baseURL . '/' . ltrim(str_replace('../', '', $doc['path']), '/') ?>" target="_blank" class="text-primary">View</a><br>
+                        <a href="<?= $baseURL . '/' . ltrim(str_replace('../', '', $doc['path']), '/') ?>" target="_blank" class="text-primary">View</a><br>
                       <?php else: ?>
-                      No File
+                        No File
                       <?php endif; ?>
                     </td>
 
-                    <td>
+                    <td data-label="Upload">
                       <div class="upload-wrapper">
-                      <input type="file" id="file-<?= $i ?>" name="file_<?= $i ?>" accept=".png, .jpg, .jpeg, .pdf" onchange="uploadFile(this, <?= $i ?>)">
-                      <label for="file-<?= $i ?>" class="upload-btn">📁 Choose File</label>
-                      <span class="remove-btn" id="remove-button-<?= $i ?>" style="<?= $docUploaded ? 'display: inline;' : 'display: none;' ?>" onclick="removeFile(<?= $i ?>)">Remove</span>
+                        <input type="file" id="file-<?= $i ?>" name="file_<?= $i ?>" accept=".png, .jpg, .jpeg, .pdf" onchange="uploadFile(this, <?= $i ?>)">
+                        <label for="file-<?= $i ?>" class="upload-btn">📁 Choose File</label>
+                        <span class="remove-btn" id="remove-button-<?= $i ?>" style="<?= $docUploaded ? 'display: inline;' : 'display: none;' ?>" onclick="removeFile(<?= $i ?>)">Remove</span>
                       </div>
                     </td>
-                    
+
                     <?php
                       $statusClass = 'text-secondary';
                       $remarkText = 'Waiting for upload';
@@ -99,11 +100,10 @@ include '../components/php/header.php';
                       }
                     ?>
 
-                    <td class="remark-<?= $i ?> <?= $statusClass ?>">
-                        <?= $remarkText ?>
+                    <td data-label="Remarks" class="remark-<?= $i ?> <?= $statusClass ?>">
+                      <?= $remarkText ?>
                     </td>
-
-                </tr>
+                  </tr>
 
                 <?php endfor; ?>
 

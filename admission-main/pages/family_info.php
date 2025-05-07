@@ -22,7 +22,7 @@ include '../components/php/header.php';
   <section>
     <div class="form-container">
       <div class="form-header">
-        <img src="../assets/images/document_logo.png" alt="Document Logo" width="65px" height="75px">
+        <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo-4">
         <div class="form-header-text">
           <h2 class="form-title">Family Information</h2>
           <p>First Semester, 2025 - 2026</p>
@@ -65,7 +65,7 @@ include '../components/php/header.php';
                 <div class="form-group">
                   <label for="father-contact">Contact Number:</label>
                     <input type="tel" id="father-contact" name="father_contact" maxlength="13" 
-                           placeholder="Enter Phone number"
+                           placeholder="Enter Phone Number"
                            value="<?= htmlspecialchars($_SESSION['father_contact'] ?? '') ?>"
                            oninput="formatvalidatePhoneNumber(this)">
                 </div>
@@ -106,7 +106,7 @@ include '../components/php/header.php';
                 <div class="form-group">
                   <label for="mother-contact">Contact Number:</label>
                     <input type="tel" id="mother-contact" name="mother_contact" maxlength="13" 
-                           placeholder="Enter Phone number"
+                           placeholder="Enter Phone Number"
                            value="<?= htmlspecialchars($_SESSION['mother_contact'] ?? '') ?>" 
                            oninput="formatvalidatePhoneNumber(this)">
                 </div>
@@ -139,7 +139,7 @@ include '../components/php/header.php';
             <div class="row">
               <div class="form-group">
                 <label for="guardian-address">Present Address:</label>
-                  <input type="text" id="guardian-address" name="guardian_address" required placeholder="Enter Guardian's Present Address"
+                  <input type="text" id="guardian-address" name="guardian_address" required placeholder="Enter Present Address"
                           oninput="this.value = this.value.toUpperCase();"
                           value="<?= htmlspecialchars($_SESSION['guardian_address'] ?? '') ?>">
               </div>
@@ -187,7 +187,7 @@ include '../components/php/header.php';
               <div class="form-group">
                 <label for="guardian-contact">Contact Number:</label>
                   <input type="tel" id="guardian-contact" name="guardian_contact" maxlength="13" 
-                         placeholder="Enter Phone number" required
+                         placeholder="Enter Phone Number" required
                          value="<?= htmlspecialchars($_SESSION['guardian_contact'] ?? '') ?>"
                          oninput="formatvalidatePhoneNumber(this)">
               </div>
@@ -214,7 +214,7 @@ include '../components/php/header.php';
               <div class="form-group">
                 <label class="emergency-complete-name" for="emergency-complete-name">Complete Name:</label>
                   <div class="input-container-emergency">
-                    <input type="text" id="emergency-complete-name" name="emergency_complete_name" required placeholder="Enter Emergency Contact Name or Select from List"
+                    <input type="text" id="emergency-complete-name" name="emergency_complete_name" required placeholder="Enter Name or Select from List"
                            value="<?= htmlspecialchars($_SESSION['emergency_complete_name'] ?? '') ?>">
                       <select name="emergency_complete_name_select" id="emergency_complete_name_select">
                         <option value="">Select to Autofill</option>
@@ -230,7 +230,7 @@ include '../components/php/header.php';
             <div class="row">
                 <div class="form-group">
                     <label class="emergency-complete-address" for="emergency-complete-address">Complete Address:</label>
-                    <input type="text" id="emergency-complete-address" name="emergency_complete_address" required placeholder="Enter Emergency Contact Address"
+                    <input type="text" id="emergency-complete-address" name="emergency_complete_address" required placeholder="Enter Complete Address"
                            oninput="this.value = this.value.toUpperCase();"
                            value="<?= htmlspecialchars($_SESSION['emergency_complete_address'] ?? '') ?>">
                 </div>
@@ -240,7 +240,7 @@ include '../components/php/header.php';
                 <div class="form-group">
                     <label for="emergency-contact">Contact Number:</label>
                     <input type="tel" id="emergency-contact" name="emergency_contact" maxlength="13" 
-                           placeholder="Enter Phone number" required 
+                           placeholder="Enter Phone Number" required 
                            value="<?= htmlspecialchars($_SESSION['emergency_contact'] ?? '') ?>"
                            oninput="formatvalidatePhoneNumber(this)">
                   </div>

@@ -21,9 +21,10 @@ if (isset($_GET['code'])) {
         ];
 
         $googleId = $_SESSION['google_id'];
+        $hashedGoogleId = hash('sha256', $googleId);
         try {
             $stmt = $pdo->prepare("SELECT * FROM applications WHERE google_id = ?");
-            $stmt->execute([$googleId]);
+            $stmt->execute([$hashedGoogleId]);
             $application = $stmt->fetch();
 
             if ($application) {

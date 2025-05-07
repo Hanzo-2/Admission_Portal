@@ -137,7 +137,7 @@ body {
     background-size: 20px;
     border: 2px solid darkgrey;
     border-radius: 4px;
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-size: clamp(13.5px, 3vw, 30px);
     width: 85%;
     appearance: none;
 }
@@ -168,9 +168,8 @@ optgroup {
     justify-content: flex-end !important;
 }
 
-/* MEDIA QUERIES */
-.header-logo {
-    width: clamp(50px, 8vw, 90px);
+.header-logo-1 {
+    width: clamp(70px, 8vw, 90px);
     height: auto;
     object-fit: contain;
 }
@@ -184,7 +183,7 @@ optgroup {
 @media (max-width: 1024px) {
     .form-container {
         padding: 30px;
-        max-width: 90%;
+        max-width: 95%;
     }
     .form-group select {
         width: 100%;
@@ -210,15 +209,15 @@ optgroup {
         font-size: 0.9rem;
     }
 
-    .header-logo {
-        width: 50px;
+    .header-logo-1 {
+        width: 70px;
         height: auto;
-        margin-top: -55px;
+        margin-top: -30px;
     }
 }
 
 @media (min-width: 446px) and (max-width: 480px) {
-    .header-logo {
+    .header-logo-1 {
         margin-top: 0px !important;
     }
 }
