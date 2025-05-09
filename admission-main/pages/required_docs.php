@@ -14,6 +14,10 @@
 
 <?php 
 session_start();
+if (empty($_SESSION['application_type']) || empty($_SESSION['preferred_course'])) {
+  header('Location: admission_application.php');
+  exit();
+}
 include '../components/php/header.php';
 ?>
 
@@ -22,14 +26,20 @@ include '../components/php/header.php';
     <section>
       <div class="form-container">
         <div class="form-header">
-          <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo-5">
+          <img src="../assets/images/docu-logo-5.png" alt="Document Logo" class="header-logo-5">
             <div class="form-header-text">
               <h2>Required Documents</h2>
               <p>Please upload the required documents.</p>
               <p>Only JPEG (.jpg), PNG (.png), and PDF (.pdf) formats are accepted, with a maximum file size of 1 mb per upload.</p>
             </div>
         </div>
-    
+            <div class="button-container-return">
+                <?php if (isset($_GET['from']) && $_GET['from'] === 'review'): ?>
+                  <a href="review_info.php">
+                    <button type="button" id="return-btn">&#8617; Return to Review Information</button>
+                  </a>
+                <?php endif; ?>
+            </div>
         <form id="uploadForm" action="required_docs.php" method="post" enctype="multipart/form-data">
           <?php $baseURL = "//" . $_SERVER['HTTP_HOST']; // http or https will be auto handled ?>
             <div class="container">

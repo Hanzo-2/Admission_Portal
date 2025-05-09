@@ -152,7 +152,7 @@ function formatvalidateTelephone(input) {
 }
 // Function to format telephone number as XX-XXXX-XXXX - end
 
-function validateEmail(input){
+function validateEmail(input) {
     let value = input.value.trim();
     
     // Basic validation: check if it has @ and at least one . after @
@@ -162,7 +162,11 @@ function validateEmail(input){
     if (atIndex > 0) { // Make sure @ is not the first character
         let domainPart = value.substring(atIndex + 1);
         if (domainPart.includes('.')) {
-            isValid = true;
+            // Check if there's at least two characters after the last dot
+            let lastDotIndex = domainPart.lastIndexOf('.');
+            if (lastDotIndex > 0 && domainPart.length - lastDotIndex > 2) {
+                isValid = true;
+            }
         }
     }
 
@@ -175,3 +179,4 @@ function validateEmail(input){
         input.style.borderColor = "red"; // Invalid email
     }
 }
+

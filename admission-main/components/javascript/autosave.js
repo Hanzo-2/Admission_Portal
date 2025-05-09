@@ -60,8 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-
-
       // Continue with autosave (value might be empty if invalid)
       fetch('../components/php/autosave.php', {
         method: 'POST',

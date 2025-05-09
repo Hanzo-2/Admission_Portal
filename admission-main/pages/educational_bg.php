@@ -22,7 +22,7 @@ include '../components/php/header.php';
   <section>
     <div class="form-container">
       <div class="form-header">
-        <img src="../assets/images/document_logo.png" alt="Document Logo" width="70px" height="90px">
+        <img src="../assets/images/docu-logo-3.png" alt="Document Logo" width="70px" height="90px">
          <div class="form-header-text">
           <h2>Educational Background</h2>
            <p>Last School Attended (Senior High School)</p>
@@ -31,6 +31,13 @@ include '../components/php/header.php';
 
       <form action="educational_bg.php" method="post">
         <div class="form-grid">
+            <div class="button-container-return">
+                <?php if (isset($_GET['from']) && $_GET['from'] === 'review'): ?>
+                  <a href="review_info.php">
+                    <button type="button" id="return-btn">&#8617; Return to Review Information</button>
+                  </a>
+                <?php endif; ?>
+            </div>
           <div class="row">
             <div class="row2">
               <div class="form-group">

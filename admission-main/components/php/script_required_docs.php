@@ -1,6 +1,32 @@
 <?php
 session_start();
 
+// Redirect if required previous session data is missing (from family_info.php)
+$requiredPreviousFields = [
+    'guardian_firstname',
+    'guardian_surname',
+    'guardian_address',
+    'guardian_province',
+    'guardian_city',
+    'guardian_contact',
+    'emergency_complete_name',
+    'emergency_complete_address',
+    'emergency_contact'
+];
+
+foreach ($requiredPreviousFields as $field) {
+    if (empty($_SESSION[$field]) && $_SESSION[$field] !== '0') {
+        header('Location: family_info.php');
+        exit();
+    }
+}
+
+// Define sanitization helpers
+function sanitizeInput($input) {
+    return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
+}
+
+// Handle file upload and processing
 $uploadDir = __DIR__ . '/../../uploads-req-docs/';
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
@@ -12,11 +38,13 @@ $maxFileSize = 1 * 1024 * 1024; // 1MB
 
 header('Content-Type: application/json');
 
+// Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
         $googleId = $_SESSION['google_id'] ?? 'unknown';
 
+        // Sanitize POST data before processing
         if ($action === 'upload' && isset($_FILES)) {
             foreach ($_FILES as $key => $file) {
                 $index = (int) str_replace('file_', '', $key);
@@ -69,6 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 if ($serverPath && file_exists($serverPath)) {
                     unlink($serverPath);
+                    unset($_SESSION['submitted']);
                 }
 
                 unset($_SESSION['uploaded_docs'][$googleId][$key]);
@@ -82,6 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($action === 'validate') {
             if (isset($_SESSION['uploaded_docs'][$googleId]['file_1'])) {
                 echo json_encode(['success' => true]);
+                $_SESSION['submitted'] = true;
             } else {
                 echo json_encode(['success' => false, 'error' => 'Upload FORM 138 to continue']);
             }
@@ -94,7 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
     }
-
     // If no valid `action` was matched
     echo json_encode(['success' => false, 'error' => 'Invalid request.']);
     exit;

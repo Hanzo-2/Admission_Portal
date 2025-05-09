@@ -1,7 +1,7 @@
 <?php
 
-// Redirect if critical session data is missing
-if (empty($_SESSION['application_type']) && empty($_SESSION['preferred_course'])) {
+// Redirect if either application_type or preferred_course is missing
+if (empty($_SESSION['application_type']) || empty($_SESSION['preferred_course'])) {
     header('Location: admission_application.php');
     exit();
 }
@@ -41,9 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'personal_firstname',
         'personal_middlename',
         'personal_surname',
-        'birthplace',
         'nationality',
-        'religion'
     ];
 
     // Sanitize and store all inputs in session

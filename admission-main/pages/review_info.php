@@ -27,6 +27,9 @@ include '../components/php/header.php';
         <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo-6">
          <div class="form-header-text">
           <h2>Review Information</h2>
+          <p>Please take a moment to review your application details below. 
+            <br>If you notice anything incorrect or missing, you can go back to the previous sections to make changes. 
+            <br>Once you submit, you won't be able to edit or resubmit, so be sure everything is accurate before continuing.</p>
          </div>
       </div>
       <form id="uploadForm" action="review_info.php" method="POST">
@@ -62,7 +65,7 @@ include '../components/php/header.php';
 
                 <thead> <!--Personal Information - Start -->
                     <tr>
-                        <th colspan="6" class="th-header">Student Information</th>
+                        <th colspan="6" class="th-header">Personal Information</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -360,84 +363,26 @@ include '../components/php/header.php';
 
         <div class="button-container">
             <a href="required_docs.php"> 
-                <button id="back-btn" type="button">Back</button> 
+                <button type="button" id="back-btn" type="button">Back</button> 
             </a>
             <button type="button" id="submit-btn">Submit</button>
         </div>
-     </form>
 
-     <!-- Modal: Confirmation -->
-     <div id="submitModal" class="modal" style="display: none;">
-        <div class="modal-review">
-            <p><strong>Once submitted, <br> you can't make changes. <br>Do you want to continue?</strong></p>
-            <button type="button" id="final-submit-button">SUBMIT</button>
-            <button id="modal-edit">EDIT</button>
-            <button id="modal-cancel">CANCEL</button>
-        </div>
-    </div>
-
-        <!-- Modal: Edit Options -->
-        <div id="editModal" class="modal" style="display: none;">
+        <div id="submitModal" class="modal" style="display: none;">
             <div class="modal-review">
-                <p><strong>Which page would you like to edit?</strong></p>
-                <button onclick="location.href='admission_application.php'">#1 Admission Application</button>
-                <button onclick="location.href='personal_info.php'">#2 Personal Information</button>
-                <button onclick="location.href='educational_bg.php'">#3 Educational Background</button>
-                <button onclick="location.href='family_info.php'">#4 Family Information</button>
-                <button onclick="location.href='required_docs.php'">#5 Required Documents</button>
-                <button id="go-back-btn">Go Back</button>
+                <p>Submitting will finalize your application, <br>and no further changes can be made.<br><br><strong>Are you sure you want to continue?</strong></p>
+                <button type="button" id="final-submit-button">SUBMIT</button>
+                <button type="button" id="modal-edit">EDIT</button>
+                <button type="button" id="modal-cancel">CANCEL</button>
             </div>
         </div>
+     </form>
     </div>
   </section>
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const checkbox = document.getElementById('confirm-check');
-    const submitBtn = document.getElementById('submit-btn');
-    const form = document.getElementById('uploadForm');
-    const submitModal = document.getElementById('submitModal');
-    const editModal = document.getElementById('editModal');
-
-    const cancelBtn = document.getElementById('modal-cancel');
-    const editBtn = document.getElementById('modal-edit');
-    const goBackBtn = document.getElementById('go-back-btn');
-
-    submitBtn.addEventListener('click', function () {
-    const errorMessage = document.getElementById('checkbox-error');
-
-        if (checkbox.checked) {
-            errorMessage.style.display = 'none';
-            submitModal.style.display = 'flex';
-        } else {
-            errorMessage.style.display = 'block';
-        }
-    });
-
-    cancelBtn.addEventListener('click', function () {
-        submitModal.style.display = 'none';
-    });
-
-    editBtn.addEventListener('click', function () {
-        submitModal.style.display = 'none';
-        editModal.style.display = 'flex';
-    });
-
-    goBackBtn.addEventListener('click', function () {
-        editModal.style.display = 'none';
-        submitModal.style.display = 'flex';
-    });
-
-    // Optional: Close modals if user clicks outside content
-    window.addEventListener('click', function (e) {
-        if (e.target === submitModal) submitModal.style.display = 'none';
-        if (e.target === editModal) editModal.style.display = 'none';
-    });
-});
-</script>
-
 <script src="../components/javascript/check_session_interval.js"></script>
 <script src="../components/javascript/review_info.js"></script>
+<?php include '../components/php/modal_review_info.php'; ?>
 <?php include '../components/php/modal_inactivity.php'; ?>
 </body>
 <?php include '../components/php/footer.php'; ?>

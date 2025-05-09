@@ -1,4 +1,9 @@
 <?php
+if (isset($_SESSION['formsubmitted']) && $_SESSION['formsubmitted'] === true) {
+    header("Location: application_num.php");
+    exit();
+}
+
 // Disable page caching
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
@@ -21,10 +26,9 @@ if (isset($_GET['code'])) {
         ];
 
         $googleId = $_SESSION['google_id'];
-        $hashedGoogleId = hash('sha256', $googleId);
         try {
             $stmt = $pdo->prepare("SELECT * FROM applications WHERE google_id = ?");
-            $stmt->execute([$hashedGoogleId]);
+            $stmt->execute([$googleId]);
             $application = $stmt->fetch();
 
             if ($application) {

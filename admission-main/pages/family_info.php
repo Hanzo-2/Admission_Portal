@@ -22,7 +22,7 @@ include '../components/php/header.php';
   <section>
     <div class="form-container">
       <div class="form-header">
-        <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo-4">
+        <img src="../assets/images/docu-logo-4.png" alt="Document Logo" class="header-logo-4">
         <div class="form-header-text">
           <h2 class="form-title">Family Information</h2>
           <p>First Semester, 2025 - 2026</p>
@@ -31,6 +31,13 @@ include '../components/php/header.php';
 
       <form action="family_info.php" method="post">
         <div class="form-grid">
+            <div class="button-container-return">
+                <?php if (isset($_GET['from']) && $_GET['from'] === 'review'): ?>
+                  <a href="review_info.php">
+                    <button type="button" id="return-btn">&#8617; Return to Review Information</button>
+                  </a>
+                <?php endif; ?>
+            </div>
            <h2>Father's Name</h2>
 
             <div class="row">
@@ -177,9 +184,9 @@ include '../components/php/header.php';
             <script>
               window.guardianAppData = {
                 jsonData: <?= json_encode($data); ?>,
-                guardianProvince: <?= json_encode($guardianProvince); ?>,
-                guardianCity: <?= json_encode($guardianCity); ?>,
-                guardianBarangay: <?= json_encode($guardianBarangay); ?>,
+                guardianProvince: <?= json_encode($_SESSION['guardian_province'] ?? ''); ?>,
+                guardianCity: <?= json_encode($_SESSION['guardian_city'] ?? ''); ?>,
+                guardianBarangay: <?= json_encode($_SESSION['guardian_barangay'] ?? ''); ?>
               };
             </script>
     

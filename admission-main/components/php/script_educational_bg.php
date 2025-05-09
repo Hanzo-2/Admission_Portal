@@ -1,42 +1,63 @@
 <?php
+// Define all required fields from the previous page (e.g., personal info)
+$requiredPreviousFields = [
+    'personal_firstname',
+    'personal_surname',
+    'personal_birthdate',
+    'birthplace',
+    'sex',
+    'civilstatus',
+    'nationality',
+    'religion',
+    'address',
+    'selected_province',
+    'selected_city',
+    'selected_barangay',
+    'personal_contact'
+];
 
+// Check if any required session data is missing
+foreach ($requiredPreviousFields as $field) {
+    if (empty($_SESSION[$field]) && $_SESSION[$field] !== '0') {
+        header('Location: personal_info.php');
+        exit();
+    }
+}
 
+// Define sanitization helpers
+function sanitizeInput($input) {
+    return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_SESSION['lrn_num'] = $_POST['lrn_num'] ?? '';
-    $_SESSION['school_type'] = $_POST['school_type'] ?? '';
-    $_SESSION['student_type'] = $_POST['student_type'] ?? '';
-    $_SESSION['school_name'] = $_POST['school_name'] ?? '';
-    $_SESSION['school_address'] = $_POST['school_address'] ?? '';
-    $_SESSION['track_strand'] = $_POST['track_strand'] ?? '';
-    $_SESSION['year_graduation'] = $_POST['year_graduation'] ?? '';
-    $_SESSION['shs_average'] = $_POST['shs_average'] ?? '';
-
-    $requiredFields = [
-      'lrn_num',
-      'school_type',
-      'student_type',
-      'school_name',
-      'school_address',
-      'track_strand',
-      'year_graduation',
-      'shs_average'
+    // Define all fields to sanitize
+    $allFields = [
+        'lrn_num',
+        'school_type',
+        'student_type',
+        'school_name',
+        'school_address',
+        'track_strand',
+        'year_graduation',
+        'shs_average'
     ];
 
+    // Sanitize and store all inputs in session
+    foreach ($allFields as $field) {
+        $value = $_POST[$field] ?? '';
 
+        $_SESSION[$field] = sanitizeInput($value);
+    }
+
+    // Required fields for validation
+    $requiredFields = $allFields;
 
     $allFilled = true;
     foreach ($requiredFields as $field) {
-        if ($field === 'lrn_num') {
-            if (!isset($_SESSION[$field]) || trim($_SESSION[$field]) === '' && $_SESSION[$field] !== '0') {
-                $allFilled = false;
-                break;
-            }
-        } else {
-            if (!isset($_SESSION[$field]) || trim($_SESSION[$field]) === '') {
-                $allFilled = false;
-                break;
-            }
+        $value = $_SESSION[$field] ?? '';
+        if (trim($value) === '' && $value !== '0') {
+            $allFilled = false;
+            break;
         }
     }
 

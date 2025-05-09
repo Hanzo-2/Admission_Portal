@@ -1,39 +1,95 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_SESSION['father_firstname'] = $_POST['father_firstname'] ?? '';
-    $_SESSION['father_middlename'] = $_POST['father_middlename'] ?? '';
-    $_SESSION['father_surname'] = $_POST['father_surname'] ?? '';
-    $_SESSION['father_birthdate'] = $_POST['father_birthdate'] ?? '';
-    $_SESSION['father_contact'] = $_POST['father_contact'] ?? '';
-    
-    $_SESSION['mother_firstname'] = $_POST['mother_firstname'] ?? '';
-    $_SESSION['mother_middlename'] = $_POST['mother_middlename'] ?? '';
-    $_SESSION['mother_surname'] = $_POST['mother_surname'] ?? '';
-    $_SESSION['mother_birthdate'] = $_POST['mother_birthdate'] ?? '';
-    $_SESSION['mother_contact'] = $_POST['mother_contact'] ?? '';
-    
-    $_SESSION['guardian_firstname'] = $_POST['guardian_firstname'] ?? '';
-    $_SESSION['guardian_middlename'] = $_POST['guardian_middlename'] ?? '';
-    $_SESSION['guardian_surname'] = $_POST['guardian_surname'] ?? '';
-    $_SESSION['guardian_address'] = $_POST['guardian_address'] ?? '';
-    $_SESSION['guardian_province'] = $_POST['guardian_province'] ?? '';
-    $_SESSION['guardian_city'] = $_POST['guardian_city'] ?? '';
-    $_SESSION['guardian_contact'] = $_POST['guardian_contact'] ?? '';
-    $_SESSION['guardian_email'] = $_POST['guardian_email'] ?? '';
-    $_SESSION['guardian_telephone'] = $_POST['guardian_telephone'] ?? '';
-    $_SESSION['emergency_complete_name'] = $_POST['emergency_complete_name'] ?? '';
-    $_SESSION['emergency_complete_name_select'] = $_POST['emergency_complete_name_select'] ?? '';
-    $_SESSION['emergency_complete_address'] = $_POST['emergency_complete_address'] ?? '';
-    $_SESSION['emergency_contact'] = $_POST['emergency_contact'] ?? '';
-    $_SESSION['emergency_email'] = $_POST['emergency_email'] ?? '';
-    $_SESSION['emergency_telephone'] = $_POST['emergency_telephone'] ?? '';
+// Redirect if required previous session data is missing (from educational background page)
+$requiredPreviousFields = [
+    'lrn_num',
+    'school_type',
+    'student_type',
+    'school_name',
+    'school_address',
+    'track_strand',
+    'year_graduation',
+    'shs_average'
+];
 
+foreach ($requiredPreviousFields as $field) {
+    if (empty($_SESSION[$field]) && $_SESSION[$field] !== '0') {
+        header('Location: educational_bg.php');
+        exit();
+    }
+}
+
+// Define sanitization helpers
+function sanitizeInput($input) {
+    return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
+}
+
+function capitalizeFirstLetter($input) {
+    return ucfirst(strtolower(trim($input)));
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Define all fields to sanitize
+    $allFields = [
+        // Father
+        'father_firstname',
+        'father_middlename',
+        'father_surname',
+        'father_birthdate',
+        'father_contact',
+
+        // Mother
+        'mother_firstname',
+        'mother_middlename',
+        'mother_surname',
+        'mother_birthdate',
+        'mother_contact',
+
+        // Guardian
+        'guardian_firstname',
+        'guardian_middlename',
+        'guardian_surname',
+        'guardian_address',
+        'guardian_province',
+        'guardian_city',
+        'guardian_barangay',
+        'guardian_contact',
+        'guardian_email',
+        'guardian_telephone',
+
+        // Emergency Contact
+        'emergency_complete_name',
+        'emergency_complete_name_select',
+        'emergency_complete_address',
+        'emergency_contact',
+        'emergency_email',
+        'emergency_telephone'
+    ];
+
+    // Define fields that should be capitalized
+    $capitalizeFields = [
+        'father_firstname', 'father_middlename', 'father_surname',
+        'mother_firstname', 'mother_middlename', 'mother_surname',
+        'guardian_firstname', 'guardian_middlename', 'guardian_surname',
+        'emergency_complete_name'
+    ];
+
+    // Sanitize and store all inputs in session
+    foreach ($allFields as $field) {
+        $value = $_POST[$field] ?? '';
+        if (in_array($field, $capitalizeFields)) {
+            $value = capitalizeFirstLetter($value);
+        }
+        $_SESSION[$field] = sanitizeInput($value);
+    }
+
+    // Required fields for validation
     $requiredFields = [
         'guardian_firstname',
         'guardian_surname',
         'guardian_address',
         'guardian_province',
         'guardian_city',
+        'guardian_barangay',
         'guardian_contact',
         'emergency_complete_name',
         'emergency_complete_address',
@@ -42,7 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $allFilled = true;
     foreach ($requiredFields as $field) {
-        if (empty($_SESSION[$field])) {
+        $value = $_SESSION[$field] ?? '';
+        if (trim($value) === '' && $value !== '0') {
             $allFilled = false;
             break;
         }

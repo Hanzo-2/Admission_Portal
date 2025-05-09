@@ -21,9 +21,7 @@
   </div>
 </div>
 
-
 <style>
-
 .countdown {
     font-size: 18px;
 }

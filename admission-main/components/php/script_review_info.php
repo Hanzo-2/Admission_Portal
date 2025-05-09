@@ -1,4 +1,11 @@
 <?php
+if (!isset($_SESSION['submitted']) || $_SESSION['submitted'] !== true) {
+    // If the session variable 'submitted' is not set, or its value is not true
+    header("Location: required_docs.php");
+    exit();
+}
+
+
 require_once __DIR__ . '/../../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -10,10 +17,57 @@ $dotenv->load();
 require_once __DIR__ . '/../../components/php/db.php'; // Make sure this returns $pdo (PDO connection)
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (
-        isset($_SESSION['google_id'], $_SESSION['uploaded_docs'][$_SESSION['google_id']]) &&
-        is_array($_SESSION['uploaded_docs'][$_SESSION['google_id']])
-    ) {
+    if (isset($_SESSION['google_id'])) {
+        // Check if the Google ID already exists in the database
+        $googleId = $_SESSION['google_id']; 
+
+        // Check if the Google ID already exists in the database
+        $stmt = $pdo->prepare("SELECT * FROM applications WHERE google_id = ?");
+        $stmt->execute([$googleId]);
+        $existingApplication = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($existingApplication) {
+            // If application exists, clean up and redirect to application_num.php
+            // Cleanup uploads
+            foreach ($_SESSION['uploaded_docs'][$googleId] as $doc) {
+                if (isset($doc['server_path']) && file_exists($doc['server_path'])) {
+                    unlink($doc['server_path']);
+                }
+            }
+            
+            // Cleanup review PDF if it exists
+            if (isset($_SESSION['review_pdf_path']) && file_exists($_SESSION['review_pdf_path'])) {
+                unlink($_SESSION['review_pdf_path']);
+                unset($_SESSION['review_pdf_path']);
+            }
+
+            $_SESSION['formsubmitted']=true;
+            // Preserve only needed session vars
+            $preserve_keys = ['google_id', 'user', 'formsubmitted'];
+            $preserved = [];
+            foreach ($preserve_keys as $key) {
+                if (isset($_SESSION[$key])) {
+                    $preserved[$key] = $_SESSION[$key];
+                }
+            }
+
+            session_unset();
+            foreach ($preserved as $key => $value) {
+                $_SESSION[$key] = $value;
+            }
+
+            // Save the existing application data for display
+            $_SESSION['admission_number'] = $existingApplication['admission_number'];
+            $_SESSION['date_submitted'] = $existingApplication['date_submitted'];
+            $_SESSION['time_submitted'] = $existingApplication['time_submitted'];
+
+            // Redirect to application_num.php to display details
+            header('Location: application_num.php');
+            exit();
+        }
+
+        // Regular form submission process if Google ID doesn't exist
+
         // Setup applicant info
         $applicantSurname = $_SESSION['personal_surname'] ?? '';
         $applicantFirstname = $_SESSION['personal_firstname'] ?? '';
@@ -31,7 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Insert into database and get admission number
         try {
-            $hashedGoogleId = hash('sha256', $_SESSION['google_id']);
             $stmt = $pdo->prepare("INSERT INTO applications 
                 (applicant_name, email, application_type, preferred_course, date_submitted, time_submitted, google_id) 
                 VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -43,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $preferredCourse,
                 $dateSubmitted,
                 $timeSubmitted,
-                $hashedGoogleId
+                $googleId
             ]);
             $lastId = $pdo->lastInsertId();
             $_SESSION['admission_number'] = $lastId;
@@ -68,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $mailRegistrar->addAddress($_ENV['MAIL_TO']);
 
             $mailRegistrar->isHTML(true);
-            $mailRegistrar->Subject = 'New Admission Submission from ' . $applicantName . ' - ' . date('d-m-Y h:i A');
+            $mailRegistrar->Subject = 'New Admission Submission #'.$admissionNumber.' from SPIST Admission Portal';
             $mailRegistrar->Body = "
                 <strong>Admission Number:</strong> $admissionNumber<br>
                 Applicant Name: $applicantName<br>
@@ -79,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 Time Submitted: " . date('h:i A', strtotime($timeSubmitted)) . "<br> 
             ";
 
-            foreach ($_SESSION['uploaded_docs'][$_SESSION['google_id']] as $index => $doc) {
+            foreach ($_SESSION['uploaded_docs'][$googleId] as $index => $doc) {
                 if (isset($doc['server_path']) && file_exists($doc['server_path'])) {
                     $customFilename = "Document_{$index}_" . basename($doc['name']);
                     $mailRegistrar->addAttachment($doc['server_path'], $customFilename);
@@ -135,14 +188,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Cleanup uploads
-        foreach ($_SESSION['uploaded_docs'][$_SESSION['google_id']] as $doc) {
+        foreach ($_SESSION['uploaded_docs'][$googleId] as $doc) {
             if (isset($doc['server_path']) && file_exists($doc['server_path'])) {
                 unlink($doc['server_path']);
             }
         }
 
+        $_SESSION['formsubmitted']=true;
         // Preserve only needed session vars
-        $preserve_keys = ['google_id', 'user'];
+        $preserve_keys = ['google_id', 'user', 'formsubmitted'];
         $preserved = [];
         foreach ($preserve_keys as $key) {
             if (isset($_SESSION[$key])) {

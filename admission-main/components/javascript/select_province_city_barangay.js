@@ -18,14 +18,15 @@ document.addEventListener("DOMContentLoaded", function () {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         },
         body: `field=${encodeURIComponent(fieldName)}&value=${encodeURIComponent(value)}`
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(`Auto-saved ${fieldName}:`, data);
-        })
-        .catch(error => {
-          console.error('Auto-save error:', error);
-        });
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Optional: silently handle success
+    })
+    .catch(error => {
+        // Optional: silently handle error or show user-friendly message
+    });
+    
     }
 
     function populateCities() {
@@ -125,13 +126,13 @@ document.addEventListener("DOMContentLoaded", function () {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: `field=${encodeURIComponent(fieldName)}&value=${encodeURIComponent(value)}`
-      })
+        })
         .then(response => response.json())
         .then(data => {
-          console.log(`Auto-saved ${fieldName}:`, data);
+            // Optional: handle success silently
         })
         .catch(error => {
-          console.error('Auto-save error:', error);
+            // Optional: handle error silently or show user-friendly alert
         });
     }
   

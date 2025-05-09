@@ -60,11 +60,14 @@ function generatePDFAndUpload(callback) {
             fetch('../components/php/upload_review_pdf.php', {
                 method: 'POST',
                 body: formData
-            }).then(response => response.text())
-              .then(result => {
-                console.log('PDF uploaded:', result);
+            })
+            .then(response => response.text())
+            .then(result => {
                 if (callback) callback();
-            }).catch(err => console.error('Upload error:', err));
+            })
+            .catch(err => {
+                // Optionally show a user-friendly message on UI instead of console
+            });                   
         }
     }
 }
@@ -72,7 +75,7 @@ function generatePDFAndUpload(callback) {
 document.getElementById('final-submit-button').addEventListener('click', function (e) {
     // Don't let the form submit right away
     e.preventDefault();
-
+    loadingOverlay.style.display = 'flex';
     // Generate the PDF and upload, then submit form on success
     generatePDFAndUpload(() => {
         const form = document.querySelector('form');
@@ -82,4 +85,42 @@ document.getElementById('final-submit-button').addEventListener('click', functio
             console.error('Form element not found!');
         }
     });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const checkbox = document.getElementById('confirm-check');
+    const submitBtn = document.getElementById('submit-btn');
+    const form = document.getElementById('uploadForm');
+    const submitModal = document.getElementById('submitModal');
+    const editModal = document.getElementById('editModal');
+
+    const cancelBtn = document.getElementById('modal-cancel');
+    const editBtn = document.getElementById('modal-edit');
+    const goBackBtn = document.getElementById('go-back-btn');
+
+    submitBtn.addEventListener('click', function () {
+    const errorMessage = document.getElementById('checkbox-error');
+
+        if (checkbox.checked) {
+            errorMessage.style.display = 'none';
+            submitModal.style.display = 'flex';
+        } else {
+            errorMessage.style.display = 'block';
+        }
+    });
+
+    cancelBtn.addEventListener('click', function () {
+        submitModal.style.display = 'none';
+    });
+
+    editBtn.addEventListener('click', function () {
+        submitModal.style.display = 'none';
+        editModal.style.display = 'flex';
+    });
+
+    goBackBtn.addEventListener('click', function () {
+        editModal.style.display = 'none';
+        submitModal.style.display = 'flex';
+    });
+
 });

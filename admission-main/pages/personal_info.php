@@ -22,7 +22,7 @@ include '../components/php/header.php';
     <section>
       <div class="form-container">
         <div class="form-header">
-          <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo-2">
+          <img src="../assets/images/docu-logo-2.png" alt="Document Logo" class="header-logo-2">
             <div class="form-header-text">
               <h2>Personal Information</h2>
               <p>First Semester, 2025 - 2026</p>
@@ -31,7 +31,13 @@ include '../components/php/header.php';
 
         <form action="personal_info.php" method="post">
           <div class="form-grid">
-
+            <div class="button-container-return">
+              <?php if (isset($_GET['from']) && $_GET['from'] === 'review'): ?>
+                <a href="review_info.php">
+                  <button type="button" id="return-btn">&#8617; Return to Review Information</button>
+                </a>
+              <?php endif; ?>
+            </div>
             <div class="row">
               <div class="form-group">
                 <label for="personal-firstname">First Name:</label>
@@ -107,20 +113,20 @@ include '../components/php/header.php';
               </div>
 
               <div class="form-group">
-                <label for="religion">Religion:</label>
+                  <label for="religion">Religion:</label>
                   <select name="religion" id="religion" required>
-                    <option value="">Select Religion</option>
-                    <option value="Roman Catholic" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Roman Catholic") ? 'selected' : '' ?>>Roman Catholic</option>
-                    <option value="Islam" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Islam") ? 'selected' : '' ?>>Islam</option>
-                    <option value="Iglesia ni Cristo" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Iglesia ni Cristo") ? 'selected' : '' ?>>Iglesia ni Cristo</option>
-                    <option value="Evangelical" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Evangelical") ? 'selected' : '' ?>>Evangelical</option>
-                    <option value="Born Again Christian" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Born Again Christian") ? 'selected' : '' ?>>Born Again Christian</option>
-                    <option value="Seventh-day Adventist" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Seventh-day Adventist") ? 'selected' : '' ?>>Seventh-day Adventist</option>
-                    <option value="Jehovah's Witnesses" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Jehovah's Witnesses") ? 'selected' : '' ?>>Jehovah's Witnesses</option>
-                    <option value="Buddhism" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Buddhism") ? 'selected' : '' ?>>Buddhism</option>
-                    <option value="Hinduism" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Hinduism") ? 'selected' : '' ?>>Hinduism</option>
-                    <option value="Other" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "Other") ? 'selected' : '' ?>>Other</option>
-                    <option value="None" <?= (isset($_SESSION['religion']) && $_SESSION['religion'] === "None") ? 'selected' : '' ?>>None</option>
+                      <option value="">Select Religion</option>
+                      <option value="Roman Catholic" <?= (isset($_SESSION['religion']) && trim($_SESSION['religion']) === "Roman Catholic") ? 'selected' : '' ?>>Roman Catholic</option>
+                      <option value="Islam" <?= (isset($_SESSION['religion']) && trim($_SESSION['religion']) === "Islam") ? 'selected' : '' ?>>Islam</option>
+                      <option value="Iglesia ni Cristo" <?= (isset($_SESSION['religion']) && trim($_SESSION['religion']) === "Iglesia ni Cristo") ? 'selected' : '' ?>>Iglesia ni Cristo</option>
+                      <option value="Evangelical" <?= (isset($_SESSION['religion']) && trim($_SESSION['religion']) === "Evangelical") ? 'selected' : '' ?>>Evangelical</option>
+                      <option value="Born Again Christian" <?= (isset($_SESSION['religion']) && trim($_SESSION['religion']) === "Born Again Christian") ? 'selected' : '' ?>>Born Again Christian</option>
+                      <option value="Seventh-day Adventist" <?= (isset($_SESSION['religion']) && trim($_SESSION['religion']) === "Seventh-day Adventist") ? 'selected' : '' ?>>Seventh-day Adventist</option>
+                      <option value="Jehovah's Witnesses" <?= (isset($_SESSION['religion']) && trim($_SESSION['religion']) === "Jehovah's Witnesses") ? 'selected' : '' ?>>Jehovah's Witnesses</option>
+                      <option value="Buddhism" <?= (isset($_SESSION['religion']) && trim($_SESSION['religion']) === "Buddhism") ? 'selected' : '' ?>>Buddhism</option>
+                      <option value="Hinduism" <?= (isset($_SESSION['religion']) && trim($_SESSION['religion']) === "Hinduism") ? 'selected' : '' ?>>Hinduism</option>
+                      <option value="Other" <?= (isset($_SESSION['religion']) && trim($_SESSION['religion']) === "Other") ? 'selected' : '' ?>>Other</option>
+                      <option value="None" <?= (isset($_SESSION['religion']) && trim($_SESSION['religion']) === "None") ? 'selected' : '' ?>>None</option>
                   </select>
               </div>
           </div>
@@ -140,7 +146,7 @@ include '../components/php/header.php';
             <div class="row">
               <div class="form-group">
                 <label for="province">Province/Region:</label>
-                  <select id="province" name="selected_province" class="form-control" required>
+                  <select id="province" name="selected_province" required>
                     <option value="">Select Province/Region</option>
                       <?php 
                         $selectedProvince = $_SESSION['selected_province'] ?? '';
@@ -153,14 +159,14 @@ include '../components/php/header.php';
 
               <div class="form-group">
                 <label for="city">City/Municipality:</label>
-                  <select id="city" name="selected_city" class="form-control" required>
+                  <select id="city" name="selected_city" required>
                     <option value="">Select City/Municipality</option>
                   </select>
               </div>
 
               <div class="form-group">
                 <label for="barangay">Barangay:</label>
-                  <select id="barangay" name="selected_barangay" class="form-control" required>
+                  <select id="barangay" name="selected_barangay" required>
                     <option value="">Select Barangay</option>
                   </select>
               </div>
@@ -205,7 +211,7 @@ include '../components/php/header.php';
           <a href="admission_application.php"> 
             <button id="back-btn" type="button">Back</button> 
           </a>
-            <button type="submit">Next</button>
+          <button type="submit">Next</button>
         </div>
       </form>
     </div>

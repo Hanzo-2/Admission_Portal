@@ -56,3 +56,25 @@
     left: auto;
     right: 0;
 }
+
+.button-container-return button {
+    width: 100%;
+    height: clamp(45px, 3vh, 60px);
+    border-radius: 7px;
+    font-size: clamp(14px, 1.5vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#return-btn {
+    display: block;
+    background-color: #007bff;
+    color: white;
+    border: 2px solid #333;
+    transition: transform 0.2s ease;
+}
+
+#return-btn:hover {
+    transform: scale(1.05);
+    background-color: #0056b3;
+}

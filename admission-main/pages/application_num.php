@@ -18,7 +18,6 @@ include '../components/php/header.php';
 <body>
 <div class="main-content">
   <section>
-    <div class="form-wrapper">
       <div class="form-container">
         <form>
           <div class="container">
@@ -26,9 +25,9 @@ include '../components/php/header.php';
               <tbody>
                 <tr>
                   <td class="document-logo">
-                    <img src="../assets/images/document_logo.png" alt="Document Logo" class="document-img">
-                    <p class="document-submit-date">Date Submitted: <?php echo htmlspecialchars($dateSubmitted); ?></p>
-                    <p class="document-submit-time">Time Submitted: <?php echo htmlspecialchars($timeSubmitted); ?></p>
+                    <img src="../assets/images/sent-docu-logo.png" alt="Document Logo" class="document-img">
+                    <p class="document-submit-date">Date Submitted: <br><?php echo htmlspecialchars($dateSubmitted); ?></p>
+                    <p class="document-submit-time">Time Submitted: <br><?php echo htmlspecialchars($timeSubmitted); ?></p>
                   </td>
                   
 
@@ -52,7 +51,6 @@ include '../components/php/header.php';
           </div>
         </form>
       </div>
-    </div>
   </section>
 </div>
 

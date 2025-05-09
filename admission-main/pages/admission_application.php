@@ -32,14 +32,20 @@ include '../components/php/header.php';
     <section>
       <div class="form-container">
         <div class="form-header">
-          <img src="../assets/images/document_logo.png" alt="Document Logo" class="header-logo-1">
+          <img src="../assets/images/docu-logo-1.png" alt="Document Logo" class="header-logo-1">
             <div class="form-header-text">
               <h2>Admission Application</h2>
               <p>Welcome to Southern Philippines Institute of Science and Technology</p>
               <p>Please Complete the form for your application</p>
             </div>
         </div>
-        
+          <div class="button-container-return">
+              <?php if (isset($_GET['from']) && $_GET['from'] === 'review'): ?>
+                <a href="review_info.php">
+                  <button type="button" id="return-btn">&#8617; Return to Review Information</button>
+                </a>
+              <?php endif; ?>
+          </div>
         <form action="admission_application.php" method="post">
           <div class="form-grid">
           <div class="form-group-text">
@@ -84,17 +90,12 @@ include '../components/php/header.php';
 
                     <optgroup label="COLLEGE OF ACCOUNTANCY">
                       <option value="BSA - Bachelor of Science in Accountancy" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSA - Bachelor of Science in Accountancy") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Accountancy</option>
-                      <option value="BSA - Bachelor of Science in Accountancy" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSA - Bachelor of Science in Accountancy") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Accountancy</option>
                     </optgroup>
 
                     <optgroup label="COLLEGE OF BUSINESS MANAGEMENT">
-                      <option value="BSBA - Bachelor of Science in Business Administration" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSBA - Bachelor of Science in Business Administration") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Business Administration</option>
-                      <option value="BSBA - Bachelor of Science in Business Administration" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSBA - Bachelor of Science in Business Administration") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Business Administration</option>
-                    </optgroup>
+                      <option value="BSBA - Bachelor of Science in Business Administration" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSBA - Bachelor of Science in Business Administration") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Business Administration</option>                    </optgroup>
 
                     <optgroup label="COLLEGE OF EDUCATION">
-                      <option value="BEEd - Bachelor in Elementary Education" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BEEd - Bachelor in Elementary Education") ? 'selected' : '' ?>>&emsp;Bachelor in Elementary Education</option>
-                      <option value="BSEd - Bachelor in Secondary Education" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSEd - Bachelor in Secondary Education") ? 'selected' : '' ?>>&emsp;Bachelor in Secondary Education</option>
                       <option value="BEEd - Bachelor in Elementary Education" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BEEd - Bachelor in Elementary Education") ? 'selected' : '' ?>>&emsp;Bachelor in Elementary Education</option>
                       <option value="BSEd - Bachelor in Secondary Education" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSEd - Bachelor in Secondary Education") ? 'selected' : '' ?>>&emsp;Bachelor in Secondary Education</option>
                     </optgroup>
@@ -102,14 +103,10 @@ include '../components/php/header.php';
                     <optgroup label="COLLEGE OF ENGINEERING AND COMPUTER STUDIES">
                       <option value="BSCpE - Bachelor of Science in Computer Engineering" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSCpE - Bachelor of Science in Computer Engineering") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Computer Engineering</option>
                       <option value="BSCS - Bachelor of Science in Computer Science" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSCS - Bachelor of Science in Computer Science") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Computer Science</option>
-                      <option value="BSCpE - Bachelor of Science in Computer Engineering" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSCpE - Bachelor of Science in Computer Engineering") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Computer Engineering</option>
-                      <option value="BSCS - Bachelor of Science in Computer Science" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSCS - Bachelor of Science in Computer Science") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Computer Science</option>
                       <option value="BSIT - Bachelor of Science in Information Technology" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSIT - Bachelor of Science in Information Technology") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Information Technology</option>  
                     </optgroup>
 
                     <optgroup label="COLLEGE OF TOURISM AND HOSPITALITY MANAGEMENT">
-                      <option value="BSHM - Bachelor of Science in Hospitality Management" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSHM - Bachelor of Science in Hospitality Management") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Hospitality Management</option>
-                      <option value="BSTM - Bachelor of Science in Tourism Management" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSTM - Bachelor of Science in Tourism Management") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Tourism Management</option>
                       <option value="BSHM - Bachelor of Science in Hospitality Management" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSHM - Bachelor of Science in Hospitality Management") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Hospitality Management</option>
                       <option value="BSTM - Bachelor of Science in Tourism Management" <?= (isset($_SESSION['preferred_course']) && $_SESSION['preferred_course'] == "BSTM - Bachelor of Science in Tourism Management") ? 'selected' : '' ?>>&emsp;Bachelor of Science in Tourism Management</option>
                     </optgroup>

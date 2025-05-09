@@ -23,6 +23,7 @@ sort($places, SORT_STRING | SORT_FLAG_CASE);
 // Echo options and preserve selected value from session
 foreach ($places as $place) {
     $safePlace = htmlspecialchars($place);
-    $selected = (isset($_SESSION['birthplace']) && $_SESSION['birthplace'] === $place) ? 'selected' : '';
+    $selected = (isset($_SESSION['birthplace']) && trim($_SESSION['birthplace']) === trim($place)) ? 'selected' : '';
     echo "<option value=\"$safePlace\" $selected>$safePlace</option>";
 }
+
